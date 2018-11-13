@@ -6,12 +6,9 @@
 <body>
   <?php include "header.php" ?>
 
-
-
-  <h1>Välkommen till GIGANTEN</h1>
-
-
-
+  <div class="container">
+    <h1>Välkommen till ELSHOPPEN</h1>
+  </div>
 
   <?php include "footer.php" ?>
 
