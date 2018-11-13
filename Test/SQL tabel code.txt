@@ -1,0 +1,34 @@
+create table USER(
+    lastname VARCHAR(40) NOT NULL,
+    firstname VARCHAR(40) NOT NULL,
+    password VARCHAR(40) NOT NULL,
+    gender CHAR NOT NULL,
+    dateofbirth DATE NOT NULL,
+    email VARCHAR NOT NULL,
+    removed bool NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
+    mobilenumber INT,
+    address VARCHAR(100),
+    PRIMARY KEY ( id )
+);
+
+
+create table FEEDBACK(
+    rating FLOAT NOT NULL,
+    comment VARCHAR(200),
+    productid INT NOT NULL,
+    customerid INT NOT NULL,
+    PRIMARY KEY (productid,customerid)
+);
+
+
+create table ORDER(
+    customerid INT,
+    productid INT NOT NULL,
+    quantity INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
+    address VARCHAR(100) NOT NULL,
+    pris FLOAT NOT NULL,
+    email VARCHAR NOT NULL,
+    PRIMARY KEY (id,productid)
+);
