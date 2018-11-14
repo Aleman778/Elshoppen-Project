@@ -9,11 +9,21 @@
 
   <div id="main" class="container">
     <h1>Välkommen till ELSHOPPEN</h1>
-    <div class="container">
+    <div class="row">
       <?php
+        //Hardcoded product information, this should be fetched from a database later on.
         $item["name"] = "Nintendo Switch konsol med två Joy-Cons (grå)";
         $item["price"] = "3379.00";
         $item["image_ref"] = "nintendo_switch_gray";
+        $item["id"] = 1;
+
+        //The include statement copies code from the php file specified below and pastes it onto here
+        include("modules/item_card.php");
+        
+        //Use loops to create multiple item cards
+        $item["name"] = "Nintendo Switch konsol med två Joy-Cons (neon blå/ röd)";
+        $item["image_ref"] = "nintendo_switch_neon_blue_red";
+        $item["id"] = 2;
         include("modules/item_card.php");
       ?>
     </div>
