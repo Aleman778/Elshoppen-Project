@@ -1,6 +1,6 @@
 <?php
   $userName = "Unknown User";
-  $userImage = "default.png";
+  $userImage = "cat.jpg";
   $numItemsInCart = 50;
   $loggedIn = true;
 ?>
@@ -27,7 +27,7 @@
         <div class="input-group-prepend">
           <a href="/search">
             <span class="input-group-text p-1" id="basic-addon1" style="background-color: white; border: none; border-top-right-radius: 0; border-bottom-right-radius: 0;">
-              <img src="/res/icons/search.png" width="30" height="30">
+              <img src="/images/icons/search.png" width="30" height="30">
             </span>
           </a>
         </div>
@@ -40,7 +40,7 @@ min-width: 200px;">
         <?php if ($loggedIn) { ?> <!-- The following code is shown if user is logged in -->
           <li class="nav-item">
             <a class="mt-3" href="/cart/show">
-              <img src="/res/icons/cart.png" width="32" height="32" style="margin-top: 8px;">
+              <img src="/images/icons/cart.png" width="32" height="32" style="margin-top: 8px;">
               <span class="badge badge-light rounded-circle align-middle" style="width: 24px; height: 24px; padding-top: 6px; margin-top: 8px;"><?php echo $numItemsInCart ?></span>
             </a>
           </li>
@@ -48,7 +48,7 @@ min-width: 200px;">
             <a class="btn btn-primary py-1" href="#" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="row">
                 <div class="col-sm rounded-circle">
-                  <img src="/res/profiles/<?php echo $userImage ?>" class="rounded-circle" width="38" height="38">
+                  <img src="/images/profiles/<?php echo $userImage ?>" class="rounded-circle" width="38" height="38">
                 </div>
                 <div class="col-sm pl-0">
                   <p class="p-0 mt-1 mb-0"><?php echo $userName ?></p>
