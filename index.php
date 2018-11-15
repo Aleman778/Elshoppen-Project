@@ -5,20 +5,26 @@
   <?php include("modules/bootstrap_css.php"); ?>
 </head>
 <body>
-  <?php include "header.php" ?>
+  <?php include("header.php"); ?>
 
   <div id="main" class="container">
     <h1>Välkommen till ELSHOPPEN</h1>
     <div class="row">
       <?php
-        $servername = "https://utbweb.its.ltu.se";
+        $servername = "utbweb.its.ltu.se";
         $dbname = "db971229";
         $username = "971229";
-        $password = "971220";
+        $password = "971229";
 
         try {
           $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $stmt = $conn->query("SELECT id, name, price, image_ref FROM PRODUCTS");
+          $items = $stmt->fetchAll();
+          var_dump($items);
+          foreach ($items as $item) {
+            include("modules/item_card.php");
+          }
           echo "Connected successfully";
         } catch(PDOException $e) {
           echo "Connection failed: " . $e->getMessage();
