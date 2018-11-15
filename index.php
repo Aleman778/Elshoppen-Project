@@ -11,23 +11,13 @@
     <h1>Välkommen till ELSHOPPEN</h1>
     <div class="row">
       <?php
-        $servername = "utbweb.its.ltu.se";
-        $dbname = "db971229";
-        $username = "971229";
-        $password = "971229";
+        include("modules/mysql.php");
 
-        try {
-          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          $stmt = $conn->query("SELECT id, name, price, image_ref FROM PRODUCTS");
-          $items = $stmt->fetchAll();
-          var_dump($items);
-          foreach ($items as $item) {
-            include("modules/item_card.php");
-          }
-          echo "Connected successfully";
-        } catch(PDOException $e) {
-          echo "Connection failed: " . $e->getMessage();
+        $db = new MySQL();
+        $sql = "SELECT id, name, price, image_ref FROM PRODUCTS";
+        $items = $db->fetchAll($sql);
+        foreach ($items as $item) {
+          include("modules/item_card.php");
         }
 
 
