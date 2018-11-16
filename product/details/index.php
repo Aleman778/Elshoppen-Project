@@ -2,14 +2,14 @@
 <html>
 <head>
   <!-- Include bootstrap css -->
-  <?php include($_SERVER["DOCUMENT_ROOT"] . "/modules/bootstrap_css.php"); ?>
+  <?php include("../../modules/bootstrap_css.php"); ?>
 </head>
 <body>
 
-  <?php include($_SERVER["DOCUMENT_ROOT"] . "/header.php") ?>
+  <?php include("../../header.php") ?>
 
   <?php 
-    include($_SERVER["DOCUMENT_ROOT"] . "/modules/mysql.php");
+    include("../../modules/mysql.php");
     $id = $_GET["id"];
 
     $db = new MySQL();
@@ -24,12 +24,12 @@
     </ol>
 
     <h2><?php echo $details["name"] ?></h2>
-    <img src="<?php echo "/images/items/" . $details["image_ref"] . "_card.jpg" ?>">
+    <img src="<?php echo "../../images/items/" . $details["image_ref"] . "_card.jpg" ?>">
     <p><?php echo $details["description"] ?></p>
   </div>
 
 
-  <?php include($_SERVER["DOCUMENT_ROOT"] . "/footer.php") ?>
+  <?php include("../../footer.php") ?>
 
   <!--  Include bootstrap scripts -->
   <?php include("../../modules/bootstrap_js.php"); ?>
