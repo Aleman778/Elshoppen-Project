@@ -2,7 +2,7 @@
  <!DOCTYPE html>
 <html>
 <head>
-  <title>Page Title</title>
+  <title>Logga in</title>
   <?php include("../modules/bootstrap_css.php") ?>
 </head>
   <body>
@@ -10,27 +10,31 @@
 
     <div class="container">
       <form action="action_page.php">
-          <h1>Login</h1>
-          <p>Please fill in this form to login.</p>
+          <h1>Logga in</h1>
+          <p>Fyll i rutorna nedan för att logga in.</p>
           <hr>
-            <div class="row">
-              <div class="col-md-1">
-                <label for="uname"><b>Username</b></label>
-              </div>
-              <div class="col-md-1">
-                <input type="text" placeholder="Enter Username" name="uname" required>
-              </div>
-            </div>
           <div class="row">
-            <div class="col-md-1">
-              <label for="psw"><b>Password</b></label>
+            <div class="col-md-2">
+              <label for="uname"><b>Användarnamn</b></label>
             </div>
-            <div class="col-md-1">
-              <input type="password" placeholder="Enter Password" name="psw" required>
+            <div class="col-md-2">
+              <input class="form-control" type="text" placeholder="Fyll i Användarnamn" name="uname" required>
             </div>
           </div>
-            <button type="submit" class="btn loginbtn">Login</button>
-            <button type="button" class="btn cancelbtn">Cancel</button>
+          <div class="row">
+            <div class="col-md-2">
+              <label for="psw"><b>Lösenord</b></label>
+            </div>
+            <div class="col-md-2">
+              <input class="form-control" type="password" placeholder="Fyll i Lösenord" name="psw" required>
+            </div>
+          </div>
+            <button type="submit" class="btn btn-primary">Logga in</button>
+            <a href="/" class="btn btn-secondary">Avbryt</a>
+            <div class="col-md-2"
+              <p>Har du inget konto? <a href="/signup">Skapa ett konto.</a></p>
+              <br>
+            </div>
           </div>
       </form> 
     </div>
