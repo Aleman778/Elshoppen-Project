@@ -29,7 +29,7 @@
   </div>
 
 
-  <?php include("../../footer.php") ?>
+  <?php include($_SERVER["DOCUMENT_ROOT"] . "/footer.php") ?>
 
   <!--  Include bootstrap scripts -->
   <?php include("../../modules/bootstrap_js.php"); ?>
