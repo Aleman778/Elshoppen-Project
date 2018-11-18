@@ -6,5 +6,6 @@ create table ORDERS (
     address VARCHAR(100) NOT NULL,
     price FLOAT NOT NULL,
     email VARCHAR(100) NOT NULL,
-    PRIMARY KEY ( id, product_id )
+    PRIMARY KEY ( id, product_id ),
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMERS (id)
 );
