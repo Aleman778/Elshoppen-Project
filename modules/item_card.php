@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <h5 class="card-title" style="max-height: 48px; overflow: hidden;">
-        <?php echo $item["name"] ?>
+      <?php echo $item["name"] ?>
     </h5>
     <p class="card-subtitle pb-2"><?php echo (string) $item["price"] . " kr" ?></p>
     <a href="product/details?id=<?php echo $item["id"] ?>" class="btn btn-primary">Visa produkt</a>

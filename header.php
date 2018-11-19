@@ -5,7 +5,7 @@
   $loggedIn = true;
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary py-1 mb-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary py-1 mb-4" style="box-shadow: 0px 0px 12px #888888;">
   <a class="navbar-brand" href="/">ELSHOPPEN</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
