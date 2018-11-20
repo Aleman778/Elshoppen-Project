@@ -1,7 +1,7 @@
 create table CUSTOMERS (
     lastname VARCHAR(40) NOT NULL,
     firstname VARCHAR(40) NOT NULL,
-    password VARCHAR(60) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     gender CHAR NOT NULL,
     birth_date DATE NOT NULL,
     email VARCHAR(100) NOT NULL,

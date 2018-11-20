@@ -16,7 +16,9 @@
     }
 
     function createTable($conn, $table) {
-        $sql = loadFile("../sql/$table.sql");
+        $sql = "IF NOT EXIST (";
+        $sql .= loadFile("../sql/$table.sql");
+        $sql .= ")";
         if ($conn->query($sql)) {
             array_push($insert_success, $table);
         } else {
