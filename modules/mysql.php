@@ -27,5 +27,9 @@
         function fetchAll(string $sql) {
             return $this->conn->query($sql)->fetchAll();
         }
+
+        function prepare(string $sql) {
+            return $this->conn->prepare($sql);
+        }
     }
 ?>
