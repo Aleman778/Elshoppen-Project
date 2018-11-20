@@ -1,7 +1,10 @@
 <?php
-  $searchterm = mysql_real_escape_string($_REQUEST['searchterm']);
+  include("../../modules/mysql.php");
+  
+  $searchterm = htmlspecialchars($_REQUEST['searchterm']);
 
   $sql = "SELECT * From PRODUCTS WHERE name LIKE '%".$searchterm."%'";
-  $r_query = mysql_query($sql);
+  $db = new MySQL();
+  $r_query =  $db->fetchAll($sql);
   var_dump($r_query);
 ?>
