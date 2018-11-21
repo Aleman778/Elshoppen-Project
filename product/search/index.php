@@ -5,15 +5,17 @@
   include("../../modules/mysql.php");
   
   $searchterm = htmlspecialchars($_REQUEST['searchterm']);
-
-  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE name LIKE '%".$searchterm."%'";
   $db = new MySQL();
-  $items =  $db->fetchAll($sql);
+  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE name LIKE '% :term %'";
+  $stmt = $db->prepare($sql);
+  $stmt->bindParam(":term", $searchterm);
+  $items =  $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+<title>Sökresultat för: <?php echo $searchterm ?> - Elshoppen</title>
   <!-- Include basic libraries -->
   <?php include("../../modules/bootstrap_css.php"); ?>
 </head>
