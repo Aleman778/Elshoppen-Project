@@ -22,7 +22,7 @@
         <a class="nav-link" href="#">Kontakt<span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <form action="/product/search/index.php" method="post" class="form-inline mx-2 p-0 col-lg">
+    <form action="/product/search/index.php" method="get" class="form-inline mx-2 p-0 col-lg">
       <div class="input-group p-0 col-lg">
         <div class="input-group-prepend">
           <a href="/product/search/index.php">
