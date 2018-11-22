@@ -1,11 +1,12 @@
+<?php $root = $_SERVER['DOCUMENT_ROOT']; ?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Skapa ett konto</title>
-        <?php include("../modules/bootstrap_css.php") ?>
+        <?php include("$root/modules/bootstrap_css.php") ?>
     </head>
     <body>
-        <?php include("../header.php") ?>
+        <?php include("$root/header.php") ?>
         <div class="container">
             <?php 
                 if (array_key_exists("err", $_GET)) {
@@ -125,10 +126,10 @@
             </form> 
         </div>
 
-        <?php include("../footer.php") ?>
-        <?php include("../modules/bootstrap_js.php") ?>
+        <?php include("$root/footer.php") ?>
+        <?php include("$root/modules/bootstrap_js.php") ?>
         
         <!-- fix footer position -->
-        <script src="../footer.js"></script>
+        <script src="/footer.js"></script>
     </body>
 </html> 

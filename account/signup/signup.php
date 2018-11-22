@@ -1,5 +1,7 @@
 <?php 
-    include("../modules/mysql.php");
+    $root = $_SERVER['DOCUMENT_ROOT'];
+
+    include("$root/modules/mysql.php");
     
     //Check for invalid firstname, lastname and password.
     $fname_len = strlen($_POST["first-name"]);
@@ -42,7 +44,7 @@
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
-        header("Location: ../index.php");
+        header("Location: ../../index.php");
     } catch (PDOException $e) {
         $errmsg = $e->getMessage();
         if (strpos($errmsg, 'Duplicate') !== false) {
