@@ -9,16 +9,28 @@
     <?php include("$root/header.php") ?>
 
     <div class="container">
-      <form action="action_page.php">
+      <?php if (array_key_exists("err", $_GET)) { ?>
+        <?php if ($_GET["err"] == "pass") { ?>
+          <div class="alert alert-danger" role="alert">
+            Fel lösenord försök igen.
+          </div>
+        <?php } ?>
+        <?php if ($_GET["err"] == "email") { ?>
+          <div class="alert alert-danger" role="alert">
+            Det finns inget konto med den angivna email addressen.
+          </div>
+        <?php } ?>
+      <?php } ?>
+      <form action="signin.php" method="post">
           <h1>Logga in</h1>
           <p>Fyll i rutorna nedan för att logga in.</p>
           <hr>
           <div class="row">
             <div class="col-md-2">
-              <label for="uname"><b>Användarnamn</b></label>
+              <label for="uname"><b>Email</b></label>
             </div>
             <div class="col-md-2">
-              <input class="form-control" type="text" placeholder="Fyll i Användarnamn" name="uname" required>
+              <input class="form-control" type="text" placeholder="Fyll i email" id="email" name="email" required>
             </div>
           </div>
           <div class="row">

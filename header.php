@@ -1,10 +1,4 @@
-<?php
-  $userName = "Unknown User";
-  $userImage = "cat.jpg";
-  $numItemsInCart = 50;
-  $loggedIn = true;
-?>
-
+<?php session_start(); ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-1 mb-4" style="box-shadow: 0px 0px 12px #888888;">
   <a class="navbar-brand" href="/">ELSHOPPEN</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,21 +31,21 @@ min-width: 200px;">
     </form>
     <div class="navbar navbar-right p-0">
       <ul class="navbar-nav">
-        <?php if ($loggedIn) { ?> <!-- The following code is shown if user is logged in -->
+        <?php if (array_key_exists("customer_id", $_SESSION)) { ?> <!-- The following code is shown if user is logged in -->
           <li class="nav-item">
             <a class="mt-3" href="/account/kundvagn">
               <img src="/images/icons/cart.png" width="32" height="32" style="margin-top: 8px;">
-              <span class="badge badge-light rounded-circle align-middle" style="width: 24px; height: 24px; padding-top: 6px; margin-top: 8px;"><?php echo $numItemsInCart ?></span>
+              <span class="badge badge-light rounded-circle align-middle" style="width: 24px; height: 24px; padding-top: 6px; margin-top: 8px;"><?php echo "0"; ?></span>
             </a>
           </li>
           <li class="nav-item dropdown ml-2">
             <a class="btn btn-primary py-1" href="#" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="row">
                 <div class="col-sm rounded-circle">
-                  <img src="/images/profiles/<?php echo $userImage ?>" class="rounded-circle" width="38" height="38">
+                  <img src="/images/profiles/<?php echo "default.png" ?>" class="rounded-circle" width="38" height="38">
                 </div>
                 <div class="col-sm pl-0">
-                  <p class="p-0 mt-1 mb-0"><?php echo $userName ?></p>
+                  <p class="p-0 mt-1 mb-0"><?php echo $_SESSION["name"] ?></p>
                 </div>
               </div>
             </a>
@@ -65,7 +59,7 @@ min-width: 200px;">
           </li>
         <?php } else { ?> <!-- If the user is not logged in then this code is shown -->
           <li class="nav-item">
-            <a class="btn btn-primary" href="login/" type="submit">Logga in</a>
+            <a class="btn btn-primary" href="/account/signin">Logga in</a>
           </li>
         <?php } ?>
         </ul>
