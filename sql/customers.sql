@@ -4,7 +4,7 @@ create table CUSTOMERS (
     password VARCHAR(255) NOT NULL,
     gender CHAR NOT NULL,
     birth_date DATE NOT NULL,
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
     removed TINYINT(1) NOT NULL,
     id INT NOT NULL AUTO_INCREMENT,
     phone_number INT,
