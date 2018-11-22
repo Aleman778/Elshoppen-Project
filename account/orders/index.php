@@ -1,7 +1,6 @@
 <?php 
     session_start();
-    $id = $_SESSION["id"];
-    if ($id == NULL) {
+    if (!(array_key_exists("customer_id", $_SESSION))) {
         header("Location: http://localhost/account/signin");
         exit;
     }
