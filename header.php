@@ -57,7 +57,7 @@ min-width: 200px;">
             </a>
             <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
                 <a class="dropdown-item" href="account/details">Mitt konto</a>
-                <a class="dropdown-item" href="orders">Mina beställningar</a>
+                <a class="dropdown-item" href="/account/orders">Mina beställningar</a>
                 <a class="dropdown-item" href="/account/kundvagn">Kundvagn</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/account/signout">Logga ut</a>
