@@ -6,10 +6,8 @@
   
   $searchterm = htmlspecialchars($_REQUEST['searchterm']);
   $db = new MySQL();
-  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE name LIKE '% :term %'";
-  $stmt = $db->prepare($sql);
-  $stmt->bindParam(":term", $searchterm);
-  $items =  $stmt->fetchAll();
+  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE name LIKE '%$searchterm%'";
+  $items =  $db->fetchAll($sql);
 ?>
 
 <!DOCTYPE html>
