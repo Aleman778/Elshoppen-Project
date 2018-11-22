@@ -9,5 +9,5 @@ function fixFooter() {
     var footerTop = $('#footer').position().top + footerHeight;
 
     if (footerTop < docHeight)
-        $('#footer').css('margin-top', 10 + (docHeight - footerTop) + 'px');
+        $('#footer').css('margin-top', 20 + (docHeight - footerTop) + 'px');
 }

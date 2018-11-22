@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Startsida</title>
   <!-- Include basic libraries -->
   <?php include("modules/bootstrap_css.php"); ?>
 </head>

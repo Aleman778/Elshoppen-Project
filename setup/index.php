@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="../checkbox.css">
     <style>
         #main-form {
-            width: 50%;
             margin-top: 200px;
+            max-width: 700px;
             min-width: 300px;
             background-color: white;
             box-shadow: 0px 0px 10px rgb(200, 200, 200);

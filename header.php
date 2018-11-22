@@ -22,18 +22,18 @@
         <a class="nav-link" href="#">Kontakt<span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <form class="form-inline mx-2 p-0 col-lg">
+    <form action="/product/search/index.php" method="get" class="form-inline mx-2 p-0 col-lg">
       <div class="input-group p-0 col-lg">
         <div class="input-group-prepend">
-          <a href="/search">
+          <a href="/product/search/index.php">
             <span class="input-group-text p-1" id="basic-addon1" style="background-color: white; border: none; border-top-right-radius: 0; border-bottom-right-radius: 0;">
               <img src="/images/icons/search.png" width="30" height="30">
             </span>
           </a>
         </div>
-        <input class="form-control mr-sm-2" type="search" placeholder="Sök i web-shoppen" aria-label="Search"  style="border: none;max-width: 500px;
+        <input id="searchbar" name="searchterm" class="form-control mr-sm-2" type="search" placeholder="Sök i web-shoppen" aria-label="Search"  style="border: none;max-width: 500px;
 min-width: 200px;">
-      </div>
+      </div> 
     </form>
     <div class="navbar navbar-right p-0">
       <ul class="navbar-nav">
