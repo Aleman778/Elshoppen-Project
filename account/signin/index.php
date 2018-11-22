@@ -25,7 +25,7 @@
           <h1>Logga in</h1>
           <p>Fyll i rutorna nedan för att logga in.</p>
           <hr>
-          <div class="row">
+          <div class="row mb-2">
             <div class="col-md-2">
               <label for="uname"><b>Email</b></label>
             </div>
@@ -33,7 +33,7 @@
               <input class="form-control" type="text" placeholder="Fyll i email" id="email" name="email" required>
             </div>
           </div>
-          <div class="row">
+          <div class="row mb-2">
             <div class="col-md-2">
               <label for="psw"><b>Lösenord</b></label>
             </div>
