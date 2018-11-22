@@ -39,7 +39,7 @@ min-width: 200px;">
       <ul class="navbar-nav">
         <?php if ($loggedIn) { ?> <!-- The following code is shown if user is logged in -->
           <li class="nav-item">
-            <a class="mt-3" href="/cart/show">
+            <a class="mt-3" href="/account/kundvagn">
               <img src="/images/icons/cart.png" width="32" height="32" style="margin-top: 8px;">
               <span class="badge badge-light rounded-circle align-middle" style="width: 24px; height: 24px; padding-top: 6px; margin-top: 8px;"><?php echo $numItemsInCart ?></span>
             </a>
@@ -58,7 +58,7 @@ min-width: 200px;">
             <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
                 <a class="dropdown-item" href="account/details">Mitt konto</a>
                 <a class="dropdown-item" href="orders">Mina beställningar</a>
-                <a class="dropdown-item" href="cart/show">Kundvagn</a>
+                <a class="dropdown-item" href="/account/kundvagn">Kundvagn</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout">Logga ut</a>
               </div>
