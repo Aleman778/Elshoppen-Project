@@ -1,20 +1,23 @@
 <?php 
+    $root = $_SERVER['DOCUMENT_ROOT'];
 
-$loggedIn = false;
-$firstname = "";
-$lastname = "";
-$email = "";
+    $loggedIn = false;
+    $firstname = "";
+    $lastname = "";
+    $email = "";
 
-if (session_status() == PHP_SESSION_NONE)
-    session_start();
-if (array_key_exists("customer_id", $_SESSION))
-    $loggedIn = true;
-if (array_key_exists("firstname", $_SESSION))
-    $firstname = $_SESSION["firstname"];
-if (array_key_exists("lastname", $_SESSION))
-    $lastname = $_SESSION["lastname"];
-if (array_key_exists("email", $_SESSION))
-    $email = $_SESSION["email"];
+    if (session_status() == PHP_SESSION_NONE)
+        session_start();
+    if (array_key_exists("customer_id", $_SESSION))
+        $loggedIn = true;
+    if (array_key_exists("firstname", $_SESSION))
+        $firstname = $_SESSION["firstname"];
+    if (array_key_exists("lastname", $_SESSION))
+        $lastname = $_SESSION["lastname"];
+    if (array_key_exists("email", $_SESSION))
+        $email = $_SESSION["email"];
+
+    include("$root/modules/gravatar.php");
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-1 mb-4" style="box-shadow: 0px 0px 12px #888888;">
     <a class="navbar-brand" href="/">ELSHOPPEN</a>
@@ -57,13 +60,13 @@ if (array_key_exists("email", $_SESSION))
                 </li>-->
                 <li class="nav-item dropdown ml-2">
                     <a class="py-1" href="#" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="/images/profiles/<?php echo "default.png" ?>" class="rounded-circle" width="38" height="38">
+                        <img src="<?php echo get_gravatar($email, 38); ?>" class="rounded-circle" width="38" height="38">
                     </a>
                     <div id="profile-drop" class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdownMenu" style="padding-top: 0px;">
                         <a class="dropdown-item" href="account/details" style="background-color: rgb(230, 230, 230); border-top-left-radius: .25rem; border-top-right-radius: .25rem;">
                             <div class="row">
                                 <div class="col-sm p-0" style="min-width: 48px;">
-                                    <img src="/images/profiles/<?php echo "default.png" ?>" class="rounded-circle" width="38" height="38" style="margin-top:5px;">
+                                    <img src="<?php echo get_gravatar($email, 38); ?>" class="rounded-circle" width="38" height="38" style="margin-top:5px;">
                                 </div>
                                 <div class="col-lg p-0">
                                     <b class="text-nowrap"><?php echo $firstname . " " . $lastname; ?></b><br>
