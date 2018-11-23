@@ -1,20 +1,21 @@
 <?php 
-    session_start();
-    if (!(array_key_exists("customer_id", $_SESSION))) {
-        header("Location: http://localhost/account/signin");
-        exit;
-    }
-    include("../../modules/mysql.php");
+  $root = $_SERVER['DOCUMENT_ROOT'];
 
-    $customer_id = $_SESSION["customer_id"];
+  session_start();
+  if (!(array_key_exists("customer_id", $_SESSION))) {
+      header("Location: http://localhost/account/signin");
+      exit;
+  }
+  include("$root/modules/mysql.php");
 
-    $db = new MySQL();
-    $sql = "SELECT product_id, quantity From CART WHERE customer_id LIKE $customer_id";
-    $antal =  $db->fetchAll($sql);
-    $sql = "SELECT * From PRODUCTS WHERE id in (SELECT product_id FROM CART WHERE customer_id LIKE $customer_id)";
-    $items =  $db->fetchAll($sql);
+  $customer_id = $_SESSION["customer_id"];
+
+  $db = new MySQL();
+  $sql = "SELECT product_id, quantity From CART WHERE customer_id LIKE $customer_id";
+  $antal =  $db->fetchAll($sql);
+  $sql = "SELECT * From PRODUCTS WHERE id in (SELECT product_id FROM CART WHERE customer_id LIKE $customer_id)";
+  $items =  $db->fetchAll($sql);
 ?>
-<?php $root = $_SERVER['DOCUMENT_ROOT']; ?>
 <!DOCTYPE html>
 <html>
 <head>

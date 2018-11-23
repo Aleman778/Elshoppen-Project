@@ -1,11 +1,21 @@
 <?php 
-    session_start();
-    if (!(array_key_exists("customer_id", $_SESSION))) {
-        header("Location: http://localhost/account/signin");
-        exit;
-    }
+  $root = $_SERVER['DOCUMENT_ROOT'];
+
+  session_start();
+  if (!(array_key_exists("customer_id", $_SESSION))) {
+      header("Location: http://localhost/account/signin");
+      exit;
+  }
+  include("$root/modules/mysql.php");
+
+  $customer_id = $_SESSION["customer_id"];
+
+  $db = new MySQL();
+  $sql = "SELECT * From ORDERS WHERE customer_id LIKE $customer_id";
+  $orders =  $db->fetchAll($sql);
+  //$sql = "SELECT * From ORDERS_PRODUCTS WHERE order_id in (SELECT id FROM ORDERS WHERE customer_id LIKE $customer_id)";
+  //$items =  $db->fetchAll($sql);
 ?>
-<?php $root = $_SERVER['DOCUMENT_ROOT']; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +29,7 @@
   <div id="main" class="container">
     <h1>Mina beställningar</h1>
     <div class="row">
-      Data om order!
+      <?php var_dump($orders); ?>
     </div>
   </div>
 
