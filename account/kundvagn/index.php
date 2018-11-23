@@ -11,15 +11,17 @@
   $customer_id = $_SESSION["customer_id"];
 
   $db = new MySQL();
-  $sql = "SELECT product_id, quantity From CART WHERE customer_id LIKE $customer_id";
-  $antal =  $db->fetchAll($sql);
-  $sql = "SELECT * From PRODUCTS WHERE id in (SELECT product_id FROM CART WHERE customer_id LIKE $customer_id)";
+  $sql = "SELECT C.product_id , C.quantity, 
+          P.id, P.name, P.price, P.image_ref
+          FROM CART C
+          INNER JOIN PRODUCTS P ON C.product_id = P.id
+          WHERE C.customer_id LIKE $customer_id";
   $items =  $db->fetchAll($sql);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Kundvagn</title>
+<title>Din Kundvagn - Elshoppen</title>
   <!-- Include basic libraries -->
   <?php include("$root/modules/bootstrap_css.php"); ?>
 </head>
@@ -29,12 +31,17 @@
   <div id="main" class="container">
     <h1>Din Kundvagn</h1>
     <div class="row">
-    <?php
+      <?php
         foreach ($items as $item) {
           include("$root/modules/item_card.php");
         }
-        var_dump($antal);
+        if (count($items) == 0){
+          echo "Kundvagnen är tom";
+        }
+        else {
       ?>
+      <a href="/account/kundvagn/payinfo.php" class="btn btn-primary">Beställ</a>
+        <?php } ?>
     </div>
   </div>
 

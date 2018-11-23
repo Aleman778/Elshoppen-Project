@@ -19,7 +19,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Startsida</title>
+<title>Mina beställningar - Elshoppen</title>
   <!-- Include basic libraries -->
   <?php include("$root/modules/bootstrap_css.php"); ?>
 </head>

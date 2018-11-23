@@ -7,6 +7,9 @@
       <?php echo $item["name"] ?>
     </h5>
     <p class="card-subtitle pb-2"><?php echo (string) $item["price"] . " kr" ?></p>
+    <?php if ((array_key_exists("quantity", $item))) { ?> 
+      <p class="card-subtitle pb-2"> Antal = </p>
+    <?php echo (string) $item["quantity"]; } ?>
     <a href="product/details?id=<?php echo $item["id"] ?>" class="btn btn-primary">Visa produkt</a>
   </div>
 </div>
