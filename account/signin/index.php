@@ -1,4 +1,10 @@
-<?php $root = $_SERVER['DOCUMENT_ROOT']; ?>
+<?php
+  $root = $_SERVER['DOCUMENT_ROOT'];
+
+  session_start();
+  if (array_key_exists("customer_id", $_SESSION))
+    header("Location: /");
+?>
 <!DOCTYPE html>
 <html>
 <head>

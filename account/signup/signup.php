@@ -1,8 +1,10 @@
-<?php 
+<?php
     $root = $_SERVER['DOCUMENT_ROOT'];
 
-    include("$root/modules/mysql.php");
-    
+    session_start();
+    if (array_key_exists("customer_id", $_SESSION))
+        header("Location: /");
+
     //Check for invalid firstname, lastname and password.
     $fname_len = strlen($_POST["first-name"]);
     $lname_len = strlen($_POST["last-name"]);
@@ -40,11 +42,28 @@
                     "addr" => $_POST["address"]);
     
     //Execute insert query
+    include("$root/modules/mysql.php");
     $db = new MySQL();
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
-        header("Location: ../../index.php");
+
+        //Get the generated id
+        $stmt = $db->prepare("SELECT id FROM CUSTOMERS WHERE email=:email");
+        $stmt->execute(array("email" => $_POST["email"]));
+        $data = $stmt->fetch();
+        if (!$data) {
+            header("Location: index.php?err=other&errmsg=Databas fel, försök igen.");
+        }
+        $id = (int) $data;
+
+        //Signup successfull
+        $_SESSION["customer_id"] = $id;
+        $_SESSION["firstname"] = $_POST["first-name"];
+        $_SESSION["lastname"] = $_POST["last-name"];
+        $_SESSION["email"] = $_POST["email"];
+
+        header("Location: /");
     } catch (PDOException $e) {
         $errmsg = $e->getMessage();
         if (strpos($errmsg, 'Duplicate') !== false) {
