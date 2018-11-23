@@ -11,12 +11,6 @@
   $customer_id = $_SESSION["customer_id"];
 
   $db = new MySQL();
-  $sql = "SELECT C.product_id , C.quantity, 
-          P.id, P.price, 
-          FROM CART C
-          INNER JOIN PRODUCTS P ON C.product_id = P.id
-          WHERE C.customer_id LIKE $customer_id";
-  $items =  $db->fetchAll($sql);
 
   //insert into database
 

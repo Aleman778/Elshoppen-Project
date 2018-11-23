@@ -31,6 +31,8 @@
         </div>
         <br>
         
+        <a href="/account/orders/order.php" class="btn btn-primary">Betala</a>
+
     </div>
   </div>
 
