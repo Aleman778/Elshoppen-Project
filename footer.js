@@ -1,7 +1,14 @@
-$(document).ready(fixFooter);
+$(document).ready(function() {
+    fixHeader();
+    fixFooter();
+});
 $(window).resize(fixFooter);
 $("#navbarSupportedContent").resize(fixFooter);
 
+function fixHeader() {
+    var newWidth = $("#profile-drop").width() + 48;
+    $("#profile-drop").width(newWidth);
+}
 
 function fixFooter() {
     var docHeight = $(window).height();
