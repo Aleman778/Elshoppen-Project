@@ -111,15 +111,19 @@
                 </div>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" role="tab" aria-controls="reviews" aria-selected="true" href="#reviews">Recensioner</a>
+                        <a class="nav-link" data-toggle="tab" role="tab" aria-controls="reviews" aria-selected="true" href="#reviews">Recensioner</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" role="tab" aria-controls="comments" aria-selected="false" href="#comments">Frågor och svar</a>
+                        <a class="nav-link active" data-toggle="tab" role="tab" aria-controls="comments" aria-selected="false" href="#comments">Kommentarer</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">a</div>
-                    <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">b</div>
+                    <div class="tab-pane" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                        a
+                    </div>
+                    <div class="tab-pane show active" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                        <?php include("$root/modules/comments.php"); ?>
+                    </div>
                 </div>
             <?php } ?>
         </div>
@@ -131,6 +135,9 @@
 
         <!-- fix footer position -->
         <script src="/footer.js"></script>
+
+        <!-- comments script -->
+        <script src="/modules/comments.js"></script>
 
         <!-- Carousel -->
         <script>
