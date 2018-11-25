@@ -149,12 +149,12 @@
                         maxHeight = h;
                     }
                 });
+                $("#imageGallery").css("min-height", maxHeight);
+                $("#imageGallery").css("max-height", maxHeight);
                 $(".carousel-item").each(function() {
                     var y = maxHeight/2.0 - $(this).height()/2.0;
                     $(this).css("margin-top", y);
                 });
-                $("#imageGallery").css("min-height", maxHeight);
-                $("#imageGallery").css("max-height", maxHeight);
             });
         </script>
     </body>

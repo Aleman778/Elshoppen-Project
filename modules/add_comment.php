@@ -1,6 +1,5 @@
 <?php 
     $root = $_SERVER['DOCUMENT_ROOT'];
-
     $customer_id = 0;
     $product_id = 0;
     $reply_id = 0;
