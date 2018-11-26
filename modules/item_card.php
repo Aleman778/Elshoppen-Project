@@ -3,8 +3,8 @@
 ?>
 
 <div class="card card-item m-2" style="width: 16rem;">
-    <div class="card-img-top" style="width: 16rem; height: 10rem; overflow: hidden;">
-        <img class="align-middle" style="width: 15.8rem;" src="<?php echo "/images/items/$images[0]/$images[1]"; ?>" alt="Card image cap">
+    <div class="card-img-top" style="width: 16rem; height: 10rem; overflow: hidden; display:table-cell; text-align:center">
+        <img class="align-middle" style="height: 10rem;" src="<?php echo "/images/items/$images[0]/$images[1]"; ?>" alt="Card image cap">
     </div>
     <div class="card-body">
         <h5 class="card-title" style="max-height: 48px; overflow: hidden;">

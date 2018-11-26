@@ -34,8 +34,8 @@
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
-        echo "success";
+        echo "Success! you have to refresh the page to see you comment!";
     } catch (PDOException $e) {
-        echo "error";
+        echo "Error: " . $e->getMessage();
     }
 ?>

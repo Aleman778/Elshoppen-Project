@@ -10,6 +10,8 @@
     <head>
         <!-- Include bootstrap css -->
         <?php include("$root/modules/bootstrap_css.php"); ?>
+
+        <!-- Custom styling -->
         <style>
             .carousel-control-prev {
                 transition: background-color 0.5s ease;
@@ -24,6 +26,16 @@
             }
             .carousel-control-next:hover {
                 background-color: rgb(0, 0, 0, 0.2);
+            }
+
+            .noselect {
+                -webkit-touch-callout: none; /* iOS Safari */
+                    -webkit-user-select: none; /* Safari */
+                    -khtml-user-select: none; /* Konqueror HTML */
+                    -moz-user-select: none; /* Firefox */
+                        -ms-user-select: none; /* Internet Explorer/Edge */
+                            user-select: none; /* Non-prefixed version, currently
+                                                supported by Chrome and Opera */
             }
         </style>
     </head>
@@ -118,11 +130,94 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                    <div class="tab-pane mb-4" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                         a
                     </div>
-                    <div class="tab-pane show active" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-                        <?php include("$root/modules/comments.php"); ?>
+                    <div class="tab-pane show active mb-4" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                        <!-- Select all comments from the given product. -->
+                        <?php
+                            $sql = "SELECT COMMENTS.*, CUSTOMERS.firstname, CUSTOMERS.lastname, CUSTOMERS.email
+                                    FROM CUSTOMERS JOIN COMMENTS
+                                    WHERE CUSTOMERS.id=COMMENTS.customer_id AND COMMENTS.product_id=:id AND COMMENTS.reply_id=0
+                                    ORDER BY COMMENTS.id DESC LIMIT 10";
+                            $stmt = $db->prepare($sql);
+                            $stmt->execute(array("id" => $_GET["id"]));
+                            $comments = $stmt->fetchAll();
+                        ?>
+                        <!-- Count how many comments there are in total -->
+                        <?php 
+                            $sql = "SELECT COUNT(*) FROM COMMENTS WHERE product_id=:id AND reply_id=0";
+                            $stmt = $db->prepare($sql);
+                            $stmt->execute(array("id" => $_GET["id"]));
+                            $numComments = $stmt->fetch()["COUNT(*)"];
+                        ?>
+                        <?php if ($numComments == 0) { ?>
+                            <h4 class="mt-3">Inga kommentarer</h4>
+                        <?php } else { ?>
+                            <h4 class="mt-3"><?php echo $numComments; ?> kommentarer</h4>
+                        <?php } ?>
+
+                        <!-- Add a new comment -->
+                        <div class="container">
+                            <?php if ($loggedIn) { ?>
+                                <div class="row">
+                                    <img src="<?php echo get_gravatar($email, 38); ?>" class="rounded-circle m-2" width="38" height="38" style="margin-top:5px;">
+                                    <div class="col-lg form-group">
+                                        <textarea style="resize: none;" class="form-control" id="comment-msg" rows="1" maxlength="200" placeholder="Lägg till en kommentar..."></textarea>
+                                    </div>
+                                </div>
+                                <div style="min-height: 48px; max-height: 48px; min-width=100%;">
+                                    <button class="btn btn-primary float-right" id="comment-btn" type="button" product="<?php echo $_GET["id"]; ?>" disabled>Kommentera</button>
+                                </div>
+                            <?php } else { ?>
+                                <h5>Du måste vara inloggad för att skriva kommentarer.</h5>
+                            <?php } ?>
+                        </div>
+
+                        <!-- Show comments -->
+                        <?php foreach ($comments as $comment) { ?>
+                            <div id="comment-div-<?php echo $comment["id"]; ?>" comment="<?php echo $comment["id"]; ?>" class="mb-2">
+                                <!-- Select all replies to this comment -->
+                                <?php
+                                    $commentID = $comment["id"];
+                                    $sql = "SELECT COMMENTS.id, COMMENTS.comment, CUSTOMERS.firstname, CUSTOMERS.lastname, CUSTOMERS.email
+                                            FROM CUSTOMERS JOIN COMMENTS
+                                            WHERE CUSTOMERS.id=COMMENTS.customer_id AND COMMENTS.product_id=:id AND
+                                                    COMMENTS.reply_id=$commentID
+                                            ORDER BY COMMENTS.id DESC LIMIT 10";
+                                    $stmt = $db->prepare($sql);
+                                    $stmt->execute(array("id" => $_GET["id"]));
+                                    $replies = $stmt->fetchAll();
+
+                                    include("$root/modules/comment.php");
+                                ?>
+                                <!-- Count the number of replies to this specific comment -->
+                                <?php 
+                                    $sql = "SELECT COUNT(*) FROM COMMENTS WHERE product_id=:id AND reply_id=$commentID";
+                                    $stmt = $db->prepare($sql);
+                                    $stmt->execute(array("id" => $_GET["id"]));
+                                    $numReplies = $stmt->fetch()["COUNT(*)"];
+                                ?>
+
+                                <div class="container" style="margin-left: 55px;">
+                                    <?php  if ($numReplies > 0) { ?>
+                                        <span class="show-reply-btn noselect" style="cursor: pointer;">
+                                            Visa <?php if ($numReplies > 1) { echo $numReplies; } ?> svar<img src="/images/icons/arrow_down.png">
+                                        </span>
+                                        <span class="hide-reply-btn noselect" style="cursor: pointer; display: none;">
+                                            Dölj svar<img src="/images/icons/arrow_up.png">
+                                        </span>
+                                    <?php } ?>
+                                    <div id="replies-<?php echo $commentID; ?>" class="replies-div mt-2" style="display: none;">
+                                        <?php
+                                            foreach ($replies as $comment) {
+                                                include("$root/modules/comment.php");
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             <?php } ?>
@@ -137,7 +232,7 @@
         <script src="/footer.js"></script>
 
         <!-- comments script -->
-        <script src="/modules/comments.js"></script>
+        <script src="/modules/comment.js"></script>
 
         <!-- Carousel -->
         <script>
