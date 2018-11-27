@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a class="dropdown-item" href="account/details" style="padding-left: 56px;">Mitt konto</a>
+                        <a class="dropdown-item" href="/account/profile" style="padding-left: 56px;">Mitt konto</a>
                         <a class="dropdown-item" href="/account/orders" style="padding-left: 56px;">Mina beställningar</a>
                         <a class="dropdown-item" href="/account/cart" style="padding-left: 56px;">Kundvagn</a>
                         <div class="dropdown-divider"></div>
