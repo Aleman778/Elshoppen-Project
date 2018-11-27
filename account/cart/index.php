@@ -40,7 +40,7 @@
         }
         else {
       ?>
-      <a href="/account/kundvagn/payinfo.php" class="btn btn-primary">Beställ</a>
+      <a href="/account/cart/payinfo.php" class="btn btn-primary">Beställ</a>
         <?php } ?>
     </div>
   </div>
