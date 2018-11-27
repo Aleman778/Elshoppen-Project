@@ -1,6 +1,9 @@
 <?php 
   $root = $_SERVER['DOCUMENT_ROOT'];
 
+  $address = htmlspecialchars($_REQUEST['address']);
+  $email = htmlspecialchars($_REQUEST['email']);
+  
   session_start();
   if ((!array_key_exists("customer_id", $_SESSION)) or ($address == NULL) or ($email == NULL)) {
       header("Location: /");
@@ -28,7 +31,7 @@
   
   foreach ($products_order as $order) {
     $sql_insert_product = "INSERT INTO ORDERS_PRODUCTS (order_id, product_id, quantity, price) 
-                          VALUES ($order_id, $order["product_id"], $order["quantity"], $order["price"])";
+                          VALUES ($order_id, $order[0], $order[1], $order[2])";
     $db->fetchAll($sql_insert_product);
   }
   $sql_end = "COMMIT;";
