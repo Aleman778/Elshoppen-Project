@@ -24,9 +24,9 @@
                               FROM CART
                               INNER JOIN PRODUCTS on CART.product_id = PRODUCTS.id
                               WHERE CART.customer_id LIKE $customer_id";       
-  $db->fetchAll($sql_start);
-  $db->fetchAll($sql_insert_order);
-  $order_id = $db->fetchAll($sql_order_id);
+  $db->query($sql_start);
+  $db->query($sql_insert_order); // denna funkar ej för någon anledning
+  $order_id = $db->fetch($sql_order_id);
   $products_order = $db->fetchAll($sql_products);
   
   foreach ($products_order as $order) {
@@ -35,7 +35,7 @@
     $db->fetchAll($sql_insert_product);
   }
   $sql_end = "COMMIT;";
-  $db->fetchAll($sql_end);
+  $db->query($sql_end);
 
   header("Location: /account/orders/orderd.php");
 ?>
