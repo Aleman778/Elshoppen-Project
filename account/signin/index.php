@@ -35,7 +35,7 @@
             <div class="col-md-2">
               <label for="uname"><b>Email</b></label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
               <input class="form-control" type="text" placeholder="Fyll i email" id="email" name="email" required>
             </div>
           </div>
@@ -43,14 +43,14 @@
             <div class="col-md-2">
               <label for="psw"><b>Lösenord</b></label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
               <input class="form-control" type="password" placeholder="Fyll i Lösenord" name="psw" required>
             </div>
           </div>
             <button type="submit" class="btn btn-primary">Logga in</button>
             <a href="/" class="btn btn-secondary">Avbryt</a>
             <div class="col-md-2">
-              <p>Har du inget konto? <a href="/signup">Skapa ett konto.</a></p>
+              <p>Har du inget konto? <a href="../signup">Skapa ett konto.</a></p>
               <br>
             </div>
           </div>
