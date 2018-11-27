@@ -13,8 +13,8 @@
   $db = new MySQL();
   $sql = "SELECT * From ORDERS WHERE customer_id LIKE $customer_id";
   $orders =  $db->fetchAll($sql);
-  //$sql = "SELECT * From ORDERS_PRODUCTS WHERE order_id in (SELECT id FROM ORDERS WHERE customer_id LIKE $customer_id)";
-  //$items =  $db->fetchAll($sql);
+  $sql = "SELECT * From ORDERS_PRODUCTS WHERE order_id in (SELECT id FROM ORDERS WHERE customer_id LIKE $customer_id)";
+  $items =  $db->fetchAll($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,8 @@
   <div id="main" class="container">
     <h1>Mina beställningar</h1>
     <div class="row">
-      <?php var_dump($orders); ?>
+      <?php var_dump($orders); 
+        var_dump($items);?>
     </div>
   </div>
 

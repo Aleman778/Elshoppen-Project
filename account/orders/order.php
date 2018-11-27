@@ -2,7 +2,7 @@
   $root = $_SERVER['DOCUMENT_ROOT'];
 
   session_start();
-  if (!(array_key_exists("customer_id", $_SESSION))) {
+  if ((!array_key_exists("customer_id", $_SESSION)) or ($address == NULL) or ($email == NULL)) {
       header("Location: /");
       exit;
   }
@@ -13,6 +13,26 @@
   $db = new MySQL();
 
   //insert into database
+  $sql_start = "START TRANSACTION;";
+  $sql_insert_order = "INSERT INTO ORDERS (customer_id, address, email) 
+                         VALUES ($customer_id, $address, $email);";
+  $sql_order_id = "SELECT LAST_INSERT_ID();";
+  $sql_products = "SELECT CART.product_id, CART.quantity, PRODUCTS.price
+                              FROM CART
+                              INNER JOIN PRODUCTS on CART.product_id = PRODUCTS.id
+                              WHERE CART.customer_id LIKE $customer_id";       
+  $db->fetchAll($sql_start);
+  $db->fetchAll($sql_insert_order);
+  $order_id = $db->fetchAll($sql_order_id);
+  $products_order = $db->fetchAll($sql_products);
+  
+  foreach ($products_order as $order) {
+    $sql_insert_product = "INSERT INTO ORDERS_PRODUCTS (order_id, product_id, quantity, price) 
+                          VALUES ($order_id, $order["product_id"], $order["quantity"], $order["price"])";
+    $db->fetchAll($sql_insert_product);
+  }
+  $sql_end = "COMMIT;";
+  $db->fetchAll($sql_end);
 
   header("Location: /account/orders/orderd.php");
 ?>
