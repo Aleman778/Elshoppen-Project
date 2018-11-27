@@ -54,30 +54,34 @@
             <p>Select which tables to create. Duplicate tables are not created.</p>
             <div class="checkbox">
             <div class="form-group">
-                <label class="customcheck">CART
-                    <input type="checkbox" checked="checked" id="createCart" name="createCart">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="customcheck">COMMENT
-                    <input type="checkbox" checked="checked" id="createComment" name="createComment">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="customcheck">CUSTOMER
-                    <input type="checkbox" checked="checked" id="createCustomer" name="createCustomer">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="customcheck">ORDERS_PRODUCTS
-                    <input type="checkbox" checked="checked" id="createProducts" name="createProducts">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="customcheck">ORDERS
-                    <input type="checkbox" checked="checked" id="createOrders" name="createOrders">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="customcheck">REVIEWS
-                    <input type="checkbox" checked="checked" id="createReviews" name="createReviews">
-                    <span class="checkmark"></span>
-                </label>
+                <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="createCart">
+                    <label class="custom-control-label" for="createCart">CART</label>
+                </div>
+                <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="createComment">
+                    <label class="custom-control-label" for="createComment">COMMENT</label>
+                </div>
+                <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="createCustomer">
+                    <label class="custom-control-label" for="createCustomer">CUSTOMER</label>
+                </div>
+                <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="createOrdersProducts">
+                    <label class="custom-control-label" for="createOrdersProducts">ORDERS_PRODUCTS</label>
+                </div>
+                <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="createOrders">
+                    <label class="custom-control-label" for="createOrders">ORDERS</label>
+                </div>
+                <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="createReviews">
+                    <label class="custom-control-label" for="createReviews">REVIEWS</label>
+                </div>
+                <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="createEmployees">
+                    <label class="custom-control-label" for="createEmployees">EMPLOYEES</label>
+                </div>
             </div>
             <div class="dropdown-divider"></div>
             <button type="submit" class="btn btn-primary">Submit</button>
