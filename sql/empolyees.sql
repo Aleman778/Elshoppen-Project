@@ -9,5 +9,6 @@ create table EMPLOYEES (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     phone_number INT,
     address VARCHAR(100),
-    role VARCHAR(12)
+    role VARCHAR(12),
+    PRIMARY KEY(id)
 );
