@@ -50,7 +50,7 @@
             <button type="submit" class="btn btn-primary">Logga in</button>
             <a href="/" class="btn btn-secondary">Avbryt</a>
             <div class="col-md-2">
-              <p>Har du inget konto? <a href="../signup">Skapa ett konto.</a></p>
+              <p>Har du inget konto? <a href="/account/signup">Skapa ett konto.</a></p>
               <br>
             </div>
           </div>

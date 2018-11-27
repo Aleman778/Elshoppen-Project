@@ -6,11 +6,16 @@
         header("Location: /");
 
     include("$root/modules/mysql.php");
-    $sql = "SELECT firstname, lastname, password, email, id FROM CUSTOMERS WHERE email = :email";
+    $sql = "SELECT firstname, lastname, password, email, id FROM CUSTOMERS WHERE email=:email";
     $db = new MySQL();
     $stmt = $db->prepare($sql);
     $stmt->execute(array('email' => $_POST["email"]));
     $data = $stmt->fetch();
+
+    $sqlEmploye = "SELECT role FROM EMPLOYEES WHERE id=".$data["id"];
+    $role = $db->fetch($sqlEmploye);
+    var_dump($role);
+
 
     if (!$data) { //Check if you get any password
         header("Location: index.php?err=email");
@@ -21,9 +26,15 @@
             $_SESSION["firstname"] = $data["firstname"];
             $_SESSION["lastname"] = $data["lastname"];
             $_SESSION["email"] = $data["email"];
+            if ($role) {
+                $_SESSION["role"] = $role["role"];
+            } else {
+                $_SESSION["role"] = "Customer";
+            }
             header("Location: /");
         } else { //go back to login page
             header("Location: index.php?err=pass");
         }
     }
+    
  ?>
