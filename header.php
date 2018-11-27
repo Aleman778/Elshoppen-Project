@@ -53,7 +53,7 @@
         <ul class="navbar-nav">
             <?php if ($loggedIn) { ?> <!-- The following code is shown if user is logged in -->
                 <!--<li class="nav-item">
-                    <a class="mt-3" href="/account/kundvagn">
+                    <a class="mt-3" href="/account/cart">
                     <img src="/images/icons/cart.png" width="32" height="32" style="margin-top: 8px;">
                     <span class="badge badge-light rounded-circle align-middle" style="width: 24px; height: 24px; padding-top: 6px; margin-top: 8px;"><?php echo "0"; ?></span>
                     </a>
@@ -76,7 +76,7 @@
                         </a>
                         <a class="dropdown-item" href="account/details" style="padding-left: 56px;">Mitt konto</a>
                         <a class="dropdown-item" href="/account/orders" style="padding-left: 56px;">Mina beställningar</a>
-                        <a class="dropdown-item" href="/account/kundvagn" style="padding-left: 56px;">Kundvagn</a>
+                        <a class="dropdown-item" href="/account/cart" style="padding-left: 56px;">Kundvagn</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/account/signout" style="padding-left: 56px;">Logga ut</a>
                     </div>
