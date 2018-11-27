@@ -33,7 +33,7 @@
           <hr>
           <div class="row mb-2">
             <div class="col-md-2">
-              <label for="uname"><b>Email</b></label>
+              <label for="uname"><b>Epost</b></label>
             </div>
             <div class="col-md-4">
               <input class="form-control" type="text" placeholder="Fyll i email" id="email" name="email" required>

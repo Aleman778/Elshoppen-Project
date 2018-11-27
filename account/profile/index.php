@@ -3,7 +3,7 @@
 
   session_start();
   if (!(array_key_exists("customer_id", $_SESSION))) {
-      header("Location: http://localhost/account/signin");
+      header("Location: /");
       exit;
   }
   include("$root/modules/mysql.php");
@@ -20,18 +20,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-<title>Profile</title>
+<title>Profil</title>
 <?php include("$root/modules/bootstrap_css.php") ?>
 </head>
 <body>
-  <?php include("$root/header.php") ?>
-  <div class="container">
-    <h1>Profile</h1>
+    <?php include("$root/header.php") ?>
+    <div class="container">
+    <h1>Profil</h1>
 
 <br><br>
 <div class="container-fluid well span6">
@@ -41,28 +36,28 @@
         </div>
         
         <div class="span8">
-            <h5>Firstname:</h5>
-            <h5>Lastname:</h5>
+            <h5>Förnamn:</h5>
+            <h5>Efternamn:</h5>
             <br>
-            <h5>Gender:</h5>            
-            <h5>Birth date:</h5>
-            <h5>Email:</h5>
+            <h5>Kön:</h5>            
+            <h5>Födelsedatum:</h5>
+            <h5>Epost:</h5>
             <br>
-            <h5>Phone number:</h5>
-            <h5>Address:</h5>
+            <h5>Mobilnummer:</h5>
+            <h5>Adress:</h5>
         </div>
         
         <div class="span2">
             <div class="btn-group">
                 <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
-                    Settings 
+                    Inställningar 
                     <span class="icon-cog icon-white"></span><span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><span class="icon-wrench"></span> Modify information</a></li>
-                    <li><a href="#"><span class="icon-wrench"></span> Change password</a></li>
-                    <li><a href="#"><span class="icon-wrench"></span> Upload profile picture</a></li>
-                    <li><a href="#"><span class="icon-trash"></span> Delete</a></li>
+                    <li><a href="#"><span class="icon-wrench"></span> Ändra information</a></li>
+                    <li><a href="#"><span class="icon-wrench"></span> Ändra lösenord</a></li>
+                    <li><a href="#"><span class="icon-wrench"></span> Lägg upp profilbild</a></li>
+                    <li><a href="#"><span class="icon-trash"></span> Ta bort användaren</a></li>
                 </ul>
             </div>
         </div>
