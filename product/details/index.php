@@ -30,12 +30,12 @@
 
             .noselect {
                 -webkit-touch-callout: none; /* iOS Safari */
-                    -webkit-user-select: none; /* Safari */
-                    -khtml-user-select: none; /* Konqueror HTML */
-                    -moz-user-select: none; /* Firefox */
-                        -ms-user-select: none; /* Internet Explorer/Edge */
-                            user-select: none; /* Non-prefixed version, currently
-                                                supported by Chrome and Opera */
+                -webkit-user-select: none; /* Safari */
+                -khtml-user-select: none; /* Konqueror HTML */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
             }
         </style>
     </head>
@@ -108,8 +108,8 @@
 
                         <!-- Buy product button -->
                         <div style="margin: 12px;">
-                            <a class="btn btn-primary <?php if ($details["inventory"] == 0) echo "disabled"; ?>" href="#">Lägg i kundvagnen</a>
-                            <a class="btn btn-secondary <?php if ($details["inventory"] == 0) echo "disabled"; ?>" href="#">Köp nu</a>
+                            <a class="btn btn-primary <?php if ($details["inventory"] == 0) echo "disabled"; ?>" href="/account/cart/add_item.php?id=<?php echo $_GET["id"]; ?>">Lägg i kundvagnen</a>
+                            <a class="btn btn-secondary <?php if ($details["inventory"] == 0) echo "disabled"; ?>" href="/account/cart/payinfo.php?item=<?php echo $_GET["id"]; ?>">Köp nu</a>
                             <?php if ($details["inventory"] == 0) { ?>
                                 <p style="color: gray;">Det är slut i webblagret.</p>
                             <?php } else { ?>
