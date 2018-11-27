@@ -6,7 +6,7 @@ create table CUSTOMERS (
     birth_date DATE NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     removed TINYINT(1) NOT NULL,
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     phone_number INT,
     address VARCHAR(100),
     PRIMARY KEY ( id )
