@@ -1,21 +1,22 @@
 <?php 
-  $root = $_SERVER['DOCUMENT_ROOT'];
+    $root = $_SERVER['DOCUMENT_ROOT'];
 
-  session_start();
-  if (!(array_key_exists("customer_id", $_SESSION))) {
-      header("Location: /");
-      exit;
-  }
-  include("$root/modules/mysql.php");
+    //checks if customer is logged in
+    session_start();
+    if (!(array_key_exists("customer_id", $_SESSION))) {
+        header("Location: /");
+        exit;
+    }
+    include("$root/modules/mysql.php");
 
-  $customer_id = $_SESSION["customer_id"];
+    $customer_id = $_SESSION["customer_id"];
 
-  $db = new MySQL();
-  $sql = "SELECT lastname, firstname, gender, 
-          birth_date, email, phone_number, address From 
-          CUSTOMERS WHERE customer_id LIKE $customer_id";
-  //$cust =  $db->fetchAll($sql);
-
+    $db = new MySQL();
+    $sql = "SELECT firstname, lastname , gender, 
+            birth_date, email, phone_number, address 
+            From CUSTOMERS WHERE $customer_id LIKE id";
+    $customer =  $db->fetch($sql);
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,52 +27,76 @@
 <body>
     <?php include("$root/header.php") ?>
     <div class="container">
-    <h1>Profil</h1>
+        <h1>Profil</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <!--hard coded profile picture-->
+                <img src="/images/profiles/default.png" class="img-circle">
+            </div>
 
-<br><br>
-<div class="container-fluid well span6">
-	<div class="row-fluid">
-        <div class="span2" >
-		    <img src="/images/profiles/default.png" class="img-circle">
-        </div>
-        
-        <div class="span8">
-            <h5>Förnamn:</h5>
-            <h5>Efternamn:</h5>
-            <br>
-            <h5>Kön:</h5>            
-            <h5>Födelsedatum:</h5>
-            <h5>Epost:</h5>
-            <br>
-            <h5>Mobilnummer:</h5>
-            <h5>Adress:</h5>
-        </div>
-        
-        <div class="span2">
-            <div class="btn-group">
-                <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
-                    Inställningar 
-                    <span class="icon-cog icon-white"></span><span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><span class="icon-wrench"></span> Ändra information</a></li>
-                    <li><a href="#"><span class="icon-wrench"></span> Ändra lösenord</a></li>
-                    <li><a href="#"><span class="icon-wrench"></span> Lägg upp profilbild</a></li>
-                    <li><a href="#"><span class="icon-trash"></span> Ta bort användaren</a></li>
+            <div class="col-md-2">
+                <ul class="list-group">
+                    <li class="list-group-item">Förnamn:</li>
+                    <li class="list-group-item">Efternamn:</li>
+                    <li class="list-group-item">Kön:</li>
+                    <li class="list-group-item">Födelsedatum:</li>
+                    <li class="list-group-item">Epost:</li>
+                    <li class="list-group-item">Mobilnummer:</li>
+                    <li class="list-group-item">Adress:</li>
                 </ul>
             </div>
+
+            <div class="col-md-4">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <?php echo $customer["firstname"] ?></li>
+                    <li class="list-group-item">
+                        <?php echo $customer["lastname"] ?>
+                    </li>
+                    <li class="list-group-item">
+                        <?php if ($customer["gender"] == "m" ) {
+                            echo "Man";
+                        } else {
+                            echo "Kvinna";
+                        } ?>
+                    </li>
+                    <li class="list-group-item">
+                        <?php echo $customer["birth_date"] ?>
+                    </li>
+                    <li class="list-group-item">
+                        <?php echo $customer["email"] ?>
+                    </li>
+                    <li class="list-group-item">
+                        <?php echo $customer["phone_number"] ?>
+                    </li>
+                    <li class="list-group-item">
+                        <?php echo $customer["address"] ?>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Inställningar
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="./change_info.php"> Ändra information</a>
+                        <a class="dropdown-item" href="./change_password.php"> Ändra lösenord</a>
+                        <a class="dropdown-item" href="#">Lägg upp profilbild</a>
+                    <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Ta bort användaren</a>
+                    </div>
+                </div>
+            </div>
         </div>
-</div>
-</div>
-    
-    <?php
-    ?>
+        <br>
 
-  </div>
-  <?php include("$root/footer.php") ?>
-  <?php include("$root/modules/bootstrap_js.php") ?>
+    </div>
+    <?php include("$root/footer.php") ?>
+    <?php include("$root/modules/bootstrap_js.php") ?>
 
-  <!-- fix footer position -->
-  <script src="/footer.js"></script>
+    <!-- fix footer position -->
+    <script src="/footer.js"></script>
 </body>
 </html> 
