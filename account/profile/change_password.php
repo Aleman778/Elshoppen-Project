@@ -1,6 +1,7 @@
 <?php 
     $root = $_SERVER['DOCUMENT_ROOT'];
 
+    //checks if customer is logged in
     session_start();
     if (!(array_key_exists("customer_id", $_SESSION))) {
         header("Location: /");
@@ -17,28 +18,39 @@
 <body>
     <?php include("$root/header.php") ?>
     <div class="container">
+    <?php
+        if (array_key_exists("err", $_GET)) {
+            $err_msg = "";
+            if ($_GET["err"] == "pass_length")
+                $err_msg = "Lösenord måste vara 4 till 20 bokstäver långt.";
+            else if ($_GET["err"] == "pass_mismatch")
+                $err_msg = "Det upprepande lösenordet matchar inte.";
+        }
+                        ?>
         <h1>Ändra lösenord</h1>
+        <p>Fyll i rutorna nedan för att ändra lösenord.</p>
+        <hr>
         <form action="signin.php" method="post">
             <div class="row mb-2">
                 <div class="col-md-2">
                     <label for="psw"><b>Nytt lösenord</b></label>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <input class="form-control" type="password" placeholder="Fyll i nytt lösenord" maxlength="20" name="psw" required>
                 </div>
             </div>
                 
             <div class="row mb-2">
                 <div class="col-md-2">
-                    <label for="psw-repeat"><b>Repetera nytt lösenord</b></label>
+                    <label for="psw-repeat"><b>Repetera lösenord</b></label>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <input class="form-control" type="password" placeholder="Repetera nytt lösenord" maxlength="20" name="psw-repeat" required>
                 </div>
             </div>
             <br>
             <button type="submit" class="btn btn-primary">Spara</button>
-            <a href="/" class="btn btn-secondary">Avbryt</a>
+            <a href="/account/profile" class="btn btn-secondary">Avbryt</a>
             <div class="col-md-2">
             </div>
             </div>
