@@ -12,7 +12,7 @@
                         <div class="col-lg form-group">
                             <div class="row">
                                 <div class="col-lg message">
-                                    <textarea style="resize: none; height:38px;" class="form-control reply-msg" id="reply-<?php echo $comment["id"]?>" target="reply-btn-<?php echo $comment["id"] ?>" rows="1" maxlength="200" placeholder="Lägg till ett svar..."></textarea>
+                                    <textarea style="resize: none; height:38px;" class="form-control reply-msg" id="reply-<?php echo $comment["id"]?>" target="reply-btn-<?php echo $comment["id"] ?>" rows="1" maxlength="200" placeholder="Lägg till ett svar..."><?php if ($comment["reply_id"] > 0) echo $comment["firstname"] . " " . $comment["lastname"] . " ";?></textarea>
                                 </div>
                                 <button class="btn btn-light cancel-reply-btn mr-2" id="cancel-btn-<?php echo $comment["id"] ?>" type="button">Avbryt</button>
                                 <button class="btn btn-primary send-reply-btn" id="reply-btn-<?php echo $comment["id"] ?>" to="<?php echo $commentID; ?>" type="button" disabled>Svara</button>

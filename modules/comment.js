@@ -16,9 +16,9 @@ $(document).on('keyup', '.reply-msg', function(e) {
 
 $("#comment-btn").click(function() {
     var message = $("#comment-msg").val();
-    alert("Sending: " + message);
-    addComment(message, 0);
-    
+    $("#comment-msg").val("");
+    $(this).attr("disabled", "disabled");
+    addComment(message, 0, $("#comments"));
 });
 
 $(document).on('click', '.reply-btn', function(e) {
@@ -49,12 +49,17 @@ $(document).on('click', '.send-reply-btn', function(e) {
     var message = textarea.val();
     var reply = $(this).attr("to");
     var div = $(this).parents(".write-reply-div");
+    var replies = $(this).parents(".comment").next();
+    var selector = replies.children(".replies-div");
     div.hide();
     textarea.val("");
-    addComment(message, reply);
+    replies.children(".show-reply-btn").hide();
+    replies.children(".hide-reply-btn").show();
+    selector.show();
+    addComment(message, reply, selector);
 });
 
-function addComment(message, reply) {
+function addComment(message, reply, selector) {
     var product = $("#comment-btn").attr("product");
 
     $.ajax({
@@ -71,6 +76,6 @@ function addComment(message, reply) {
                    '    Something went wrong when sending your comment, please try again.' +
                    '</div>';
         }
-        $("#comments").prepend(html);
+        selector.prepend(html);
     });
 }

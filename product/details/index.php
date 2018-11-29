@@ -212,6 +212,7 @@
                             $("#comments").append(html);
                             $("#comment-loader").hide();
                             loadingComments = false;
+                            fixFooter();
                         });
                     }
                 }

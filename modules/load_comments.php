@@ -13,14 +13,16 @@
         $reply_id = $_POST["reply_id"];
 
     if (!isset($db)) {
+        $loggedIn = false;
         if (session_status() == PHP_SESSION_NONE)
             session_start();
+        if (array_key_exists("customer_id", $_SESSION))
+            $loggedIn = true;
         if (array_key_exists("email", $_SESSION))
             $email = $_SESSION["email"];
             
         include("mysql.php");
         include("gravatar.php");
-        $loggedIn = true;
         $db = new MySQL();
     }
     $sql = "SELECT COMMENTS.*, CUSTOMERS.firstname, CUSTOMERS.lastname, CUSTOMERS.email
@@ -35,7 +37,7 @@
     $comments = $stmt->fetchAll();
 ?>
 <?php foreach ($comments as $comment) { ?>
-    <div id="comment-div-<?php echo $comment["id"]; ?>" comment="<?php echo $comment["id"]; ?>" class="mb-2">
+    <div id="comment-div-<?php echo $comment["id"]; ?>" comment="<?php echo $comment["id"]; ?>" class="mb-3">
         <!-- Select all replies to this comment -->
         <?php
             $commentID = $comment["id"];
@@ -59,14 +61,12 @@
         ?>
 
         <div class="container" style="margin-left: 55px;">
-            <?php  if ($numReplies > 0) { ?>
-                <span class="show-reply-btn noselect" style="cursor: pointer;">
-                    Visa <?php if ($numReplies > 1) { echo $numReplies; } ?> svar<img src="/images/icons/arrow_down.png">
-                </span>
-                <span class="hide-reply-btn noselect" style="cursor: pointer; display: none;">
-                    Dölj svar<img src="/images/icons/arrow_up.png">
-                </span>
-            <?php } ?>
+            <span class="show-reply-btn noselect" style="cursor: pointer; <?php  if ($numReplies == 0) echo "display: none;" ?>">
+                Visa <?php if ($numReplies > 1) { echo $numReplies; } ?> svar<img src="/images/icons/arrow_down.png">
+            </span>
+            <span class="hide-reply-btn noselect" style="cursor: pointer; display: none;">
+                Dölj svar<img src="/images/icons/arrow_up.png">
+            </span>
             <div id="replies-<?php echo $commentID; ?>" class="replies-div mt-2" style="display: none;">
                 <?php
                     foreach ($replies as $comment) {
