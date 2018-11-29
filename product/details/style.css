@@ -1,0 +1,54 @@
+.carousel-control-prev {
+    transition: background-color 0.5s ease;
+}
+
+.carousel-control-next {
+    transition: background-color 0.5s ease;
+}
+
+.carousel-control-prev:hover {
+    background-color: rgb(0, 0, 0, 0.2);
+}
+.carousel-control-next:hover {
+    background-color: rgb(0, 0, 0, 0.2);
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                        supported by Chrome and Opera */
+}
+
+.spinner {
+    animation: rotator 1.4s linear infinite;
+}
+
+@keyframes rotator {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(270deg); }
+}
+
+.path {
+    stroke-dasharray: 187;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    stroke: #4285F4;
+    animation: dash 1.4s ease-in-out infinite;
+}
+
+
+@keyframes dash {
+    0% { stroke-dashoffset: 187; }
+    50% {
+        stroke-dashoffset: 46.75;
+        transform:rotate(135deg);
+    }
+    100% {
+        stroke-dashoffset: 187;
+        transform:rotate(450deg);
+    }
+}

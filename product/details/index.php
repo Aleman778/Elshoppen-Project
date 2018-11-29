@@ -12,32 +12,7 @@
         <?php include("$root/modules/bootstrap_css.php"); ?>
 
         <!-- Custom styling -->
-        <style>
-            .carousel-control-prev {
-                transition: background-color 0.5s ease;
-            }
-            
-            .carousel-control-next {
-                transition: background-color 0.5s ease;
-            }
-
-            .carousel-control-prev:hover {
-                background-color: rgb(0, 0, 0, 0.2);
-            }
-            .carousel-control-next:hover {
-                background-color: rgb(0, 0, 0, 0.2);
-            }
-
-            .noselect {
-                -webkit-touch-callout: none; /* iOS Safari */
-                -webkit-user-select: none; /* Safari */
-                -khtml-user-select: none; /* Konqueror HTML */
-                -moz-user-select: none; /* Firefox */
-                -ms-user-select: none; /* Internet Explorer/Edge */
-                user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome and Opera */
-            }
-        </style>
+        <link rel="stylesheet" href="style.css">
     </head>
         <body>
         <?php include("$root/header.php") ?>
@@ -133,17 +108,9 @@
                     <div class="tab-pane mb-4" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                         a
                     </div>
-                    <div class="tab-pane show active mb-4" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                    <div class="tab-pane show active mb-4" id="comments-tab" role="tabpanel" aria-labelledby="comments-tab">
                         <!-- Select all comments from the given product. -->
-                        <?php
-                            $sql = "SELECT COMMENTS.*, CUSTOMERS.firstname, CUSTOMERS.lastname, CUSTOMERS.email
-                                    FROM CUSTOMERS JOIN COMMENTS
-                                    WHERE CUSTOMERS.id=COMMENTS.customer_id AND COMMENTS.product_id=:id AND COMMENTS.reply_id=0
-                                    ORDER BY COMMENTS.id DESC LIMIT 10";
-                            $stmt = $db->prepare($sql);
-                            $stmt->execute(array("id" => $_GET["id"]));
-                            $comments = $stmt->fetchAll();
-                        ?>
+
                         <!-- Count how many comments there are in total -->
                         <?php 
                             $sql = "SELECT COUNT(*) FROM COMMENTS WHERE product_id=:id AND reply_id=0";
@@ -175,52 +142,18 @@
                         </div>
 
                         <!-- Show comments -->
-                        <?php foreach ($comments as $comment) { ?>
-                            <div id="comment-div-<?php echo $comment["id"]; ?>" comment="<?php echo $comment["id"]; ?>" class="mb-2">
-                                <!-- Select all replies to this comment -->
-                                <?php
-                                    $commentID = $comment["id"];
-                                    $sql = "SELECT COMMENTS.id, COMMENTS.comment, CUSTOMERS.firstname, CUSTOMERS.lastname, CUSTOMERS.email
-                                            FROM CUSTOMERS JOIN COMMENTS
-                                            WHERE CUSTOMERS.id=COMMENTS.customer_id AND COMMENTS.product_id=:id AND
-                                                    COMMENTS.reply_id=$commentID
-                                            ORDER BY COMMENTS.id DESC LIMIT 10";
-                                    $stmt = $db->prepare($sql);
-                                    $stmt->execute(array("id" => $_GET["id"]));
-                                    $replies = $stmt->fetchAll();
-
-                                    include("$root/modules/comment.php");
-                                ?>
-                                <!-- Count the number of replies to this specific comment -->
-                                <?php 
-                                    $sql = "SELECT COUNT(*) FROM COMMENTS WHERE product_id=:id AND reply_id=$commentID";
-                                    $stmt = $db->prepare($sql);
-                                    $stmt->execute(array("id" => $_GET["id"]));
-                                    $numReplies = $stmt->fetch()["COUNT(*)"];
-                                ?>
-
-                                <div class="container" style="margin-left: 55px;">
-                                    <?php  if ($numReplies > 0) { ?>
-                                        <span class="show-reply-btn noselect" style="cursor: pointer;">
-                                            Visa <?php if ($numReplies > 1) { echo $numReplies; } ?> svar<img src="/images/icons/arrow_down.png">
-                                        </span>
-                                        <span class="hide-reply-btn noselect" style="cursor: pointer; display: none;">
-                                            Dölj svar<img src="/images/icons/arrow_up.png">
-                                        </span>
-                                    <?php } ?>
-                                    <div id="replies-<?php echo $commentID; ?>" class="replies-div mt-2" style="display: none;">
-                                        <?php
-                                            foreach ($replies as $comment) {
-                                                include("$root/modules/comment.php");
-                                            }
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
+                        <div id="comments" product="<?php echo $_GET["id"]; ?>" count="<?php echo $numComments; ?>">
+                            <?php include("$root/modules/load_comments.php"); ?>
+                        </div>
                     </div>
                 </div>
             <?php } ?>
+            <div id="comment-loader" class="w-100 mb-4" style="text-align:center; display: none;">
+                <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                </svg><br>
+                Laddar in fler kommentarer...
+            </div>
         </div>
 
         <?php include("$root/footer.php") ?>
@@ -231,13 +164,22 @@
         <!-- fix footer position -->
         <script src="/footer.js"></script>
 
-        <!-- comments script -->
+        <!-- Comment script -->
         <script src="/modules/comment.js"></script>
 
-        <!-- Carousel -->
+        <!-- Custom script for dynamic loading of comments and carousel height fixes -->
         <script>
             $(document).ready(function() {
+                var loadingComments = false;
+                var numComments = $("#comments").attr("count");
+                loadComments();
+                
+                $(window).scroll(function() {
+                    loadComments();
+                });
+
                 var maxHeight = 0;
+
                 $(".carousel-item").each(function() {
                     var h = $(this).height();
                     if (h > maxHeight) {
@@ -250,6 +192,29 @@
                     var y = maxHeight/2.0 - $(this).height()/2.0;
                     $(this).css("margin-top", y);
                 });
+
+                function loadComments() {
+                    var scroll = $(window).scrollTop() + $(window).height();
+                    if (!loadingComments && (scroll > $(document).height() - 300)) {
+                        loadingComments = true;
+                        if ($(".comment").length >= numComments)
+                            return;
+
+                        $("#comment-loader").show();
+                        $.ajax({
+                            method: "POST",
+                            url: "/modules/load_comments.php",
+                            data: {
+                                product_id: $("#comments").attr("product"),
+                                prev_id: $(".comment").last().attr("id"),
+                            }
+                        }).done(function(html) {
+                            $("#comments").append(html);
+                            $("#comment-loader").hide();
+                            loadingComments = false;
+                        });
+                    }
+                }
             });
         </script>
     </body>

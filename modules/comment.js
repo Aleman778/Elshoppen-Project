@@ -6,7 +6,7 @@ $("#comment-msg").keyup(function() {
     }
 });
 
-$(".reply-msg").keyup(function() {
+$(document).on('keyup', '.reply-msg', function(e) {
     var replybtn = $(this).attr("target");
     if ($(this).val().length == 0)
         $("#" + replybtn).attr("disabled", "disabled");
@@ -21,37 +21,36 @@ $("#comment-btn").click(function() {
     
 });
 
-$(".reply-btn").click(function() {
+$(document).on('click', '.reply-btn', function(e) {
     $(this).next(".write-reply-div").toggle();
 });
 
-$(".show-reply-btn").click(function() {
+$(document).on('click', '.show-reply-btn', function(e) {
     $(this).hide();
     $(this).next().show();
     $(this).siblings(".replies-div").show();
 });
 
-$(".hide-reply-btn").click(function() {
+$(document).on('click', '.hide-reply-btn', function(e) {
     $(this).hide();
     $(this).prev().show();
     $(this).siblings(".replies-div").hide();
 });
 
-$(".cancel-reply-btn").click(function() {
+$(document).on('click', '.cancel-reply-btn', function(e) {
     var textarea = $(this).siblings("div").children("textarea");
     var div = $(this).parents(".write-reply-div");
     div.hide();
     textarea.val("");
 });
 
-$(".send-reply-btn").click(function() {
+$(document).on('click', '.send-reply-btn', function(e) {
     var textarea = $(this).siblings("div").children("textarea");
     var message = textarea.val();
     var reply = $(this).attr("to");
     var div = $(this).parents(".write-reply-div");
     div.hide();
     textarea.val("");
-    alert("Sending: " + message + " to comment id= " + reply);
     addComment(message, reply);
 });
 
@@ -67,6 +66,11 @@ function addComment(message, reply) {
             comment: message
         }
     }).done(function(html) {
-        alert(html);
+        if (html == "Error!") {
+            html = '<div class="alert alert-primary" role="alert">' +
+                   '    Something went wrong when sending your comment, please try again.' +
+                   '</div>';
+        }
+        $("#comments").prepend(html);
     });
 }

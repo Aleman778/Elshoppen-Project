@@ -1,4 +1,4 @@
-<div id="comment-<?php echo $comment["id"]; ?>" class="container">
+<div id="<?php echo $comment["id"]; ?>" class="container <?php if ($comment["reply_id"] == 0) echo "comment"; else echo "reply"; ?>">
     <div class="row">
         <img src="<?php echo get_gravatar($comment["email"], 38); ?>" class="rounded-circle m-2" width="38" height="38" style="margin-top:5px;">
         <div class="col-lg">
