@@ -90,7 +90,6 @@
                 </div>
             </div>
         </div>
-        <?php var_dump($customer);?>
         <br>
     </div>
     <?php include("$root/footer.php") ?>
