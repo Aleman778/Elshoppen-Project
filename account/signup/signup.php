@@ -55,7 +55,7 @@
         if (!$data) {
             header("Location: index.php?err=other&errmsg=Databas fel, försök igen.");
         }
-        $id = (int) $data;
+        $id = (int) $data["id"];
 
         //Signup successfull
         $_SESSION["customer_id"] = $id;
