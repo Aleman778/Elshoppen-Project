@@ -14,7 +14,7 @@
     $db = new MySQL();
     $sql = "SELECT firstname, lastname , gender, 
             birth_date, email, phone_number, address 
-            From CUSTOMERS WHERE $customer_id LIKE id";
+            From CUSTOMERS WHERE id = $customer_id";
     $customer =  $db->fetch($sql);
     
 ?>
@@ -45,7 +45,6 @@
                     <li class="list-group-item">Adress:</li>
                 </ul>
             </div>
-
             <div class="col-md-4">
                 <ul class="list-group">
                     <li class="list-group-item">
