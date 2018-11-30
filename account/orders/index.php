@@ -3,7 +3,7 @@
 
   session_start();
   if (!(array_key_exists("customer_id", $_SESSION))) {
-      header("Location: http://localhost/account/signin");
+      header("Location: /account/signin");
       exit;
   }
   include("$root/modules/mysql.php");
@@ -13,7 +13,7 @@
   $db = new MySQL();
   $sql = "SELECT * From ORDERS WHERE customer_id LIKE $customer_id";
   $orders =  $db->fetchAll($sql);
-  $sql = "SELECT * From ORDERS_PRODUCTS WHERE order_id in (SELECT id FROM ORDERS WHERE customer_id LIKE $customer_id)";
+  $sql = "SELECT * From ORDERS_PRODUCTS"; // WHERE order_id in (SELECT id FROM ORDERS WHERE customer_id LIKE $customer_id)";
   $items =  $db->fetchAll($sql);
 ?>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@
   <div id="main" class="container">
     <h1>Mina beställningar</h1>
     <div class="row">
-      <?php var_dump($orders); 
+      <?php  
         var_dump($items);?>
     </div>
   </div>
