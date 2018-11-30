@@ -25,12 +25,15 @@
                 $err_msg = "Lösenord måste vara 4 till 20 bokstäver långt.";
             else if ($_GET["err"] == "pass_mismatch")
                 $err_msg = "Det upprepande lösenordet matchar inte.";
+            if ($err_msg != "") {
+                echo "<div class=\"alert alert-danger\" role=\"alert\">$err_msg</div>";
+            }
         }
                         ?>
         <h1>Ändra lösenord</h1>
         <p>Fyll i rutorna nedan för att ändra lösenord.</p>
         <hr>
-        <form action="signin.php" method="post">
+        <form action="password.php" method="post">
             <div class="row mb-2">
                 <div class="col-md-2">
                     <label for="psw"><b>Nytt lösenord</b></label>
@@ -54,8 +57,7 @@
             <div class="col-md-2">
             </div>
             </div>
-        </form> 
-
+        </form>
     </div>
     <?php include("$root/footer.php") ?>
     <?php include("$root/modules/bootstrap_js.php") ?>
