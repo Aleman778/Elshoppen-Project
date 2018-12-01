@@ -10,19 +10,8 @@
 
     if (session_status() == PHP_SESSION_NONE)
         session_start();
-    if (array_key_exists("customer_id", $_SESSION)) {
+    if (array_key_exists("customer_id", $_SESSION))
         $loggedIn = true;
-        
-        include("$root/modules/mysql.php");
-
-        $db = new MySQL();
-        $stmt = $db->prepare("SELECT quantity FROM CART WHERE customer_id=:id");
-        $stmt->execute(array("id" => $_SESSION["customer_id"]));
-        $data = $stmt->fetchAll();
-        foreach ($data as $d) {
-            $cart += $d[0];
-        }
-    }
     if (array_key_exists("firstname", $_SESSION))
         $firstname = $_SESSION["firstname"];
     if (array_key_exists("lastname", $_SESSION))
@@ -74,7 +63,10 @@
                     </a>
                 </li>-->
                 <li class="nav-item dropdown ml-2">
-                    <a href="/account/cart" class="mr-3" style="position: relative; left: 0px; top: 0px;"><img src="/images/icons/cart.svg" width="30" height="30"><span class="badge badge-dark" style="position: absolute; left: 18px; top: 12px; <?php if ($cart == 0) echo "display: none;" ?>"><?php echo $cart; ?></span></a>
+                    <a href="/account/cart" class="mr-3" style="position: relative; left: 0px; top: 0px;">
+                        <img src="/images/icons/cart.svg" width="30" height="30">
+                        <span class="badge badge-dark" style="position: absolute; left: 18px; top: 12px; <?php if ($cart == 0) echo "display: none;" ?>"><?php echo $cart; ?></span>
+                    </a>
                     <a class="py-1" href="#" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="<?php echo get_gravatar($email, 38); ?>" class="rounded-circle" width="38" height="38">
                     </a>
@@ -95,7 +87,7 @@
                         <a class="dropdown-item" href="/account/cart" style="padding-left: 56px;">Kundvagn</a>
                         <?php if ($role == "Admin") { ?>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/admin" style="padding-left: 56px;">Admin dashboard</a>
+                            <a class="dropdown-item" href="/admin" style="padding-left: 56px;">Admin</a>
                         <?php } ?>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/account/signout" style="padding-left: 56px;">Logga ut</a>

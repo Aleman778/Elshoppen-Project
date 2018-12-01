@@ -30,7 +30,7 @@
   <?php include("modules/bootstrap_js.php"); ?>
 
   <!-- fix footer position -->
-  <script src="../../footer.js"></script>
+  <script src="/footer.js"></script>
 
 </body>
 </html>
