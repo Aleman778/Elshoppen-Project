@@ -15,23 +15,30 @@
   $customer_id = $_SESSION["customer_id"];
 
   $db = new MySQL();
-
-  //insert into database
-  $sql_start = "START TRANSACTION;";
+  // Code for adding order to table ORDERS.
   $sql_insert_order = "INSERT INTO ORDERS (id, customer_id, address, email) 
                          VALUES (DEFAULT, :customer_id, :address, :email);";
-  $sql_order_id = "SELECT LAST_INSERT_ID();";
+  $qi = $db->prepare($sql_insert_order);
+
+  // Code for geting the products from the cart.
   $sql_products = "SELECT CART.product_id, CART.quantity, PRODUCTS.price
                               FROM CART
                               INNER JOIN PRODUCTS on CART.product_id = PRODUCTS.id
                               WHERE CART.customer_id = :customer_id";       
-  $qi = $db->prepare($sql_insert_order);
   $qp = $db->prepare($sql_products);
-  $db->query($sql_start);
+
+  // Starting a transaction.
+  $db->query("START TRANSACTION"); 
+
+  // Adding order to table ORDERS.
   $qi->execute(array(':customer_id' => $customer_id,
                     ':address' => $address,
-                    ':email' => $email)); // denna funkar ej för någon anledning
-  $order_id = $db->fetch($sql_order_id);
+                    ':email' => $email)); 
+
+  // Geting the id of the order.
+  $order_id = $db->fetch("SELECT LAST_INSERT_ID();"); 
+
+  // Geting the products from the cart.
   $qp->execute(array(':customer_id' => $customer_id));
   $products_order = $qp->fetchAll();
 
