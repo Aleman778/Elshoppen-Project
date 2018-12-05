@@ -18,9 +18,6 @@
     if (array_key_exists("role", $_SESSION))
         $role = $_SESSION["role"];
 
-    if ($role != "Admin")
-        header("Location: /");
-
     include("$root/modules/gravatar.php");
 ?>
 

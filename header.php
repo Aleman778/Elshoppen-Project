@@ -67,12 +67,6 @@
         <div class="navbar navbar-right p-0">
         <ul class="navbar-nav">
             <?php if ($loggedIn) { ?> <!-- The following code is shown if user is logged in -->
-                <!--<li class="nav-item">
-                    <a class="mt-3" href="/account/cart">
-                    <img src="/images/icons/cart.png" width="32" height="32" style="margin-top: 8px;">
-                    <span class="badge badge-light rounded-circle align-middle" style="width: 24px; height: 24px; padding-top: 6px; margin-top: 8px;"><?php echo "0"; ?></span>
-                    </a>
-                </li>-->
                 <li class="nav-item dropdown ml-2">
                     <a href="/account/cart" class="mr-3" style="position: relative; left: 0px; top: 0px;"><img src="/images/icons/cart.svg" width="30" height="30"><span class="badge badge-dark" style="position: absolute; left: 18px; top: 12px; <?php if ($cart == 0) echo "display: none;" ?>"><?php echo $cart; ?></span></a>
                     <a class="py-1" href="#" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,10 +75,8 @@
                     <div id="profile-drop" class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdownMenu" style="padding-top: 0px;">
                         <a class="dropdown-item" href="/account/profile" style="background-color: rgb(230, 230, 230); border-top-left-radius: .25rem; border-top-right-radius: .25rem;">
                             <div class="row">
-                                <div class="col-sm p-0" style="min-width: 48px;">
-                                    <img src="<?php echo get_gravatar($email, 38); ?>" class="rounded-circle" width="38" height="38" style="margin-top:5px;">
-                                </div>
-                                <div class="col-lg p-0">
+                                <img src="<?php echo get_gravatar($email, 38); ?>" class="rounded-circle" width="38" height="38" style="margin-top:5px;">
+                                <div class="col-lg p-0 ml-2">
                                     <b class="text-nowrap"><?php echo $firstname . " " . $lastname; ?></b><br>
                                     <span class="text-nowrap"><?php echo $email ?></span>
                                 </div>
@@ -93,9 +85,9 @@
                         <a class="dropdown-item" href="/account/profile" style="padding-left: 56px;">Mitt konto</a>
                         <a class="dropdown-item" href="/account/orders" style="padding-left: 56px;">Mina beställningar</a>
                         <a class="dropdown-item" href="/account/cart" style="padding-left: 56px;">Kundvagn</a>
-                        <?php if ($role == "Admin") { ?>
+                        <?php if ($role == "Admin" or $role == "Moderator" or $role = "Kundtjänst") { ?>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/admin" style="padding-left: 56px;">Admin dashboard</a>
+                            <a class="dropdown-item" href="/admin" style="padding-left: 56px;"><?php echo $role; ?> dashboard</a>
                         <?php } ?>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/account/signout" style="padding-left: 56px;">Logga ut</a>

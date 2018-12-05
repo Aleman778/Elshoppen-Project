@@ -1,10 +1,11 @@
 <?php 
     $root = $_SERVER['DOCUMENT_ROOT'];
+    include("$root/admin/access.php");
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MySQL databas anslutning</title>
+        <title>Admin - MySQL databasanslutning</title>
         <?php include("$root/modules/bootstrap_css.php"); ?>
         <link rel="stylesheet" href="/admin/style.css">
     </head>
@@ -12,12 +13,10 @@
         <?php include("$root/admin/header.php"); ?>
         <div id="wrapper" class="row">
             <div id="sidebar-div" class="col-sm">
-                <?php
-                    $url = "/admin/database/connection";
-                    include("$root/admin/sidebar.php");
-                ?>
+                <?php include("$root/admin/sidebar.php"); ?>
             </div>
             <div id="content-div" class="col-sm p-4">
+                <h3>MySQL databasanslutning</h3>
                 <?php 
                     if (array_key_exists("err", $_GET)) {
                         $msg = "No error message reported";

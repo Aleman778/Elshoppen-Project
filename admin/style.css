@@ -60,3 +60,8 @@ html, body {
 .sub-link.active {
     padding-left: 60px;
 }
+
+.collapse-icon {
+    transition: transform 0.2s;
+    margin-top: 4px;
+}
