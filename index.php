@@ -9,17 +9,19 @@
 
 
 <body>
-  <div id="main" class="container">
-    <h1>Välkommen till ELSHOPPEN</h1>
-    <div id="wrapper" class="row">  
+
+    <div id="wrapper" class="row">
         <div id = "categories" class = "col-sm" style = "max-width: 250px;">
           <?php include("modules/categories.php"); ?>
         </div>
-      
-      <div id = "items" class = "col-xlg">
-      <div class="row">
-      <?php
-        include("modules/mysql.php");
+
+    <div id="main" class="container">
+
+    <h1>Välkommen till ELSHOPPEN</h1>
+      <div id = "items" class = "col-xl">
+        <div class="row">
+          <?php
+          include("modules/mysql.php");
 
             $db = new MySQL();
             $sql = "SELECT id, name, price, image_ref FROM PRODUCTS";
@@ -27,8 +29,8 @@
             foreach ($items as $item) {
             include("modules/item_card.php");
             }
-        ?>
-        </div>
+          ?>
+          </div>
         </div>
 
       </div>

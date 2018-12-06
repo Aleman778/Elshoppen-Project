@@ -25,3 +25,17 @@ function fixFooter() {
 $("#searchbar").keyup(function(){
     $("#searchbtn").attr("href", "/product/search/index.php?searchterm=" + $(this).val());
 });
+
+$(".popup-group-item").hover(function() {
+    var target = $(this).attr("target");
+    $(target).show();
+}, function() {
+    var target = $(this).attr("target");
+    $(target).hide();
+});
+
+$(".popup-list-group").hover(function() {
+    $(this).show();
+}, function() {
+    $(this).hide();
+});
