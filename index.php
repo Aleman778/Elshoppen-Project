@@ -4,14 +4,20 @@
 <title>Startsida</title>
   <!-- Include basic libraries -->
   <?php include("modules/bootstrap_css.php"); ?>
-</head>
-<body>
   <?php include("header.php"); ?>
-  <?php include("modules/categories.php"); ?>
+</head>
+
+
+<body>
   <div id="main" class="container">
     <h1>Välkommen till ELSHOPPEN</h1>
-          
-    <div class="row">
+    <div id="wrapper" class="row">  
+        <div id = "categories" class = "col-sm" style = "max-width: 250px;">
+          <?php include("modules/categories.php"); ?>
+        </div>
+      
+      <div id = "items" class = "col-xlg">
+      <div class="row">
       <?php
         include("modules/mysql.php");
 
@@ -23,6 +29,9 @@
             }
         ?>
         </div>
+        </div>
+
+      </div>
     </div>
 
     <?php include("footer.php"); ?>
