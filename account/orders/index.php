@@ -11,7 +11,7 @@
   $customer_id = $_SESSION["customer_id"];
 
   $db = new MySQL();
-  $sql = "SELECT * From ORDERS WHERE customer_id LIKE $customer_id";
+  $sql = "SELECT * From ORDERS WHERE customer_id = $customer_id ORDER BY time DESC";
   $orders =  $db->fetchAll($sql);
 ?>
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
       ?>
 
         <div class="card card-item m-2" style="width: 64rem;">
-            <div class="card-body">
+            <div class="card-body" style="background-color:  rgb(230, 230, 230);">
                 <h5 class="card-title" style="max-height: 48px; overflow: hidden;">
                     <b>Order nummer: </b> <?php echo $id ?>
                 </h5>

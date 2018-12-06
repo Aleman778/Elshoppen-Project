@@ -54,14 +54,14 @@
         <form action="/product/search/index.php" method="get" class="form-inline mx-2 p-0 col-lg">
         <div class="input-group p-0 col-lg">
             <div class="input-group-prepend">
-            <a href="/product/search/index.php">
+            <a href="/product/search/index.php?searchterm=" id="searchbtn">
                 <span class="input-group-text p-1" id="basic-addon1" style="background-color: white; border: none; border-top-right-radius: 0; border-bottom-right-radius: 0;">
-                <img src="/images/icons/search.png" width="30" height="30">
+                    <img src="/images/icons/search.png" width="30" height="30">
                 </span>
             </a>
             </div>
             <input id="searchbar" name="searchterm" class="form-control mr-sm-2" type="search" placeholder="Sök i web-shoppen" aria-label="Search"  style="border: none;max-width: 500px;
-    min-width: 200px;">
+    min-width: 200px; box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0), 0 0 8px rgba(0, 0, 0, 0);">
         </div> 
         </form>
         <div class="navbar navbar-right p-0">

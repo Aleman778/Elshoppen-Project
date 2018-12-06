@@ -11,7 +11,7 @@
     $customer_id = $_SESSION["customer_id"];
 
     $db = new MySQL();
-    $sql = "SELECT address FROM CUSTOMERS WHERE id LIKE $customer_id";
+    $sql = "SELECT address FROM CUSTOMERS WHERE id = $customer_id";
     $address = $db->fetch($sql);
     if ($address)
         $address = $address["address"];
