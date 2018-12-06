@@ -21,3 +21,7 @@ function fixFooter() {
     if (footerTop < docHeight)
         $('#footer').css('margin-top', 20 + (docHeight - footerTop) + 'px');
 }
+
+$("#searchbar").keyup(function(){
+    $("#searchbtn").attr("href", "/product/search/index.php?searchterm=" + $(this).val());
+});
