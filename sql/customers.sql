@@ -7,7 +7,7 @@ create table CUSTOMERS (
     email VARCHAR(100) NOT NULL UNIQUE,
     removed TINYINT(1) NOT NULL,
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    phone_number INT,
+    phone_number VARCHAR(10),
     address VARCHAR(100),
     PRIMARY KEY ( id )
 );

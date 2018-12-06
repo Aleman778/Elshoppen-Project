@@ -11,7 +11,7 @@
     //Check for invalid firstname and lastname.
     $fname_len = strlen($_POST["first-name"]);
     $lname_len = strlen($_POST["last-name"]);
-    if ($fname_len > 10){
+    if ($fname_len > 40){
         header("Location: change_info.php?err=fname_length");
         exit;
     }
@@ -27,8 +27,23 @@
         header("Location: change_info.php?err=lname_empty");
         exit;
     }
+    
+    $db = new MySQL();
+    $db->query("START TRANSACTION");
+    
+    $sql = "UPDATE CUSTOMERS SET firstname = :fname, lastname = :lname, 
+            birth_date = :bday, email = :email, 
+            phone_number = :mobile_number, address = :address where id = :id;";
 
-    //$db = new MySQL();
+    $p = $db->prepare($sql);
+    $p->execute(array(  "fname" => $_POST["first-name"],
+                        "lname" => $_POST["last-name"],
+                        "bday" => $_POST["bday"],
+                        "email" => $_POST["email"],
+                        "mobile_number" => $_POST["mobile-number"],
+                        "address" => $_POST["address"],
+                        "id" => $_SESSION["customer_id"]));    
+    $db->query("COMMIT");
 
     header("Location: index.php");
 ?>
