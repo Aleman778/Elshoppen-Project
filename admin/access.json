@@ -1,0 +1,13 @@
+{
+    "Admin": [
+        "ALL"
+    ],
+    "Moderator": [
+        "/admin/",
+        "/admin/products/",
+        "/admin/products/list/"
+    ],
+    "Kundtjänst": [
+        "/admin/"
+    ]
+}

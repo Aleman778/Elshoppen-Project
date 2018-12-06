@@ -1,6 +1,9 @@
 $(document).ready(function() {
     fixHeader();
     fixFooter();
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 });
 $(window).resize(fixFooter);
 $("#navbarSupportedContent").resize(fixFooter);

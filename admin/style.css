@@ -1,0 +1,67 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+#wrapper {
+    margin: 0px;
+}
+
+#sidebar-div {
+    min-width: 240px;
+    max-width: 240px;
+    min-height: 100%;
+    max-height: 100%;
+    padding: 0px;
+}
+
+#content-div {
+    min-height: 100%;
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+.sidebar-link  {
+    background-color: transparent;
+    padding: 0.5em;
+    padding-left: 15px;
+    border: none;
+    color: white;
+    margin: 0px;
+}
+
+.sub-link {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 65px;
+    font-size: 0.9rem;
+}
+
+.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.sidebar-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: solid 5px #007bff;
+    padding-left: 10px;
+}
+
+.list-group-item-action:focus {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.sidebar-link.active:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sub-link.active {
+    padding-left: 60px;
+}
+
+.collapse-icon {
+    transition: transform 0.2s;
+    margin-top: 4px;
+}

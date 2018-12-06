@@ -49,7 +49,7 @@
                 </div>
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Logga in</button>
+            <button type="submit" class="btn btn-primary">Beställ</button>
         </div>
     </form> 
   </div>

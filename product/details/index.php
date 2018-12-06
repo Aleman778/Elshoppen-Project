@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-md">
                         <!-- Image slideshow (carousel) -->
-                        <div id="imageGallery" class="carousel slide" data-ride="carousel">
+                        <div id="imageGallery" class="carousel slide" data-ride="carousel" style="visibility: hidden;">
                             <div class="carousel-inner">
                                 <?php for ($i = 1; $i < count($images); $i++) { ?>
                                     <div class="carousel-item <?php if ($i == 1) echo "active"; ?>">
@@ -192,6 +192,7 @@
                     var y = maxHeight/2.0 - $(this).height()/2.0;
                     $(this).css("margin-top", y);
                 });
+                $("#imageGallery").css("visibility", "visible");
 
                 function loadComments() {
                     var scroll = $(window).scrollTop() + $(window).height();
