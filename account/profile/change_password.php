@@ -33,7 +33,7 @@
         <h1>Ändra lösenord</h1>
         <p>Fyll i rutorna nedan för att ändra lösenord.</p>
         <hr>
-        <form action="password.php" method="post">
+        <form action="new_password.php" method="post">
             <div class="row mb-2">
                 <div class="col-md-2">
                     <label for="psw"><b>Nytt lösenord</b></label>

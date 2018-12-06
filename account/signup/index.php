@@ -111,7 +111,7 @@
                     <label for="mobile-number"><b>Mobilnummer</b></label>
                 </div>
                 <div class="col-md-5">
-                    <input class="form-control" type="text" placeholder="Fyll i mobilnummer" name="mobile-number" required>
+                    <input class="form-control" type="text" placeholder="Fyll i mobilnummer" name="mobile-number">
                 </div>
             </div>
                 
@@ -120,7 +120,7 @@
                     <label for="address"><b>Adress</b></label>
                 </div>
                 <div class="col-md-5">
-                    <input class="form-control" type="text" placeholder="Fyll i adress" name="address" required>
+                    <input class="form-control" type="text" placeholder="Fyll i adress" name="address">
                 </div>
             </div>
                 
