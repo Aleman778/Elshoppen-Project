@@ -7,9 +7,10 @@
 </head>
 <body>
   <?php include("header.php"); ?>
-
+  <?php include("modules/categories.php"); ?>
   <div id="main" class="container">
     <h1>Välkommen till ELSHOPPEN</h1>
+          
     <div class="row">
       <?php
         include("modules/mysql.php");
