@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>Startsida</title>
-    <!-- Include basic libraries -->
-    <?php include("modules/bootstrap_css.php"); ?>
-    </head>
-    <body>
-    <?php include("header.php"); ?>
-
-    <div id="main" class="container">
-        <h1>Välkommen till ELSHOPPEN</h1>
-        <div class="row">
-        <?php
-            include("modules/mysql.php");
+<head>
+<title>Startsida</title>
+  <!-- Include basic libraries -->
+  <?php include("modules/bootstrap_css.php"); ?>
+</head>
+<body>
+  <?php include("header.php"); ?>
+  <?php include("modules/categories.php"); ?>
+  <div id="main" class="container">
+    <h1>Välkommen till ELSHOPPEN</h1>
+          
+    <div class="row">
+      <?php
+        include("modules/mysql.php");
 
             $db = new MySQL();
             $sql = "SELECT id, name, price, image_ref FROM PRODUCTS";
