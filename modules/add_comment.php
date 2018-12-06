@@ -31,8 +31,8 @@
     }
 
     //Insert comment into databaase
-    $sql = "INSERT INTO COMMENTS (customer_id, product_id, reply_id, comment)
-            VALUES (:cid, :pid, :rid, :msg)";
+    $sql = "INSERT INTO COMMENTS (customer_id, product_id, reply_id, comment, time)
+            VALUES (:cid, :pid, :rid, :msg, NOW())";
     
     $params = array(
             "cid" => $customer_id,
