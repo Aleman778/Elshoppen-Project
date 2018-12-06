@@ -1,5 +1,5 @@
 
-<div class="list-group" style="position: relative; left: 0px; top: 0px;">
+<div id="categoryList" class="list-group" >
   <a href="#" class="list-group-item list-group-item-action">
     Alla kategorier
   </a>
@@ -15,8 +15,8 @@
   <a href="#" class="list-group-item list-group-item-action">Wearables och träning</a>
   <a href="#" class="list-group-item list-group-item-action">Ljud och hi-fi</a>
   
-  <div class = "popup-list-group" id = "gaming-popup" style="z-index: 100;background: rgb(230, 230, 230); position: absolute; left: 220px; top: 0px; display: none;"> 
-    <div class="row" style="width: 300px; max-height: 588px; min-height: 588px; padding: 8px;">
+  <div class = "popup-list-group" id = "gaming-popup" > 
+    <div class="row" id = "row-gaming">
       <div class="col-sm">
         <div class="list-group">
             <a href="/products/gaming/datorer" class="list-group-item list-group-item-action">Datorer</a>
