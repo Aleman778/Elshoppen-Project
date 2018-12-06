@@ -33,11 +33,12 @@
         $items =  $db->fetchAll("SELECT product_id, quantity FROM ORDERS_PRODUCTS WHERE order_id = $id");
       ?>
 
-        <div class="card card-item m-2" style="width: 16rem;">
+        <div class="card card-item m-2" style="width: 64rem;">
             <div class="card-body">
                 <h5 class="card-title" style="max-height: 48px; overflow: hidden;">
                     <b>Order nummer: </b> <?php echo $id ?>
                 </h5>
+                  <p><b>Datum av beställning: </b> <?php echo $order[4] ?> </p>
                   <p><b>Address: </b> <?php echo $order[2] ?> </p>
                   <p><b>E-mail: </b> <?php echo $order[3] ?> </p>
                 <p class="card-subtitle pb-2"><b>Din Beställning:</b></p>

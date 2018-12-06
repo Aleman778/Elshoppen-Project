@@ -2,7 +2,7 @@
     <div class="row">
         <img src="<?php echo get_gravatar($comment["email"], 38); ?>" class="rounded-circle m-2" width="38" height="38" style="margin-top:5px;">
         <div class="col-lg">
-            <b><?php echo $comment["firstname"] . " " . $comment["lastname"]; ?></b>
+            <b><?php echo $comment["firstname"] . " " . $comment["lastname"]; ?></b> <?php echo  "  " . $comment["time"];?>
             <p class="mb-1"><?php echo $comment["comment"]; ?></p>
             <?php if ($loggedIn) { ?>
                 <button style="height: 28px; padding-top: 0px;" class="btn btn-light reply-btn">Svara</button>

@@ -16,8 +16,8 @@
 
   $db = new MySQL();
   // Code for adding order to table ORDERS.
-  $sql_insert_order = "INSERT INTO ORDERS (id, customer_id, address, email) 
-                         VALUES (DEFAULT, :customer_id, :address, :email);";
+  $sql_insert_order = "INSERT INTO ORDERS (id, customer_id, address, email, time) 
+                         VALUES (DEFAULT, :customer_id, :address, :email, NOW());";
   $qi = $db->prepare($sql_insert_order);
 
   // Code for geting the products from the cart.
