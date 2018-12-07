@@ -14,8 +14,5 @@
   <a href="#" class="list-group-item list-group-item-action">Smart hem</a>
   <a href="#" class="list-group-item list-group-item-action">Wearables och träning</a>
   <a href="#" class="list-group-item list-group-item-action">Ljud och hi-fi</a>
-  
-  <div class = "popup-list-group" id = "gaming-popup" > 
-    <div class="row" id = "row-gaming">
-    </div>
+
 </div>
