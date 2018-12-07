@@ -27,15 +27,13 @@
         </div>
         <div class="col-sm">
           <b>Information</b><br>
-          <a href="/info/gdpr/">GDPR</a><br>
+          <a href="https://eugdpr.org/">GDPR</a><br>
           <a href="/info/salesterms/">Köpvillkor</a><br>
-          <a href="https://www.youtube.com/watch?v=a9WHZ5M8I8w">...</a>
         </div>
         <div class="col-sm">
           <b>Om ELSHOPPEN</b><br>
           <a href="/about/us/">Om oss</a><br>
           <a href="/about/job/">Söka jobb</a><br>
-          <a href="https://www.youtube.com/watch?v=a9WHZ5M8I8w">...</a>
         </div>
       </div>
     </div>

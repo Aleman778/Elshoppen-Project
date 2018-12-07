@@ -14,9 +14,30 @@
     <div id="main" class="container">
 
         <h1>Kontakta oss</h1>
-        <div id="row" class="container">
-            <p> Om du har några problem eller frågor kan du kontakta oss på denna Email: <b>Elshoppen@mail.com</b>. Vi kommer svarar inom en till tre dagar.</p>
-        </div>
+        <form action="sent.php" method="post">
+            
+            <div  class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" name="txtFName" class="form-control" placeholder="Förnamn *" value="" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="txtEName" class="form-control" placeholder="Efternamn *" value="" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="txtEmail" class="form-control" placeholder="Email *" value="" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="btnSubmit" class="btnContact" value="Skicka meddelande" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <textarea name="txtMsg" class="form-control" placeholder="Ditt meddelande *" style="width: 100%; height: 150px;" required></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <?php include("$root/footer.php"); ?>

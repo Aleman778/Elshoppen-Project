@@ -15,9 +15,25 @@
 
         <h1>Spåra din leverans</h1>
         <div id="row" class="container">
-            <p>För att spåra ditt packet så måste du skicka ett email till <b>Elshoppen@mail.com</b>, 
-            där order id, förnamn, efternam och födelsedatum ska stå med. Efter du gjort det kommer status uppdateringar av packetet skickas till din email.</p>
-        </div>
+        <form action="sent.php" method="post">
+            <div  class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" name="txtFName" class="form-control" placeholder="Förnamn *" value="" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="txtEName" class="form-control" placeholder="Efternamn *" value="" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="txtPhone" class="form-control" placeholder="Order ID  *" value="" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="btnSubmit" class="btnContact" value="Skicka mail" />
+                    </div>
+                </div>
+            </div>
+        </form>
+       </div>
     </div>
 
     <?php include("$root/footer.php"); ?>

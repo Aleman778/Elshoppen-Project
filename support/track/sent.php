@@ -1,8 +1,15 @@
-<?php $root = $_SERVER['DOCUMENT_ROOT']; ?>
+<?php $root = $_SERVER['DOCUMENT_ROOT']; 
+
+    if (!(array_key_exists("txtFName", $_POST))) {
+        header("Location: /");
+        exit;
+    }
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>GDPR - Elshoppen</title>
+<title>Skickat - Elshoppen</title>
   <!-- Include basic libraries -->
   <?php include("$root/modules/bootstrap_css.php"); ?>
   <?php include("$root/header.php"); ?>
@@ -12,11 +19,7 @@
 <body>
 
     <div id="main" class="container">
-
-        <h1>GDPR</h1>
-        <div id="row" class="container">
-            <p>Jag vet inte vad GDPR är så...</p>
-        </div>
+        <h1>Tack <?php echo $_POST["txtFName"] ?>! Du kommer få ett email med info om din order.</h1>
     </div>
 
     <?php include("$root/footer.php"); ?>
