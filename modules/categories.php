@@ -3,19 +3,16 @@
   <a href="#" class="list-group-item list-group-item-action">
     Alla kategorier
   </a>
-  <a href="#" target = "#gaming-popup" class="popup-group-item list-group-item list-group-item-action">Gaming</a>
-  <a href="#" class="list-group-item list-group-item-action">TV och bild</a>
-  <a href="#" class="list-group-item list-group-item-action">Mobiltelefoner</a>
-  <a href="#" class="list-group-item list-group-item-action">Datorer</a>
-  <a href="#" class="list-group-item list-group-item-action">Vitvaror</a>
-  <a href="#" class="list-group-item list-group-item-action">Hem och hushåll</a>
-  <a href="#" class="list-group-item list-group-item-action">Personvård</a>
-  <a href="#" class="list-group-item list-group-item-action">Foto och video</a>
-  <a href="#" class="list-group-item list-group-item-action">Smart hem</a>
-  <a href="#" class="list-group-item list-group-item-action">Wearables och träning</a>
-  <a href="#" class="list-group-item list-group-item-action">Ljud och hi-fi</a>
-  
-  <div class = "popup-list-group" id = "gaming-popup" > 
-    <div class="row" id = "row-gaming">
-    </div>
+  <a href="/product/category?name=gaming"  class="popup-group-item list-group-item list-group-item-action">Gaming</a>
+  <a href="/product/category?name=Tv och bild" class="list-group-item list-group-item-action">Tv och bild</a>
+  <a href="/product/category?name=Mobiltelefoner" class="list-group-item list-group-item-action">Mobiltelefoner</a>
+  <a href="/product/category?name=Datorer" class="list-group-item list-group-item-action">Datorer</a>
+  <a href="/product/category?name=Vitvaror" class="list-group-item list-group-item-action">Vitvaror</a>
+  <a href="/product/category?name=Hem och Hushåll" class="list-group-item list-group-item-action">Hem och hushåll</a>
+  <a href="/product/category?name=Personvård" class="list-group-item list-group-item-action">Personvård</a>
+  <a href="/product/category?name=Foto och video" class="list-group-item list-group-item-action">Foto och video</a>
+  <a href="/product/category?name=Smarta hem" class="list-group-item list-group-item-action">Smart hem</a>
+  <a href="/product/category?name=Wearables och träning" class="list-group-item list-group-item-action">Wearables och träning</a>
+  <a href="/product/category?name=Ljud och hi-fi" class="list-group-item list-group-item-action">Ljud och hi-fi</a>
+
 </div>
