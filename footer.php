@@ -21,21 +21,21 @@
         </div>
         <div class="col-sm">
           <b>Kundtjänst</b><br>
-          <a href="#">Kontakta oss</a><br>
-          <a href="#">Vanliga frågor</a><br>
-          <a href="#">Spåra din leverans</a>
+          <a href="/support/contact/">Kontakta oss</a><br>
+          <a href="/support/questions/">Vanliga frågor</a><br>
+          <a href="/support/track/">Spåra din leverans</a>
         </div>
         <div class="col-sm">
           <b>Information</b><br>
-          <a href="#">GDPR</a><br>
-          <a href="#">Köpvillkor</a><br>
-          <a href="#">...</a>
+          <a href="/info/gdpr/">GDPR</a><br>
+          <a href="/info/salesterms/">Köpvillkor</a><br>
+          <a href="https://www.youtube.com/watch?v=a9WHZ5M8I8w">...</a>
         </div>
         <div class="col-sm">
           <b>Om ELSHOPPEN</b><br>
-          <a href="#">Om oss</a><br>
-          <a href="#">Söka jobb</a><br>
-          <a href="#">...</a>
+          <a href="/about/us/">Om oss</a><br>
+          <a href="/about/job/">Söka jobb</a><br>
+          <a href="https://www.youtube.com/watch?v=a9WHZ5M8I8w">...</a>
         </div>
       </div>
     </div>
