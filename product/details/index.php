@@ -105,8 +105,11 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane mb-4" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                        a
+                    <div class="tab-pane mb-4" id="reviews" role="review-tab" aria-labelledby="reviews-tab">
+
+                    <!-- har flyttat och komentera ut koden för att den inte fungerar helt och det blev extremt rörigt -->
+                    <?php //include("$root/product/details/reviews.php") ?>
+                    a
                     </div>
                     <div class="tab-pane show active mb-4" id="comments-tab" role="tabpanel" aria-labelledby="comments-tab">
                         <!-- Select all comments from the given product. -->
@@ -153,6 +156,12 @@
                     <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
                 </svg><br>
                 Laddar in fler kommentarer...
+            </div>
+            <div id="review-loader" class="w-100 mb-4" style="text-align:center; display: none;">
+                <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                </svg><br>
+                Laddar in fler recensioner...
             </div>
         </div>
 

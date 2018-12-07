@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-md-3">
                 <!--hard coded profile picture-->
-                <img src="/images/profiles/default.png" class="img-circle">
+                <img src="/images/profiles/default.png" class="rounded-circle m-2">
             </div>
 
             <div class="col-md-2">
