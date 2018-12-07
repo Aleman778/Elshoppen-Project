@@ -17,16 +17,5 @@
   
   <div class = "popup-list-group" id = "gaming-popup" > 
     <div class="row" id = "row-gaming">
-      <div class="col-sm">
-        <div class="list-group">
-            <a href="/products/gaming/datorer" class="list-group-item list-group-item-action">Datorer</a>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class="list-group">
-            <a href="/products/gaming/datorer" class="list-group-item list-group-item-action">Datorer</a>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
