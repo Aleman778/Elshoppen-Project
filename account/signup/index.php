@@ -111,7 +111,7 @@
                     <label for="mobile-number"><b>Mobilnummer</b></label>
                 </div>
                 <div class="col-md-5">
-                    <input class="form-control" type="text" placeholder="Fyll i mobilnummer" name="mobile-number">
+                    <input class="form-control" type="text" placeholder="Fyll i mobilnummer" maxlength="10" name="mobile-number">
                 </div>
             </div>
                 

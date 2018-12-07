@@ -14,7 +14,7 @@
             P.id, P.name, P.description, P.price, P.image_ref
             FROM CART C
             INNER JOIN PRODUCTS P ON C.product_id = P.id
-            WHERE C.customer_id LIKE $customer_id";
+            WHERE C.customer_id = $customer_id";
     $items =  $db->fetchAll($sql);
 ?>
 

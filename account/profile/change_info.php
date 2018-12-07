@@ -76,8 +76,8 @@
                     <input class="form-control" type="date" value="<?php echo $customer["birth_date"]; ?>" placeholder="Fyll i födelsedatum" name="bday" required>
                 </div>
             </div>
-
-            <div class="row mb-2">
+            <!-- change gender off -->
+            <!-- <div class="row mb-2">
                 <div class="col-md-2">
                     <label for="gender"><b>Kön</b></label>
                 </div>
@@ -96,7 +96,7 @@
 
                     ?>
                 </div>
-            </div>
+            </div> -->
             <div class="row mb-2">
                 <div class="col-md-2">
                     <label for="email"><b>Epost</b></label>
@@ -112,7 +112,7 @@
                     <label for="mobile-number"><b>Mobilnummer</b></label>
                 </div>
                 <div class="col-md-5">
-                    <input class="form-control" type="text" value="<?php echo $customer["phone_number"]; ?>" placeholder="Fyll i mobilnummer" name="mobile-number">
+                    <input class="form-control" type="text" value="<?php echo $customer["phone_number"]; ?>" placeholder="Fyll i mobilnummer" maxlength="10" name="mobile-number">
                 </div>
             </div>
                 
@@ -121,7 +121,7 @@
                     <label for="address"><b>Adress</b></label>
                 </div>
                 <div class="col-md-5">
-                    <input class="form-control" type="text" value="<?php echo $customer["address"]; ?>" placeholder="Fyll i adress" name="address">
+                    <input class="form-control" type="text" value="<?php echo $customer["address"]; ?>" placeholder="Fyll i adress" name="address" required>
                 </div>
             </div>
                 
