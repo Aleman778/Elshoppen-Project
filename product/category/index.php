@@ -6,14 +6,14 @@
   
   $name = htmlspecialchars($_REQUEST['name']);
   $db = new MySQL();
-  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE catergory LIKE '%$name%'";
+  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE category LIKE '%$name%'";
   $items =  $db->fetchAll($sql);
-?>
+  ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title> <?php echo $name>: ?> echo $searchterm ?> - Elshoppen</title>
+<title> Sökresultat för <?php echo $name; ?>  Elshoppen</title>
   <!-- Include basic libraries -->
   <?php include("../../modules/bootstrap_css.php"); ?>
 </head>
@@ -22,7 +22,7 @@
 
   <div id="main" class="container">
   
-    <h1>Din sökning "<?php echo $searchterm; ?>" gav "<?php echo count($items); ?>" träff<?php if(count($items) != 1) echo "ar"; ?>.</h1>
+    <h1>Din sökning "<?php echo $name; ?>" gav "<?php echo count($items); ?>" träff<?php if(count($items) != 1) echo "ar"; ?>.</h1>
     <div class="row">
       <?php
         foreach ($items as $item) {
