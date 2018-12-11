@@ -1,6 +1,5 @@
 <?php
     $product_id = 0;
-    $rating = 0;
 
     if (array_key_exists("id", $_GET))
         $product_id = $_GET["id"];

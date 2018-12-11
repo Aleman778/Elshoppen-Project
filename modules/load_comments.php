@@ -72,7 +72,7 @@
                     foreach ($replies as $comment) {
                         include("comment.php");
                     }
-                ?>
+                    ?>
             </div>
         </div>
     </div>

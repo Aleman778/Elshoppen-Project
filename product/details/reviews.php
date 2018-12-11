@@ -1,6 +1,6 @@
                         <!-- Count how many reviews there are in total -->
                         <?php 
-                            $sql = "SELECT COUNT(*) FROM REVIEWS WHERE product_id=:id AND reply_id=0";
+                            $sql = "SELECT COUNT(*) FROM REVIEWS WHERE product_id=:id";
                             $stmt = $db->prepare($sql);
                             $stmt->execute(array("id" => $_GET["id"]));
                             $numReviews = $stmt->fetch()["COUNT(*)"];
