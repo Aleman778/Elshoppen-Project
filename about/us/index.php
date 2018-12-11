@@ -15,8 +15,11 @@
 
         <h1>Om oss</h1>
         <div id="row" class="container">
-            <p>Vi är ett gäng troll som hittade en dator i det vilda.</p>
-            <p>Mvh Kappa</p>
+            <p>
+                Vi är ett team av datateknik studenter ifrån Luleås tekniska universitet som går kursen Databasteknik och i den kursen så ska vi göra en webbshopp.
+                Webbshoppen vi gjort heter Elshoppen och den säljer diverse elekronik prylar.
+                Men denna webbshopp är inte riktig, så ingen av produkter på shoppen går att köpa.
+            </p>
         </div>
     </div>
 

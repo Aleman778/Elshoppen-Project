@@ -15,7 +15,7 @@
 
         <h1>Köpvillkor</h1>
         <div id="row" class="container">
-            <p>Vi vet inte vad vi håller på med och därför kan vi inte garantera att ni får de produkter ni köpter.</p>
+            <p>Våra köpvilkor följer alla svenska lagar och för att se dem behöver du bara fårga oss på fråga oss sidan.</p>
         </div>
     </div>
 
