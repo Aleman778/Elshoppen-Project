@@ -3,7 +3,7 @@
   <a href="#" class="list-group-item list-group-item-action">
     Alla kategorier
   </a>
-  <a href="/product/category?name=gaming"  class="popup-group-item list-group-item list-group-item-action">Gaming</a>
+  <a href="/product/category?name=Gaming"  class="popup-group-item list-group-item list-group-item-action">Gaming</a>
   <a href="/product/category?name=Tv och bild" class="list-group-item list-group-item-action">Tv och bild</a>
   <a href="/product/category?name=Mobiltelefoner" class="list-group-item list-group-item-action">Mobiltelefoner</a>
   <a href="/product/category?name=Datorer" class="list-group-item list-group-item-action">Datorer</a>
