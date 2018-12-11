@@ -1,20 +1,19 @@
-.popup-list-group{
-    z-index: 100;
-    background: rgb(230, 230, 230);
-    position: absolute; 
-    left: 220px;
-    top: 0px;
-    display: none;
-}
+
 .row-gaming{
     width: 300px;
     max-height: 588px;
     min-height: 588px;
     padding: 8px;
 }
-#categoryList{
-    position: relative;
-     left: 0px;
-      top: 0px;
-      
+
+#categories{
+    margin-top: -24px;
+}
+
+.list-group-item {   
+    border-radius: 0px !important;
+}
+
+#categoriesItem{
+    background-color: rgb(230, 230, 230);
 }

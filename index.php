@@ -5,6 +5,7 @@
   <!-- Include basic libraries -->
   <?php include("modules/bootstrap_css.php"); ?>
   <?php include("header.php"); ?>
+  <link rel = "stylesheet" href = "/modules/categories.css" >
 </head>
 
 
