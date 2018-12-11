@@ -14,8 +14,8 @@
     <div id="main" class="container">
 
         <h1>Kontakta oss</h1>
+        <p>Skriv in din information och ditt meddelande i text rutorna nedan tack!</p>
         <form action="sent.php" method="post">
-            
             <div  class="row">
                 <div class="col-md-6">
                     <div class="form-group">
