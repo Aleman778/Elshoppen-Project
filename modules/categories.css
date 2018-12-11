@@ -1,3 +1,10 @@
+#wrapper {
+    margin: 0px;
+}
+
+#main {
+    width: auto;
+}
 
 .row-gaming{
     width: 300px;
@@ -8,6 +15,7 @@
 
 #categories{
     margin-top: -24px;
+    padding: 0px;
 }
 
 .list-group-item {   
