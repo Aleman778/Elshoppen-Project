@@ -1,9 +1,7 @@
-
+<!-- graphical UI showing a sample of categories on the front -->
 <div id="categoryList" class="list-group" >
-  <a href="#" class="list-group-item list-group-item-action">
-    Alla kategorier
-  </a>
-  <a href="/product/category?name=Gaming"  class="popup-group-item list-group-item list-group-item-action">Gaming</a>
+  <a id="categoriesItem"  class="list-group-item"> Kategorier </a>
+  <a href="/product/category?name=Gaming"  class=" list-group-item list-group-item-action">Gaming</a>
   <a href="/product/category?name=Tv och bild" class="list-group-item list-group-item-action">Tv och bild</a>
   <a href="/product/category?name=Mobiltelefoner" class="list-group-item list-group-item-action">Mobiltelefoner</a>
   <a href="/product/category?name=Datorer" class="list-group-item list-group-item-action">Datorer</a>

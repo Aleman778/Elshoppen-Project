@@ -5,19 +5,17 @@
   <!-- Include basic libraries -->
   <?php include("modules/bootstrap_css.php"); ?>
   <?php include("header.php"); ?>
+  <link rel = "stylesheet" href = "/modules/categories.css" >
 </head>
 
 
 <body>
-
     <div id="wrapper" class="row">
         <div id = "categories" class = "col-sm" style = "max-width: 250px;">
           <?php include("modules/categories.php"); ?>
         </div>
-
     <div id="main" class="container">
-
-    <h1>Välkommen till ELSHOPPEN</h1>
+      <h1>Välkommen till ELSHOPPEN</h1>
       <div id = "items" class = "col-xl">
         <div class="row">
           <?php
