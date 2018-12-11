@@ -45,6 +45,13 @@
                 <?php include("$root/admin/sidebar.php"); ?>
             </div>
             <div class="col-sm p-4">
+                <?php if (array_key_exists("ins", $_GET)) { ?>
+                    <?php if ($_GET["ins"] == "success") { ?>
+                        <div class="alert alert-success" role="alert">
+                            The product was successfully inserted into the database!
+                        </div>
+                    <?php } ?>
+                <?php } ?> 
                 <h3>Lägg till produkter</h3>
                 <h4>Produktinformation</h4>
                 <form action="insert.php" method="POST">
@@ -53,16 +60,27 @@
                         <input type="text" class="form-control" id="name" name="name" placeholder="Skriv produktens namn">
                     </div>
                     <div class="form-group">
-                        <label for="category">Kategori</label>
-                        <input type="kategori" class="form-control" id="category" name="category" placeholder="Skriv kategorin">
+                        <label for="category">Välj kategori</label>
+                        <select class="form-control" id="category" name="category">
+                            <option>Gaming</option>
+                            <option>Tv och bild</option>
+                            <option>Mobiltelefoner</option>
+                            <option>Datorer</option>
+                            <option>Vitvaror</option>
+                            <option>Personvård</option>
+                            <option>Foto och video</option>
+                            <option>Smart hem</option>
+                            <option>Wearables och träning</option>
+                            <option>Ljud och hi-fi</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="price">Pris</label>
-                        <input type="number" class="form-control" id="price" name="price" placeholder="Skriv lösenord">
+                        <input type="number" class="form-control" id="price" name="price" placeholder="Skriv produktens pris">
                     </div>
                     <div class="form-group">
-                        <label for="description">Kortfattad beskrivning av produkten</label>
-                        <textarea class="form-control" id="description" name="description" rows="3" maxlength="1000"></textarea>
+                        <label for="description">Beskrivning av produkten</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" maxlength="1000" placeholder="Skriv en kort beskrivning om produkten"></textarea>
                     </div>
                     <h4>Produktbilder</h4>
                     <div class="form-group">
@@ -70,11 +88,13 @@
                         <div class="row ml-4 mr-4">
                             <span style="padding-top: 7px;">/images/items/</span>
                             <div class="col-lg px-1">
-                                <input type="text" class="form-control" id="imageFolder" name="imageFolder" placeholder="P">
+                                <input type="text" class="form-control" id="imageFolder" name="imageFolder" placeholder="produktens_namn">
                             </div>
                             <span style="padding-top: 7px;">/</span>
                         </div>
                     </div>
+                    <div class="form-group row" id="imageResults"></div>
+        <?php chdir("../../../images/items/nintendo_switch_gray/"); var_dump(glob("*.{jpg,png,bmp}")); ?>
                     <div class="form-group">
                         <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#uploadImage">
                             <img src="/images/icons/cloud_upload.svg" style="margin-top: -0.25em;" width=24 height=24>
@@ -100,7 +120,7 @@
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <span class="btn btn-primary btn-file">
-                                    Browse&hellip; <input type="file" single>
+                                    Bläddra&hellip; <input type="file" single>
                                 </span>
                             </span>
                             <input type="text" class="form-control" readonly>
@@ -113,7 +133,6 @@
                 </div>
             </div>
         </div>
-
         <?php include("$root/modules/bootstrap_js.php"); ?>
 
         <!-- Run basic admin script -->
@@ -139,6 +158,18 @@
                     } else {
                         if( log ) alert(log);
                     }
+                });
+            });
+
+            $("#imageFolder").keyup(function() {
+                $.ajax({
+                    method: "GET",
+                    url: "/admin/products/add/images.php",
+                    data: {
+                        dir: "images/items/" + $(this).val()
+                    }
+                }).done(function(html) {
+                    $("#imageResults").html(html);
                 });
             });
         </script>

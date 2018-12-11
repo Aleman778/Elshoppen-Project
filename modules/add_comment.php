@@ -46,11 +46,13 @@
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
 
-        $sql = "SELECT id FROM COMMENTS WHERE customer_id=:cid AND product_id=:pid AND
+        $sql = "SELECT id, time FROM COMMENTS WHERE customer_id=:cid AND product_id=:pid AND
                                             reply_id=:rid AND comment=:msg";            
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
-        $comment["id"] = $stmt->fetch()["id"];
+        $data = $stmt->fetch();
+        $comment["id"] = $data["id"];
+        $comment["time"] = $data["time"];
     } catch (PDOException $e) {
         echo "Error!";
     }
