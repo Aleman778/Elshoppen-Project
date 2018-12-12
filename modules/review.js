@@ -10,7 +10,7 @@ $("#review-btn").click(function() {
     var message = $("#review-msg").val();
     $("#review-msg").val("");
     $(this).attr("disabled", "disabled");
-    addReview(message, 0, $("#reviews"));
+    addReview(message, "#rating", $("#reviews"));
 });
 
 

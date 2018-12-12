@@ -107,9 +107,9 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane mb-4" id="reviews" role="review-tab" aria-labelledby="reviews-tab">
 
-                    <!-- har flyttat och komentera ut koden för att den inte fungerar helt och det blev extremt rörigt -->
-                    <?php //include("$root/product/details/reviews.php") ?>
-                    a
+                    <!-- har flyttat koden för att den inte fungerade helt och det blev extremt rörigt -->
+                    <?php include("$root/product/details/reviews.php") ?>
+                    I r8 8/8 m8! / Ruben
                     </div>
                     <div class="tab-pane show active mb-4" id="comments-tab" role="tabpanel" aria-labelledby="comments-tab">
                         <!-- Select all comments from the given product. -->
@@ -176,6 +176,9 @@
         <!-- Comment script -->
         <script src="/modules/comment.js"></script>
 
+        <!-- Review script -->
+        <script src="/modules/review.js"></script>
+
         <!-- Custom script for dynamic loading of comments and carousel height fixes -->
         <script>
             $(document).ready(function() {
@@ -228,5 +231,58 @@
                 }
             });
         </script>
+
+        <!-- Custom script for dynamic loading of reviews and carousel height fixes -->
+        <!-- <script>
+            $(document).ready(function() {
+                var loadingReviews = false;
+                var numReviews = $("#reviews").attr("count2");
+                loadReviews();
+                
+                $(window).scroll(function() {
+                    loadReviews();
+                });
+
+                var maxHeight = 0;
+
+                $(".carousel-item").each(function() {
+                    var h = $(this).height();
+                    if (h > maxHeight) {
+                        maxHeight = h;
+                    }
+                });
+                $("#imageGallery").css("min-height", maxHeight);
+                $("#imageGallery").css("max-height", maxHeight);
+                $(".carousel-item").each(function() {
+                    var y = maxHeight/2.0 - $(this).height()/2.0;
+                    $(this).css("margin-top", y);
+                });
+                $("#imageGallery").css("visibility", "visible");
+
+                function loadReviews() {
+                    var scroll = $(window).scrollTop() + $(window).height();
+                    if (!loadingReviews && (scroll > $(document).height() - 300)) {
+                        loadingReviews = true;
+                        if ($(".review").length >= numReviews)
+                            return;
+
+                        $("#review-loader").show();
+                        $.ajax({
+                            method: "POST",
+                            url: "/modules/load_reviews.php",
+                            data: {
+                                product_id: $("#reviews").attr("product"),
+                                prev_id: $(".review").last().attr("id"),
+                            }
+                        }).done(function(html) {
+                            $("#reviews").append(html);
+                            $("#review-loader").hide();
+                            loadingReviews = false;
+                            fixFooter();
+                        });
+                    }
+                }
+            });
+        </script> -->
     </body>
 </html>

@@ -27,6 +27,8 @@
         $review["email"] = $_SESSION["email"];
         $email = $review["email"];
     }
+    if (array_key_exists("rating", $_POST))
+        $rating = $_POST["rating"];
 
     //Insert review into databaase
     $sql = "INSERT INTO REVIEWS (customer_id, product_id, rating, review)
