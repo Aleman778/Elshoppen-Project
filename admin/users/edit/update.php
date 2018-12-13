@@ -2,11 +2,7 @@
     $root = $_SERVER['DOCUMENT_ROOT'];
     include("$root/modules/mysql.php");
     include("$root/admin/access.php");
-    $editAccess = checkAccess("/admin/products/list/edit.php");
-    if (!$editAccess) {
-        header("Location: http://localhost/admin/users/list/");
-        exit;
-    }
+    
 
     $pid = $_GET["pid"];
 
@@ -33,7 +29,6 @@
         header("Location: index.php?err=pass_mismatch");
         exit;
     }
-    var_dump($_POST["psw"]);
 
     $db = new MySQL();
     $db->query("START TRANSACTION");
@@ -58,6 +53,27 @@
                         "address" => $_POST["address"],
                         "id" => $pid,
                         "psw"=> $phash ));    
+    $role = $_POST["role"];
+    var_dump($role );  
+    if ($role == "None") {
+        $stmt = $db->prepare("DELETE FROM EMPLOYEES WHERE id = :pid");
+        $stmt->execute(array("pid" => $pid));
+        
+    }
+    else if ($role == "Admin" or $role == "Moderator"){
+        $row = $db->fetch("SELECT id FROM EMPLOYEES WHERE id = $pid");
+        var_dump($row);
+            if ($row == false) {
+                $stmt = $db->prepare("INSERT INTO EMPLOYEES (id, role) VALUES (:pid, :prole)");
+                $stmt->execute(array(   "pid" => $pid,
+                                        "prole" => $role));
+            }
+            else {
+                $stmt = $db->prepare("UPDATE EMPLOYEES SET role = :prole WHERE id = :pid");
+                $stmt->execute(array(   "pid" => $pid,
+                                        "prole" => $role));
+            }
+    }
     $db->query("COMMIT");
 
     header("Location: http://localhost/admin/users/list/");
