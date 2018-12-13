@@ -18,7 +18,7 @@
             <div id="sidebar-div" class="col-sm">
                 <?php include("$root/admin/sidebar.php"); ?>
             </div>
-            <div class="col-sm p-4">
+            <div id="content-div" class="col-sm p-4">
                 <h3>Users</h3>
                 <?php
                     include("$root/modules/mysql.php");
@@ -41,17 +41,15 @@
                         
                         <tr>
                             <td>
-                                <div class="row">
-                                    <div class="col-sm" style="max-width: 12rem; height: 8rem; overflow: hidden; text-align:center">
-                                        <img src="<?php echo get_gravatar($email, 38); ?>" class="rounded-circle" width="38" height="38">
-                                    </div>
+                                <div class="row m-0">
+                                    <img src="<?php echo get_gravatar($item["email"], 38); ?>" class="rounded-circle" width="38" height="38">
                                     <div class="col-md">
                                         <h5 class="mb-1"><?php echo $item["firstname"]; ?></h5>
-                                        <p><?php echo $item["lastname"] ?></p>
+                                        <p class="mb-1"><?php echo $item["lastname"] ?></p>
                                     </div>
                                 </div>
                             </td>
-                            <td style="text-align: center;" class="price">
+                            <td class="price">
                                 <?php echo $item["email"] ?> 
                             </td>
                             <td style="text-align: center;" class="price">
