@@ -140,7 +140,7 @@
                             <?php } ?>
                         </div>
 
-                        <!-- Show reviewss -->
+                        <!-- Show reviews -->
                         <div id="reviews" product="<?php echo $_GET["id"]; ?>" count="<?php echo $numReviews; ?>">
                             <?php include("$root/modules/load_reviews.php"); ?>
                         </div>

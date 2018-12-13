@@ -1,6 +1,5 @@
 <!-- Shows one comment -->
-<?php include("$root/modules/product_stars.php"); ?>
-<div id="<?php echo $review["id"]; ?>" class="container <?php echo "review";?>">
+<div id="<?php echo $review["customer_id"]; ?>" class="container review">
     <div class="row">
         <img src="<?php echo get_gravatar($review["email"], 38); ?>" class="rounded-circle m-2" width="38" height="38" style="margin-top:5px;">
         <div class="col-lg">
