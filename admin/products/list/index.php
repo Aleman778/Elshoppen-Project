@@ -18,7 +18,33 @@
             <div id="sidebar-div" class="col-sm">
                 <?php include("$root/admin/sidebar.php"); ?>
             </div>
-            <div class="col-sm p-4">
+            <div id="content-div" class="col-sm p-4">
+                <?php if (array_key_exists("del", $_GET)) { ?>
+                    <?php if ($_GET["del"] == "success") { ?>
+                        <div class="alert alert-success" role="alert">
+                            The product was successfully removed from the database!
+                        </div>
+                    <?php } ?>
+                    <?php if ($_GET["del"] == "error") { ?>
+                        <div class="alert alert-danger" role="alert">
+                            The product failed to be removed from the database! Error message:<br>
+                            <?php echo $_GET["msg"]; ?>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+                <?php if (array_key_exists("edit", $_GET)) { ?>
+                    <?php if ($_GET["edit"] == "success") { ?>
+                        <div class="alert alert-success" role="alert">
+                            The product was successfully updated in the database!
+                        </div>
+                    <?php } ?>
+                    <?php if ($_GET["edit"] == "error") { ?>
+                        <div class="alert alert-danger" role="alert">
+                            The product failed to be updated in the database! Error message:<br>
+                            <?php echo $_GET["msg"]; ?>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
                 <h3>Produkter</h3>
                 <?php
                     include("$root/modules/mysql.php");

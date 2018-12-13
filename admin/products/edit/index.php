@@ -1,6 +1,8 @@
 <?php 
     $root = $_SERVER['DOCUMENT_ROOT'];
     include("$root/admin/access.php");
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,7 +81,7 @@
                 <form action="insert.php" method="POST">
                     <div class="form-group">
                         <label for="dbname">Produktnamn</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Skriv produktens namn">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Skriv produktens namn" value="">
                     </div>
                     <div class="form-group">
                         <label for="category">Välj kategori</label>

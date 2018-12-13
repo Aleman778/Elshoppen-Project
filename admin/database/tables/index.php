@@ -15,7 +15,7 @@
             <div id="sidebar-div" class="col-sm">
                 <?php include("$root/admin/sidebar.php"); ?>
             </div>
-            <div class="col-sm p-4">
+            <div id="content-div" class="col-sm p-4">
                 <h3>Databastabeller</h3>
                 <h4>Tabeller i databasen db971229</h4>
                 <?php
