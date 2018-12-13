@@ -42,7 +42,7 @@
             <?php }  else { ?>
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="/category/<?php echo $details["category"] ?>">
+                <li class="breadcrumb-item"><a href="/product/category/?name=<?php echo $details["category"] ?>">
                     <?php echo $details["category"] ?></a>
                 </li>
                 <li class="breadcrumb-item active">
