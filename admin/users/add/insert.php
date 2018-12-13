@@ -1,13 +1,6 @@
 <?php
     $root = $_SERVER['DOCUMENT_ROOT'];
     include("$root/admin/access.php");
-    include("$root/admin/access.php");
-    
-    $editAccess = checkAccess("/admin/products/list/edit.php");
-    if (!$editAccess) {
-        header("Location: http://localhost/admin/users/list/");
-        exit;
-    }
 
     //Check for invalid firstname, lastname and password.
     $fname_len = strlen($_POST["first-name"]);
@@ -60,7 +53,14 @@
             header("Location: index.php?err=other&errmsg=Databas fel, försök igen.");
         }
         $id = (int) $data["id"];
-
+        $role = $_POST["role"];
+        var_dump($role);
+        if ($role == "Admin" or $role == "Moderator"){
+            $stmt = $db->prepare("INSERT INTO EMPLOYEES (id, role) VALUES (:pid, :prole)");
+                $stmt->execute(array(   "pid" => $id,
+                                        "prole" => $role));
+        }
+        
         header("Location: http://localhost/admin/users/list/");
     } catch (PDOException $e) {
         $errmsg = $e->getMessage();

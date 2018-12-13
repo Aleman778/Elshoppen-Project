@@ -8,9 +8,10 @@ $("#review-msg").keyup(function() {
 
 $("#review-btn").click(function() {
     var message = $("#review-msg").val();
+    var rat = $("#rating").val();
     $("#review-msg").val("");
     $(this).attr("disabled", "disabled");
-    addReview(message, "#rating", $("#reviews"));
+    addReview(message, rat, $("#reviews"));
 });
 
 

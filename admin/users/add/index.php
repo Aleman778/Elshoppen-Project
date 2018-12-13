@@ -126,7 +126,18 @@
                         <input class="form-control" type="text" placeholder="Fyll i adress" name="address">
                     </div>
                 </div>
-                    
+                
+                <div class="row mb-2">
+                    <div class="col-md-2">
+                            <label for="role"><b>Roll</b></label>
+                    </div>
+                    <div class="col-md-5">
+                            <input type="radio" name="role" value="None"> None
+                            <input type="radio" name="role" value="Admin"> Admin
+                            <input type="radio" name="role" value="Moderator"> Moderator
+                    </div>
+                </div>
+
                 <div class="clearfix mt-4">
                     <button type="submit" class="btn btn-primary">Skapa</button>
                     <a href="/admin" class="btn btn-secondary">Avbryt</a>

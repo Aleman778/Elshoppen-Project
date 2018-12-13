@@ -31,7 +31,7 @@
     }
     if (array_key_exists("rating", $_POST))
         $rating = $_POST["rating"];
-
+        $review["rating"] = $_POST["rating"];
     //Insert review into database
     $sql = "INSERT INTO REVIEWS (customer_id, product_id, rating, review)
             VALUES (:cid, :pid, :rat, :rev)";

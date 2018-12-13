@@ -2,11 +2,6 @@
     $root = $_SERVER['DOCUMENT_ROOT'];
     include("$root/modules/mysql.php");
     include("$root/admin/access.php");
-    $deleteAccess = checkAccess("/admin/products/list/delete.php");
-    if (!$deleteAccess) {
-        header("Location: http://localhost/admin/users/list/");
-        exit;
-    }
 
     $db = new MySQL();
     $db->query("START TRANSACTION");
