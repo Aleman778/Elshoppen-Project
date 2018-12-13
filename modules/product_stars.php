@@ -1,5 +1,4 @@
 <?php 
-
     if (!function_exists("createStars")) {       
         function createStars($stars, $rating, $size=28, $numReviews=0, $showStats=false) {
             echo "<div class='row' style='margin: 6px;'>";
