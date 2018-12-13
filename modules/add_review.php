@@ -32,26 +32,25 @@
 
     //Insert review into database
     $sql = "INSERT INTO REVIEWS (customer_id, product_id, rating, review)
-            VALUES (:cid, :pid, :rat, :rev";
+            VALUES (:cid, :pid, :rat, :rev)";
     
     $params = array(
             "cid" => $customer_id,
             "pid" => $product_id,
-            "rat" => $rating,
+            "rat" => (float) $rating,
             "rev" => $review["review"]);
 
     include("$root/modules/mysql.php");
     $db = new MySQL();
     try {
-        // not working
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
 
-        $sql = "SELECT id FROM REVIEWS WHERE customer_id=:cid AND product_id=:pid AND
+        $sql = "SELECT customer_id FROM REVIEWS WHERE customer_id=:cid AND product_id=:pid AND
                                             rating=:rat AND review=:rev";            
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
-        $review["id"] = $stmt->fetch()["id"];
+        $review["customer_id"] = $stmt->fetch()["customer_id"];
     } catch (PDOException $e) {
         echo "Error in add_review!";
     }
