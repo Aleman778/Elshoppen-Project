@@ -60,7 +60,7 @@
                             <?php if ($editAccess or $deleteAccess) { ?>
                                 <td>
                                     <?php if ($editAccess) { ?>
-                                        <a href="edit.php?pid=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
+                                        <a href="/admin/users/edit/index.php?pid=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
                                     <?php } ?>
                                     <?php if ($deleteAccess) { ?>
                                         <a href="#" class="btn-delete" data-toggle="modal" data-target="#deleteProduct<?php echo $item["id"]; ?>"><img src="/images/icons/delete.svg"></a> 
@@ -84,7 +84,7 @@
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-sm" style="max-width: 12rem; height: 8rem; overflow: hidden; text-align:center">
-                                                    <img src="<?php echo "/images/items/$images[0]/$images[1]"; ?>" style="height: 8rem;">
+                                                <img src="<?php echo get_gravatar($email, 38); ?>" class="rounded-circle" width="38" height="38">
                                                 </div>
                                                 <div class="col-md">
                                                     <h5 class="mb-1"><?php echo $item["firstname"]; ?></h5>
