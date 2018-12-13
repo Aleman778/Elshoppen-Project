@@ -43,6 +43,7 @@
     include("$root/modules/mysql.php");
     $db = new MySQL();
     try {
+        // not working
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
 

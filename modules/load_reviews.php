@@ -24,6 +24,7 @@
             WHERE CUSTOMERS.id=REVIEWS.customer_id AND REVIEWS.product_id=:prid AND
             REVIEWS.rating=:rat
             ORDER BY REVIEWS.id DESC LIMIT 10";
+    // not working
     $st = $db->prepare($sql);
     //$st->execute(array("prid" => $product_id));
     $reviews = $st->fetchAll();
