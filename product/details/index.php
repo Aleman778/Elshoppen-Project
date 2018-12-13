@@ -128,7 +128,7 @@
                                     <img src="<?php echo get_gravatar($email, 38); ?>" class="rounded-circle m-2" width="38" height="38" style="margin-top:5px;">
                                     <div class="col-lg form-group">
                                         <label for="rating">Ge betyg från 1 till 5 (1 = dålig, 5 = jättebra):</label>
-                                        <input type="number" id="rating" name="rating" min="1" max="5">
+                                        <input type="number" id="rating" min="1" max="5">
                                         <textarea style="resize: none;" class="form-control" id="review-msg" rows="1" maxlength="500" placeholder="Lägg till en recension..."></textarea>
                                     </div>
                                 </div>
