@@ -30,7 +30,7 @@
     if (array_key_exists("rating", $_POST))
         $rating = $_POST["rating"];
 
-    //Insert review into databaase
+    //Insert review into database
     $sql = "INSERT INTO REVIEWS (customer_id, product_id, rating, review)
             VALUES (:cid, :pid, :rat, :rev";
     
@@ -46,13 +46,13 @@
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
 
-        $sql = "SELECT id FROM REVIEW WHERE customer_id=:cid AND product_id=:pid AND
+        $sql = "SELECT id FROM REVIEWS WHERE customer_id=:cid AND product_id=:pid AND
                                             rating=:rat AND review=:rev";            
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
         $review["id"] = $stmt->fetch()["id"];
     } catch (PDOException $e) {
-        echo "Error!";
+        echo "Error in add_review!";
     }
     include("gravatar.php");
     include("review.php");

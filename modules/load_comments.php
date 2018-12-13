@@ -25,7 +25,7 @@
         include("gravatar.php");
         $db = new MySQL();
     }
-    // Preperation for: Select all replies to this comment
+    
     $sql = "SELECT COMMENTS.*, CUSTOMERS.firstname, CUSTOMERS.lastname, CUSTOMERS.email
             FROM CUSTOMERS JOIN COMMENTS
             WHERE CUSTOMERS.id=COMMENTS.customer_id AND COMMENTS.product_id=:pid AND

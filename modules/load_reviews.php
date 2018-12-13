@@ -1,6 +1,5 @@
 <?php
     $product_id = 0;
-    $rating = 0;
 
     if (array_key_exists("id", $_GET))
         $product_id = $_GET["id"];
@@ -20,17 +19,17 @@
         include("gravatar.php");
         $db = new MySQL();
     }
-    // $sql = "SELECT REVIEWS.*, CUSTOMERS.firstname, CUSTOMERS.lastname, CUSTOMERS.email
-    //         FROM CUSTOMERS JOIN REVIEWS
-    //         WHERE CUSTOMERS.id=REVIEWS.customer_id AND REVIEWS.product_id=:prid AND
-    //         REVIEWS.rating=:rat
-    //         ORDER BY REVIEWS.id DESC LIMIT 10";
-    // $st = $db->prepare($sql);
-    // $st->execute(array("prid" => $product_id)),
-    //                     "rat" => $rating));
-    // $reviews = $st->fetchAll();
+    $sql = "SELECT REVIEWS.*, CUSTOMERS.firstname, CUSTOMERS.lastname, CUSTOMERS.email
+            FROM CUSTOMERS JOIN REVIEWS
+            WHERE CUSTOMERS.id=REVIEWS.customer_id AND REVIEWS.product_id=:prid AND
+            REVIEWS.rating=:rat
+            ORDER BY REVIEWS.id DESC LIMIT 10";
+    $st = $db->prepare($sql);
+    //$st->execute(array("prid" => $product_id));
+    $reviews = $st->fetchAll();
 
-    // foreach ($reviews as $review) { ?> 
-    <!--   <div id="review-div-<?php //echo $review["id"]; ?>" review="<?php //echo $review["id"]; ?>" class="mb-3">
-           </div> -->     <?php //include("review.php");
-    //     }?>
+    foreach ($reviews as $review) { ?> 
+        <div id="review-div-<?php echo $review["id"]; ?>" review="<?php echo $review["id"]; ?>" class="mb-3">
+        </div>
+        <?php include("review.php");
+    }?>
