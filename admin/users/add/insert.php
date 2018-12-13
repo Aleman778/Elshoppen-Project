@@ -1,7 +1,13 @@
 <?php
     $root = $_SERVER['DOCUMENT_ROOT'];
     include("$root/admin/access.php");
+    include("$root/admin/access.php");
     
+    $editAccess = checkAccess("/admin/products/list/edit.php");
+    if (!$editAccess) {
+        header("Location: http://localhost/admin/users/list/");
+        exit;
+    }
 
     //Check for invalid firstname, lastname and password.
     $fname_len = strlen($_POST["first-name"]);

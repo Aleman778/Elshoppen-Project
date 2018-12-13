@@ -1,6 +1,12 @@
 <?php
     $root = $_SERVER['DOCUMENT_ROOT'];
     include("$root/modules/mysql.php");
+    include("$root/admin/access.php");
+    $editAccess = checkAccess("/admin/products/list/edit.php");
+    if (!$editAccess) {
+        header("Location: http://localhost/admin/users/list/");
+        exit;
+    }
 
     $pid = $_GET["pid"];
 
