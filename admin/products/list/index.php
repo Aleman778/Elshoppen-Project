@@ -2,7 +2,7 @@
     $root = $_SERVER['DOCUMENT_ROOT'];
     include("$root/admin/access.php");
 
-    $editAccess = checkAccess("/admin/products/list/edit.php");
+    $editAccess = checkAccess("/admin/products/edit/index.php");
     $deleteAccess = checkAccess("/admin/products/list/delete.php");
 ?>
 <!DOCTYPE html>
@@ -88,7 +88,7 @@
                             <?php if ($editAccess or $deleteAccess) { ?>
                                 <td>
                                     <?php if ($editAccess) { ?>
-                                        <a href="edit.php?pid=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
+                                        <a href="/admin/products/edit/index.php?pid=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
                                     <?php } ?>
                                     <?php if ($deleteAccess) { ?>
                                         <a href="#" class="btn-delete" data-toggle="modal" data-target="#deleteProduct<?php echo $item["id"]; ?>"><img src="/images/icons/delete.svg"></a> 

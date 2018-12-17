@@ -1,13 +1,17 @@
 <?php 
     $root = $_SERVER['DOCUMENT_ROOT'];
     include("$root/admin/access.php");
-
-
+    include("$root/modules/mysql.php");
+    $pid = $_GET["pid"];
+    $db = new MySQL();
+    $sql = "SELECT name, price, inventory, image_ref, category, description, removed
+            From PRODUCTS WHERE id = $pid";
+    $product =  $db->fetch($sql);
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Admin - Produkter</title>
+        <title>Admin - Uppdatera Produkt</title>
         <?php include("$root/modules/bootstrap_css.php"); ?>
         <link rel="stylesheet" href="/admin/style.css">
         <style>
@@ -76,16 +80,16 @@
                         </div>
                     <?php } ?>
                 <?php } ?>
-                <h3>Lägg till produkter</h3>
+                <h3>Uppdatera produkt</h3>
                 <h4>Produktinformation</h4>
-                <form action="insert.php" method="POST">
+                <form action="update.php" method="POST">
                     <div class="form-group">
                         <label for="dbname">Produktnamn</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Skriv produktens namn" value="">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Skriv produktens namn" value="<?php echo $product[0] ?>">
                     </div>
                     <div class="form-group">
                         <label for="category">Välj kategori</label>
-                        <select class="form-control" id="category" name="category">
+                        <select class="form-control" id="category" name="category" value="<?php echo $product[4]?>">
                             <option>Gaming</option>
                             <option>Tv och bild</option>
                             <option>Mobiltelefoner</option>
@@ -99,16 +103,26 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="category">Välj status(0 = inte borttagen, 1 = borttagen)</label>
+                        <select class="form-control" id="category" name="category" value="<?php echo $product[6]?>">
+                            <option>0</option>
+                            <option>1</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="price">Lagerstatus (antal)</label>
-                        <input type="number" class="form-control" id="inventory" name="inventory" placeholder="Skriv in hur många det finns kvar i lagret">
+                        <input type="number" class="form-control" id="inventory" name="inventory" 
+                                placeholder="Skriv in hur många det finns kvar i lagret" value="<?php echo $product[2]?>">
                     </div>
                     <div class="form-group">
                         <label for="price">Pris (kronor)</label>
-                        <input type="number" class="form-control" id="price" name="price" placeholder="Skriv produktens pris">
+                        <input type="number" class="form-control" id="price" name="price" 
+                                placeholder="Skriv produktens pris" value="<?php echo $product[1]?>">
                     </div>
                     <div class="form-group">
                         <label for="description">Beskrivning av produkten</label>
-                        <textarea class="form-control" id="description" name="description" rows="3" maxlength="1000" placeholder="Skriv en kort beskrivning om produkten"></textarea>
+                        <textarea class="form-control" id="description" name="description" rows="3" maxlength="1000" 
+                                    placeholder="Skriv en kort beskrivning om produkten" ><?php echo $product[5]?></textarea>
                     </div>
                     <h4>Produktbilder</h4>
                     <div class="form-group">
@@ -116,7 +130,8 @@
                         <div class="row ml-4 mr-4">
                             <span style="padding-top: 7px;">/images/items/</span>
                             <div class="col-lg px-1">
-                                <input type="text" class="form-control" id="imageFolder" name="imageFolder" placeholder="produktens_namn">
+                                <input type="text" class="form-control" id="imageFolder" name="imageFolder" 
+                                        placeholder="produktens_namn" value="<?php echo $product[3]?>">
                             </div>
                             <span style="padding-top: 7px;">/</span>
                         </div>
