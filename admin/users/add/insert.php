@@ -61,7 +61,7 @@
                                         "prole" => $role));
         }
         
-        header("Location: http://localhost/admin/users/list/");
+        header("Location: /admin/users/list/");
     } catch (PDOException $e) {
         $errmsg = $e->getMessage();
         if (strpos($errmsg, 'Duplicate') !== false) {

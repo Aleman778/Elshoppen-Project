@@ -76,5 +76,5 @@
     }
     $db->query("COMMIT");
 
-    header("Location: http://localhost/admin/users/list/");
+    header("Location: /admin/users/list/");
 ?>
