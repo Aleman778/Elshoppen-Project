@@ -13,10 +13,7 @@
     $db = new MySQL();
     $sql = "SELECT address FROM CUSTOMERS WHERE id = $customer_id";
     $address = $db->fetch($sql);
-    if ($address)
-        $address = $address["address"];
-    else 
-        $address = "";
+    $address = $address["address"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +33,7 @@
                     <label for="address"><b>Adress</b></label>
                 </div>
                 <div class="col-md">
-                    <input class="form-control" type="text" placeholder="Fyll i adress" value = <?php echo $address ?> name="address" required>
+                    <input class="form-control" type="text" placeholder="Fyll i adress" <?php if ($address != "") {?> value = <?php echo $address; }?> name="address" required>
                 </div>
             </div>
 
