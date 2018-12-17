@@ -6,5 +6,6 @@ CREATE TABLE PRODUCTS (
 	image_ref VARCHAR(1000) NOT NULL,
 	category VARCHAR(1000) NOT NULL,
 	description VARCHAR(1000) NOT NULL,
+	removed TINYINT(1) NOT NULL,
     PRIMARY KEY ( id )
 );
