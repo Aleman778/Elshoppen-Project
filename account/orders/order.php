@@ -100,5 +100,5 @@
     $db->query("COMMIT;");
   }
   
-  //header("Location: /account/orders/orderd.php");
+  header("Location: /account/orders/orderd.php");
 ?>
