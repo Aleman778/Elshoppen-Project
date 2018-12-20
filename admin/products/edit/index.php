@@ -82,7 +82,7 @@
                 <?php } ?>
                 <h3>Uppdatera produkt</h3>
                 <h4>Produktinformation</h4>
-                <form action="update.php" method="POST">
+                <form action="update.php?pid=<?php echo $pid;?>" method="POST">
                     <div class="form-group">
                         <label for="dbname">Produktnamn</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Skriv produktens namn" value="<?php echo $product[0] ?>">
@@ -104,7 +104,7 @@
                     </div>
                     <div class="form-group">
                         <label for="category">Välj status(0 = inte borttagen, 1 = borttagen)</label>
-                        <select class="form-control" id="category" name="category" value="<?php echo $product[6]?>">
+                        <select class="form-control" id="removed" name="removed" value="<?php echo $product[6]?>">
                             <option>0</option>
                             <option>1</option>
                         </select>
@@ -144,7 +144,7 @@
                         </a>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Lägg till</button>
+                        <button type="submit" class="btn btn-primary">Uppdatera</button>
                     </div>
                 </form>
             </div>
