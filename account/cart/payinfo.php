@@ -10,6 +10,11 @@
 
     $customer_id = $_SESSION["customer_id"];
 
+    $pid = "f";
+    if (array_key_exists("item", $_GET)){
+        $pid = $_GET["item"];
+    }
+
     $db = new MySQL();
     $sql = "SELECT address FROM CUSTOMERS WHERE id = $customer_id";
     $address = $db->fetch($sql);
@@ -26,7 +31,7 @@
   <?php include("$root/header.php"); ?>
 
   <div id="main" class="container">
-    <form action="../orders/order.php" method="post">
+    <form action="../orders/order.php?pid=<?php echo $pid;?>" method="post">
         <h1>Skriv in din betalinformation</h1>
             <div class="row">
                 <div class="col-md-2">
