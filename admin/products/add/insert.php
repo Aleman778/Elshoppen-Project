@@ -14,14 +14,15 @@
         }
 
         $db = new MySQL();
-        $sql = "INSERT INTO PRODUCTS (name, price, inventory, category, description, image_ref)
-                VALUES (:name, :price, :inv, :cat, :desc, :imr)";
+        $sql = "INSERT INTO PRODUCTS (name, price, inventory, category, description, image_ref, removed)
+                VALUES (:name, :price, :inv, :cat, :desc, :imr, :rem)";
         $params = array("name"  => $_POST["name"],
                         "price" => $_POST["price"],
                         "inv"   => $_POST["inventory"],
                         "cat"   => $_POST["category"],
                         "desc"  => $_POST["description"],
-                        "imr"   => $imageref);
+                        "imr"   => $imageref,
+                        "rem"    => 0);
 
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
