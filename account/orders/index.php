@@ -39,6 +39,7 @@
                     <b>Order nummer: </b> <?php echo $id ?>
                 </h5>
                   <p><b>Datum av beställning: </b> <?php echo $order[4] ?> </p>
+                  <p><b>Har hanterats: </b> <?php if($order[5] == 1 ) {echo "Ja";} else {echo "Nej";};?> </p>
                   <p><b>Address: </b> <?php echo $order[2] ?> </p>
                   <p><b>E-mail: </b> <?php echo $order[3] ?> </p>
                 <p class="card-subtitle pb-2"><b>Din Beställning:</b></p>

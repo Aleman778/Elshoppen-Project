@@ -20,12 +20,13 @@
   if ($pid != "f") {
     $db->query("START TRANSACTION"); 
 
-    $sql_insert_order = "INSERT INTO ORDERS (id, customer_id, address, email, time) 
-                          VALUES (DEFAULT, :customer_id, :address, :email, NOW());";
+    $sql_insert_order = "INSERT INTO ORDERS (id, customer_id, address, email, time, handled) 
+                          VALUES (DEFAULT, :customer_id, :address, :email, NOW() , :handled);";
     $qi = $db->prepare($sql_insert_order);
     $qi->execute(array(':customer_id' => $customer_id,
                       ':address' => $address,
-                      ':email' => $email)); 
+                      ':email' => $email,
+                      ':handled' => 0)); 
 
     $order_id = $db->fetch("SELECT LAST_INSERT_ID();");
 
@@ -53,12 +54,13 @@
     $db->query("START TRANSACTION"); 
 
     // Adding order to table ORDERS.
-    $sql_insert_order = "INSERT INTO ORDERS (id, customer_id, address, email, time) 
-                          VALUES (DEFAULT, :customer_id, :address, :email, NOW());";
+    $sql_insert_order = "INSERT INTO ORDERS (id, customer_id, address, email, time, handled) 
+                          VALUES (DEFAULT, :customer_id, :address, :email, NOW(), :handled);";
     $qi = $db->prepare($sql_insert_order);
     $qi->execute(array(':customer_id' => $customer_id,
                       ':address' => $address,
-                      ':email' => $email)); 
+                      ':email' => $email,
+                      ':handled' => 0)); 
 
     // Geting the id of the order.
     $order_id = $db->fetch("SELECT LAST_INSERT_ID();"); 
