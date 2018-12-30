@@ -22,12 +22,12 @@
                 <?php if (array_key_exists("del", $_GET)) { ?>
                     <?php if ($_GET["del"] == "success") { ?>
                         <div class="alert alert-success" role="alert">
-                            The product was successfully removed from the database!
+                            The product was successfully marked as removed in the database!
                         </div>
                     <?php } ?>
                     <?php if ($_GET["del"] == "error") { ?>
                         <div class="alert alert-danger" role="alert">
-                            The product failed to be removed from the database! Error message:<br>
+                            The product failed to be marked as removed in the database! Error message:<br>
                             <?php echo $_GET["msg"]; ?>
                         </div>
                     <?php } ?>
@@ -67,8 +67,11 @@
                         <?php
                             $images = explode(",", $item["image_ref"]);
                         ?>
-                        <tr>
+                        <tr style="<?php if ($item["removed"] == "1") { echo "opacity: 0.2;"; }?> position: relative; top: 0px; left: 0px;">
                             <td>
+                                <?php if ($item["removed"] == 1) { ?>
+                                    <h2 style="position: absolute; left: 20px; top: 16px; z-index: 10; opacity: 1;">REMOVED</h2>
+                                <?php } ?>
                                 <div class="row">
                                     <div class="col-sm" style="max-width: 12rem; height: 8rem; overflow: hidden; text-align:center">
                                         <img src="<?php echo "/images/items/$images[0]/$images[1]"; ?>" style="height: 8rem;">
@@ -87,11 +90,15 @@
                             </td>
                             <?php if ($editAccess or $deleteAccess) { ?>
                                 <td>
-                                    <?php if ($editAccess) { ?>
-                                        <a href="/admin/products/edit/index.php?pid=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
-                                    <?php } ?>
-                                    <?php if ($deleteAccess) { ?>
-                                        <a href="#" class="btn-delete" data-toggle="modal" data-target="#deleteProduct<?php echo $item["id"]; ?>"><img src="/images/icons/delete.svg"></a> 
+                                    <?php if ($item["removed"] == "0") { ?>
+                                        <?php if ($editAccess) { ?>
+                                            <a href="/admin/products/edit/index.php?pid=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
+                                        <?php } ?>
+                                        <?php if ($deleteAccess) { ?>
+                                            <a href="#" class="btn-delete" data-toggle="modal" data-target="#deleteProduct<?php echo $item["id"]; ?>"><img src="/images/icons/delete.svg"></a> 
+                                        <?php } ?>
+                                    <?php }  else { ?>
+                                        <a href="undo.php?id=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/undo.svg"></a>
                                     <?php } ?>
                                 </td>
                             <?php } ?>

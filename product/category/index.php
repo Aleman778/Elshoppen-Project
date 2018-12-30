@@ -6,9 +6,9 @@
   
   $name = htmlspecialchars($_REQUEST['name']);
   $db = new MySQL();
-  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE category LIKE '%$name%'";
+  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE category LIKE '%$name%' AND removed='0';";
   $items =  $db->fetchAll($sql);
-  ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,7 @@
 
   <div id="main" class="container">
   
-    <h1>Din sökning "<?php echo $name; ?>" gav "<?php echo count($items); ?>" träff<?php if(count($items) != 1) echo "ar"; ?>.</h1>
+    <h1><?php echo $name; ?></h1>
     <div class="row">
       <?php
         foreach ($items as $item) {

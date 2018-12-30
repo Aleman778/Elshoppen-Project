@@ -39,7 +39,11 @@
                 <h1>Felkod 404</h1>
                 <h2>Produkten som förfrågades finns inte i vårt register</h2>
                 <a class="btn btn-primary" href="/">Gå tillbaka till startsidan</a>
-            <?php }  else { ?>
+            <?php } else if ($details["removed"] == "1") { ?>
+                <h1>Fel</h1>
+                <h2>Produkten som förfrågades är borttagen i vårt register</h2>
+                <a class="btn btn-primary" href="/">Gå tillbaka till startsidan</a>
+            <?php } else { ?>
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item"><a href="/product/category/?name=<?php echo $details["category"] ?>">

@@ -6,7 +6,7 @@
   
   $searchterm = htmlspecialchars($_REQUEST['searchterm']);
   $db = new MySQL();
-  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE name LIKE '%$searchterm%'";
+  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE name LIKE '%$searchterm%' AND removed='0';";
   $items =  $db->fetchAll($sql);
 ?>
 

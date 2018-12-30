@@ -5,10 +5,10 @@
 
     try {
         $db = new MySQL();
-        $stmt = $db->prepare("UPDATE PRODUCTS SET removed='1' WHERE id=:pid;");
+        $stmt = $db->prepare("UPDATE PRODUCTS SET removed='0' WHERE id=:pid;");
         $stmt->execute(array("pid" => $_GET["id"]));
-        header("Location: /admin/products/list/?del=success");
+        header("Location: /admin/products/list/");
     } catch (Exception $e) {
-        header("Location: /admin/products/list/?del=error&msg=" . $e->getMessage());
+        header("Location: /admin/products/list/");
     }
 ?>
