@@ -31,44 +31,44 @@
         <div class="row">
             <div class="col-md-3">
                 <!--hard coded profile picture-->
-                <img src="/images/profiles/default.png" class="rounded-circle m-2">
+                <img src="<?php echo get_gravatar($email, 260); ?>" class="rounded-circle" style="width: 100%;">
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 pr-0">
                 <ul class="list-group">
-                    <li class="list-group-item">Förnamn:</li>
+                    <li class="list-group-item" style="border-top-right-radius: 0px;">Förnamn:</li>
                     <li class="list-group-item">Efternamn:</li>
                     <li class="list-group-item">Kön:</li>
                     <li class="list-group-item">Födelsedatum:</li>
                     <li class="list-group-item">Epost:</li>
                     <li class="list-group-item">Mobilnummer:</li>
-                    <li class="list-group-item">Adress:</li>
+                    <li class="list-group-item" style="border-bottom-right-radius: 0px;">Adress:</li>
                 </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 pl-0">
                 <ul class="list-group">
-                    <li class="list-group-item">
+                    <li class="list-group-item" style="border-left: 0px; border-top-left-radius: 0px;">
                         <?php echo $customer["firstname"] ?></li>
-                    <li class="list-group-item">
+                    <li class="list-group-item" style="border-left: 0px;">
                         <?php echo $customer["lastname"] ?>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item" style="border-left: 0px;">
                         <?php if ($customer["gender"] == "m" ) {
                             echo "Man";
                         } else {
                             echo "Kvinna";
                         } ?>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item" style="border-left: 0px;">
                         <?php echo $customer["birth_date"] ?>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item" style="border-left: 0px;">
                         <?php echo $customer["email"] ?>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item" style="border-left: 0px;">
                         <?php echo $customer["phone_number"] ?>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item" style="border-left: 0px; border-bottom-left-radius: 0px;">
                         <?php echo $customer["address"] ?>
                     </li>
                 </ul>
