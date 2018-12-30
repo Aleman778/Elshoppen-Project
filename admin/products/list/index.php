@@ -49,7 +49,7 @@
                 <?php
                     include("$root/modules/mysql.php");
                     $db = new MySQL();
-                    $items = $db->fetchAll("SELECT * FROM PRODUCTS ORDER BY id DESC");
+                    $items = $db->fetchAll("SELECT * FROM PRODUCTS ORDER BY removed, id DESC");
                 ?>
                 <table class="table" style=" border-bottom: 1px solid #dee2e6;">
                     <thead class="thead">
