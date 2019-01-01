@@ -4,8 +4,8 @@
 ?>
 <?php foreach($images as $image) { ?>
     <?php $parts = explode("/", $image); $index++; ?>
-    <div class="form-group form-check product-image p-0 ml-2">
-        <input type="checkbox" checked id="image-<?php echo $index; ?>" name="image-<?php echo $index; ?>" hidden>
+    <div class="form-group form-check product-image p-0 ml-2 image-checked" style="overflow: hidden;">
+        <input type="checkbox" checked id="image-<?php echo $index; ?>" class="image-checkbox" name="image-<?php echo $index; ?>" hidden>
         <input type="text" value="<?php echo $parts[count($parts) - 1]; ?>" name="file-<?php echo $index; ?>" hidden>
         <label class="from-check-label" for="image-<?php echo $index; ?>">
             <div class="image-div">

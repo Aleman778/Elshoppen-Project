@@ -2,10 +2,10 @@
     if (!class_exists("MySQL")) {
         class MySQL {
 
-            public $hostname = "utbweb.its.ltu.se";
-            public $dbname = "db971229";
-            public $username = "971229";
-            public $password = "971229";
+            public $hostname = "alemen.se.mysql";
+            public $dbname = "alemen_se";
+            public $username = "alemen_se";
+            public $password = "LoV3AnxRRBDGR3cTCr6zucEX";
             public $conn = null;
 
             public function __construct() {

@@ -42,6 +42,11 @@
                 height: 10rem;
                 display:table-cell;
                 text-align:center;
+                cursor: pointer;
+            }
+
+            .from-check-label {
+                cursor: pointer;
             }
 
             .image-div {
@@ -51,6 +56,10 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+            }
+
+            .image-checked {
+                border: solid thick green;
             }
         </style>
     </head>
@@ -171,6 +180,7 @@
                     label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
                 input.trigger('fileselect', [numFiles, label]);
             });
+
 
             $(document).ready( function() {
                 $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
