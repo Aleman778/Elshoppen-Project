@@ -5,7 +5,9 @@
     "Moderator": [
         "/admin/",
         "/admin/products/",
-        "/admin/products/list/"
+        "/admin/products/list/",
+        "/admin/comments",
+        "/admin/comments/list/"
     ],
     "Kundtjänst": [
         "/admin/"

@@ -85,6 +85,10 @@
                 <?php } ?>
             </div>
         <?php } ?>
+        <a href="/admin/comments/list" class="sidebar-link list-group-item list-group-item-action">
+            <img src="/images/icons/comment.svg" width=18 height=18>
+            <span class="ml-2">Kommentarer</span>
+        </a>
         <?php if (checkAccess("/admin/orders/")) { ?>
             <a href="/admin/orders/list/" class="sidebar-link list-group-item list-group-item-action">
                 <img src="/images/icons/payment.svg" width=18 height=18>
