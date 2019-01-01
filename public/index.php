@@ -1,10 +1,10 @@
 <?php 
     //Composer autoload function
-    require "vendor/autoload.php";
+    require dirname(__DIR__) . "/vendor/autoload.php";
 
     //Custom autoload function
     spl_autoload_register(function ($class_name) {
-        include $class_name . '.php';
+        require "../" . str_replace('\\', '/', $class_name) . ".php";
     });
 
     //Set the view directory

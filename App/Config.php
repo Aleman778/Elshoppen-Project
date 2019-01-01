@@ -2,7 +2,7 @@
 
     namespace App;
 
-    public Config {
+    class Config {
 
         const DB_HOST = "alemen.se.mysql";
 
