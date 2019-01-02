@@ -1,7 +1,7 @@
 <?php 
     $root = $_SERVER['DOCUMENT_ROOT'];
     include("$root/modules/mysql.php");
-    $customer_id = $_GET["pid"];
+    $customer_id = $_GET["cid"];
     $db = new MySQL();
     $sql = "SELECT firstname, lastname , gender, 
             birth_date, email, phone_number, address 
@@ -44,7 +44,7 @@
                     }
                 }
         ?>
-        <form action="update.php?pid=<?php echo $customer_id;?>" method="post">
+        <form action="update.php?cid=<?php echo $customer_id;?>" method="post">
             <h1>Ändra information</h1>
             <p>Ändra den information som inte stämmer, klicka sedan spara.</p>
             <hr>

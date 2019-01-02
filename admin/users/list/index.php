@@ -58,7 +58,7 @@
                             <?php if ($editAccess or $deleteAccess) { ?>
                                 <td>
                                     <?php if ($editAccess) { ?>
-                                        <a href="/admin/users/edit/index.php?pid=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
+                                        <a href="/admin/users/edit/index.php?cid=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
                                     <?php } ?>
                                     <?php if ($deleteAccess) { ?>
                                         <a href="#" class="btn-delete" data-toggle="modal" data-target="#deleteProduct<?php echo $item["id"]; ?>"><img src="/images/icons/delete.svg"></a> 

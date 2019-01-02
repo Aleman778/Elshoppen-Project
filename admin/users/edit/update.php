@@ -4,7 +4,7 @@
     include("$root/admin/access.php");
     
 
-    $pid = $_GET["pid"];
+    $cid = $_GET["cid"];
 
     //Check for invalid firstname and lastname.
     $fname_len = strlen($_POST["first-name"]);
@@ -37,7 +37,7 @@
         $phash = password_hash($_POST["psw"], PASSWORD_DEFAULT);
     }
     else {
-        $phash = $db->fetch("SELECT password FROM CUSTOMERS WHERE id = $pid");
+        $phash = $db->fetch("SELECT password FROM CUSTOMERS WHERE id = $cid");
     }
 
     $sql = "UPDATE CUSTOMERS SET firstname = :fname, lastname = :lname, 
@@ -51,26 +51,26 @@
                         "email" => $_POST["email"],
                         "mobile_number" => $_POST["mobile-number"],
                         "address" => $_POST["address"],
-                        "id" => $pid,
+                        "id" => $cid,
                         "psw"=> $phash ));    
     $role = $_POST["role"];
     var_dump($role );  
     if ($role == "None") {
-        $stmt = $db->prepare("DELETE FROM EMPLOYEES WHERE id = :pid");
-        $stmt->execute(array("pid" => $pid));
+        $stmt = $db->prepare("DELETE FROM EMPLOYEES WHERE id = :cid");
+        $stmt->execute(array("cid" => $cid));
         
     }
     else if ($role == "Admin" or $role == "Moderator"){
-        $row = $db->fetch("SELECT id FROM EMPLOYEES WHERE id = $pid");
+        $row = $db->fetch("SELECT id FROM EMPLOYEES WHERE id = $cid");
         var_dump($row);
             if ($row == false) {
-                $stmt = $db->prepare("INSERT INTO EMPLOYEES (id, role) VALUES (:pid, :prole)");
-                $stmt->execute(array(   "pid" => $pid,
+                $stmt = $db->prepare("INSERT INTO EMPLOYEES (id, role) VALUES (:cid, :prole)");
+                $stmt->execute(array(   "cid" => $cid,
                                         "prole" => $role));
             }
             else {
-                $stmt = $db->prepare("UPDATE EMPLOYEES SET role = :prole WHERE id = :pid");
-                $stmt->execute(array(   "pid" => $pid,
+                $stmt = $db->prepare("UPDATE EMPLOYEES SET role = :prole WHERE id = :cid");
+                $stmt->execute(array(   "cid" => $cid,
                                         "prole" => $role));
             }
     }
