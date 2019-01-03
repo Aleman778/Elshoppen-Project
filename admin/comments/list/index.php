@@ -163,7 +163,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="#" type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
+                                                <a href="#" type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</a>
                                                 <a href="delete.php?id=<?php echo $comment["id"]; ?>" type="button" class="btn btn-danger">Radera</a>
                                             </div>
                                         </div>

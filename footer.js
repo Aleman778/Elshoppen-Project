@@ -9,7 +9,7 @@ $(window).resize(fixFooter);
 $("#navbarSupportedContent").resize(fixFooter);
 
 function fixHeader() {
-    var newWidth = $("#profile-drop").width() + 48;
+    var newWidth = $("#profile-drop").width() + 70;
     $("#profile-drop").width(newWidth);
 }
 

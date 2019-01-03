@@ -13,8 +13,7 @@
             .btn-file {
                 position: relative;
                 overflow: hidden;
-                border-top-right-radius: 0px;
-                border-bottom-right-radius: 0px;
+                cursor: pointer;
             }
 
             .btn-file input[type=file] {
@@ -28,13 +27,8 @@
                 filter: alpha(opacity=0);
                 opacity: 0;
                 background: red;
-                cursor: inherit;
                 display: block;
-            }
-
-            input[readonly] {
-                background-color: white !important;
-                cursor: text !important;
+                cursor: pointer;
             }
 
             .product-image {
@@ -42,6 +36,15 @@
                 height: 10rem;
                 display:table-cell;
                 text-align:center;
+                border: solid 3px gray;
+                border-radius: 6px;
+                overflow: hidden;
+                float: left;
+                background-color: white;
+            }
+
+            .checked {
+                border: solid 3px green;
             }
 
             .image-div {
@@ -51,6 +54,12 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+            }
+
+            #imageResults {
+                background-color: rgb(240, 240, 240);
+                border-radius: 6px;
+                min-height: 176px;
             }
         </style>
     </head>
@@ -109,6 +118,7 @@
                         <textarea class="form-control" id="description" name="description" rows="3" maxlength="1000" placeholder="Skriv en kort beskrivning om produkten"></textarea>
                     </div>
                     <h4>Produktbilder</h4>
+                    <div id="status"></div>
                     <div class="form-group">
                         <label for="dbname">Produktens bildmapp</label>
                         <div class="row ml-4 mr-4">
@@ -119,11 +129,12 @@
                             <span style="padding-top: 7px;">/</span>
                         </div>
                     </div>
-                    <div class="form-group row" id="imageResults"></div>
-                    <div class="form-group">
-                        <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#uploadImage">
+                    <h6 class="ml-4">Arrangera bilderna i den ordningen som önskas, den första bilden kommer användas som produktens omslagsbild.</h6>
+                    <div class="ui-sortable form-group row ml-4 mr-4 pl-2 pr-2 pt-2 pb-0" id="imageResults"></div>
+                    <div class="form-group ml-4">
+                        <a href="#" class="btn btn-secondary btn-file">
                             <img src="/images/icons/cloud_upload.svg" style="margin-top: -0.25em;" width=24 height=24>
-                            <span>Ladda upp</span>
+                            Ladda upp <input type="file" single>
                         </a>
                     </div>
                     <div class="form-group">
@@ -132,59 +143,63 @@
                 </form>
             </div>
         </div>
-        <div class="modal fade" id="uploadImage" tabindex="-1" role="dialog" aria-labelledby="uploadImageModal" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="uploadImageModal">Ladda upp bilder på produkten</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <span class="btn btn-primary btn-file">
-                                    Bläddra&hellip; <input type="file" single>
-                                </span>
-                            </span>
-                            <input type="text" class="form-control" readonly>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
-                        <a href="#" type="button" class="btn btn-primary">Ladda upp</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <?php include("$root/modules/bootstrap_js.php"); ?>
+        
+        <!-- jQuery UI -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <!-- Run basic admin script -->
         <script src="/admin/basic.js"></script>
 
         <script>
-            /* From: https://codepen.io/patrickt010/pen/WbKroW */
-            $(document).on('change', '.btn-file :file', function() {
-                var input = $(this),
-                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                input.trigger('fileselect', [numFiles, label]);
-            });
-
-            $(document).ready( function() {
-                $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
-                    
-                    var input = $(this).parents('.input-group').find(':text'),
-                        log = numFiles > 1 ? numFiles + ' files selected' : label;
-                    
-                    if( input.length ) {
-                        input.val(log);
-                    } else {
-                        if( log ) alert(log);
+            $(document).on("change", ".btn-file :file", function() {
+                var file = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
+                var file_data = $(this).prop('files')[0];   
+                var folder_data = $("#imageFolder").val();
+                if (folder_data == "") {
+                    $("#status").html('<div class="alert alert-danger" role="alert">Please specify a folder to store the image in.</div>');
+                    return;
+                }
+                var form_data = new FormData();                  
+                form_data.append('file', file_data);
+                form_data.append('folder', folder_data);
+                $.ajax({
+                    url: '/admin/products/add/upload.php', // point to server-side PHP script 
+                    dataType: 'text',  // what to expect back from the PHP script, if anything
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,                         
+                    type: 'post',
+                    success: function(html) {
+                        if (html.indexOf("product-image") > 0) {
+                            $("#imageResults").append(html);
+                            $("#status").html('<div class="alert alert-success" role="alert">Image was successfully uploaded!</div>');
+                        } else {
+                            $("#status").html('<div class="alert alert-danger" role="alert">' + html + '</div>');
+                        }
                     }
                 });
             });
+
+            $(document).on("click", ".product-image", function(evt) {
+                var $checkbox = $(this).children("input[type=checkbox]");
+                if ($checkbox.attr("checked")) {
+                    $(this).children(".checked-icon").hide();
+                    $(this).removeClass("checked");
+                    $checkbox.removeAttr("checked");
+                } else {
+                    $(this).children(".checked-icon").show();
+                    $(this).addClass("checked");
+                    $checkbox.attr("checked", "");
+                }
+                evt.stopPropagation();
+                evt.preventDefault();
+            });
+
+            $("#imageResults").sortable({scroll: false});
+            $("#imageResults").disableSelection();
 
             $("#imageFolder").keyup(function() {
                 $.ajax({

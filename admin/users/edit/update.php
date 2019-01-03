@@ -37,7 +37,7 @@
         $phash = password_hash($_POST["psw"], PASSWORD_DEFAULT);
     }
     else {
-        $phash = $db->fetch("SELECT password FROM CUSTOMERS WHERE id = $cid");
+        $phash = $db->fetch("SELECT password FROM CUSTOMERS WHERE id = $cid")["password"];
     }
 
     $sql = "UPDATE CUSTOMERS SET firstname = :fname, lastname = :lname, 
@@ -54,14 +54,11 @@
                         "id" => $cid,
                         "psw"=> $phash ));    
     $role = $_POST["role"];
-    var_dump($role );  
-    if ($role == "None") {
-        $stmt = $db->prepare("DELETE FROM EMPLOYEES WHERE id = :cid");
+    if ($role == "Kund") {
+        $stmt = $db->prepare("DELETE FROM EMPLOYEES WHERE id=:cid");
         $stmt->execute(array("cid" => $cid));
-        
-    }
-    else if ($role == "Admin" or $role == "Moderator"){
-        $row = $db->fetch("SELECT id FROM EMPLOYEES WHERE id = $cid");
+    } else if ($role == "Admin" or $role == "Moderator") {
+        $row = $db->fetch("SELECT id FROM EMPLOYEES WHERE id=$cid");
         var_dump($row);
             if ($row == false) {
                 $stmt = $db->prepare("INSERT INTO EMPLOYEES (id, role) VALUES (:cid, :prole)");
@@ -69,7 +66,7 @@
                                         "prole" => $role));
             }
             else {
-                $stmt = $db->prepare("UPDATE EMPLOYEES SET role = :prole WHERE id = :cid");
+                $stmt = $db->prepare("UPDATE EMPLOYEES SET role = :prole WHERE id=:cid");
                 $stmt->execute(array(   "cid" => $cid,
                                         "prole" => $role));
             }

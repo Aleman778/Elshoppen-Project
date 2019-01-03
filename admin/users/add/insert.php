@@ -1,4 +1,5 @@
 <?php
+
     $root = $_SERVER['DOCUMENT_ROOT'];
     include("$root/admin/access.php");
 
@@ -54,7 +55,6 @@
         }
         $id = (int) $data["id"];
         $role = $_POST["role"];
-        var_dump($role);
         if ($role == "Admin" or $role == "Moderator"){
             $stmt = $db->prepare("INSERT INTO EMPLOYEES (id, role) VALUES (:pid, :prole)");
                 $stmt->execute(array(   "pid" => $id,

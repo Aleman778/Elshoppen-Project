@@ -102,7 +102,7 @@
                     <a class="dropdown-item" href="/account/profile" style="padding-left: 56px;">Mitt konto</a>
                     <a class="dropdown-item" href="/account/orders" style="padding-left: 56px;">Mina beställningar</a>
                     <a class="dropdown-item" href="/account/cart" style="padding-left: 56px;">Kundvagn</a>
-                    <?php if ($role == "Admin" or $role == "Moderator" or $role = "Kundtjänst") { ?>
+                    <?php if ($role == "Admin" or $role == "Moderator") { ?>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/admin" style="padding-left: 56px;"><?php echo $role; ?> dashboard</a>
                     <?php } ?>

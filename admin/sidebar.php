@@ -17,11 +17,11 @@
     </div>
 
     <div class="list-group list-group-flush">
-        <a href="/admin" class="sidebar-link list-group-item list-group-item-action">
+        <a href="/admin/" class="sidebar-link list-group-item list-group-item-action">
             <img src="/images/icons/dashboard.svg" width=18 height=18>
             <span class="ml-2">Dashboard</span>
         </a>
-        <?php if (checkAccess("/admin/database/")) { ?>
+        <?php if (false) { ?> <!-- Not fully implemented in this build -->
             <a href="#database-group" class="sidebar-link list-group-item list-group-item-action collapsed" data-toggle="collapse">
                 <img src="/images/icons/database.svg" width=18 height=18>
                 <span class="ml-2">MySQL</span>
@@ -85,7 +85,7 @@
                 <?php } ?>
             </div>
         <?php } ?>
-        <a href="/admin/comments/list" class="sidebar-link list-group-item list-group-item-action">
+        <a href="/admin/comments/list/" class="sidebar-link list-group-item list-group-item-action">
             <img src="/images/icons/comment.svg" width=18 height=18>
             <span class="ml-2">Kommentarer</span>
         </a>
