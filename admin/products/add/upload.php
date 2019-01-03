@@ -27,7 +27,7 @@
         echo "Filen är för stor. Max är 500 kB. ";
         $uploadOk = 0;
     }
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
         echo "Enbart JPG, JPEG, PNG & GIF filer är tillåtna. ";
         $uploadOk = 0;
     }

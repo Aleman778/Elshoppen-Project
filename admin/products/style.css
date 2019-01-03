@@ -1,0 +1,51 @@
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    background: red;
+    display: block;
+    cursor: pointer;
+}
+
+.product-image {
+    width: 10rem;
+    height: 10rem;
+    display:table-cell;
+    text-align:center;
+    border: solid 3px gray;
+    border-radius: 6px;
+    overflow: hidden;
+    float: left;
+    background-color: white;
+}
+
+.checked {
+    border: solid 3px green;
+}
+
+.image-div {
+    overflow: hidden;
+    height: 10rem;
+    width: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#imageResults {
+    background-color: rgb(240, 240, 240);
+    border-radius: 6px;
+    min-height: 176px;
+}

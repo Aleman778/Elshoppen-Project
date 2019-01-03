@@ -1,9 +1,6 @@
-<?php
-    $images = glob("../../../" . $_GET["dir"] . "/*.{jpg,png,bmp}", GLOB_BRACE);
-    $index = 0;
-?>
+<?php $images = glob("../../../" . $_GET["dir"] . "/*.{jpg,jpeg,png,bmp}", GLOB_BRACE); ?>
 <?php foreach($images as $image) { ?>
-    <?php $parts = explode("/", $image); $index++; ?>
+    <?php $parts = explode("/", $image);?>
     <div class="form-group form-check product-image p-0 mb-2 mr-2 checked" style="position: relative; top: 0; left: 0;">
         <div class="checked-icon" style="position: absolute; top: -3px; left: -2px; background-color: green; width: 28px; height: 30px; border-bottom-right-radius: 6px;">
             <img src="/images/icons/done.svg">

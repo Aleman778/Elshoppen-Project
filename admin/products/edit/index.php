@@ -4,8 +4,7 @@
     include("$root/modules/mysql.php");
     $pid = $_GET["pid"];
     $db = new MySQL();
-    $sql = "SELECT name, price, inventory, image_ref, category, description, removed
-            From PRODUCTS WHERE id = $pid";
+    $sql = "SELECT name, price, inventory, image_ref, category, description From PRODUCTS WHERE id = $pid";
     $product =  $db->fetch($sql);
 ?>
 <!DOCTYPE html>
@@ -14,51 +13,7 @@
         <title>Admin - Uppdatera Produkt</title>
         <?php include("$root/modules/bootstrap_css.php"); ?>
         <link rel="stylesheet" href="/admin/style.css">
-        <style>
-            /* From: https://codepen.io/patrickt010/pen/WbKroW  slightly modified to work with BS 4.1 */
-            .btn-file {
-                position: relative;
-                overflow: hidden;
-                border-top-right-radius: 0px;
-                border-bottom-right-radius: 0px;
-            }
-
-            .btn-file input[type=file] {
-                position: absolute;
-                top: 0;
-                right: 0;
-                min-width: 100%;
-                min-height: 100%;
-                font-size: 100px;
-                text-align: right;
-                filter: alpha(opacity=0);
-                opacity: 0;
-                background: red;
-                cursor: inherit;
-                display: block;
-            }
-
-            input[readonly] {
-                background-color: white !important;
-                cursor: text !important;
-            }
-
-            .product-image {
-                width: 10rem;
-                height: 10rem;
-                display:table-cell;
-                text-align:center;
-            }
-
-            .image-div {
-                overflow: hidden;
-                height: 10rem;
-                width: 10rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        </style>
+        <link rel="stylesheet" href="/admin/products/style.css">
     </head>
     <body>
         <?php include("$root/admin/header.php"); ?>
@@ -85,11 +40,11 @@
                 <form action="update.php?pid=<?php echo $pid;?>" method="POST">
                     <div class="form-group">
                         <label for="dbname">Produktnamn</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Skriv produktens namn" value="<?php echo $product[0] ?>">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Skriv produktens namn" value="<?php echo $product["name"] ?>">
                     </div>
                     <div class="form-group">
                         <label for="category">Välj kategori</label>
-                        <select class="form-control" id="category" name="category" value="<?php echo $product[4]?>">
+                        <select class="form-control" id="category" name="category" value="<?php echo $product["category"]?>">
                             <option>Gaming</option>
                             <option>Tv och bild</option>
                             <option>Mobiltelefoner</option>
@@ -103,44 +58,78 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="category">Välj status(0 = inte borttagen, 1 = borttagen)</label>
-                        <select class="form-control" id="removed" name="removed" value="<?php echo $product[6]?>">
-                            <option>0</option>
-                            <option>1</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label for="price">Lagerstatus (antal)</label>
                         <input type="number" class="form-control" id="inventory" name="inventory" 
-                                placeholder="Skriv in hur många det finns kvar i lagret" value="<?php echo $product[2]?>">
+                                placeholder="Skriv in hur många det finns kvar i lagret" value="<?php echo $product["inventory"]?>">
                     </div>
                     <div class="form-group">
                         <label for="price">Pris (kronor)</label>
                         <input type="number" class="form-control" id="price" name="price" 
-                                placeholder="Skriv produktens pris" value="<?php echo $product[1]?>">
+                                placeholder="Skriv produktens pris" value="<?php echo $product["price"]?>">
                     </div>
                     <div class="form-group">
                         <label for="description">Beskrivning av produkten</label>
                         <textarea class="form-control" id="description" name="description" rows="3" maxlength="1000" 
-                                    placeholder="Skriv en kort beskrivning om produkten" ><?php echo $product[5]?></textarea>
+                                    placeholder="Skriv en kort beskrivning om produkten" ><?php echo $product["description"]?></textarea>
                     </div>
                     <h4>Produktbilder</h4>
+                    <?php $images = explode(",", $product["image_ref"]); ?>
                     <div class="form-group">
                         <label for="dbname">Produktens bildmapp</label>
                         <div class="row ml-4 mr-4">
                             <span style="padding-top: 7px;">/images/items/</span>
                             <div class="col-lg px-1">
                                 <input type="text" class="form-control" id="imageFolder" name="imageFolder" 
-                                        placeholder="produktens_namn" value="<?php echo $product[3]?>">
+                                        placeholder="produktens_namn" value="<?php echo $images[0]; ?>">
                             </div>
                             <span style="padding-top: 7px;">/</span>
                         </div>
                     </div>
-                    <div class="form-group row" id="imageResults"></div>
-                    <div class="form-group">
-                        <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#uploadImage">
+                    <h6 class="ml-4">Arrangera bilderna i den ordningen som önskas, den första bilden kommer användas som produktens omslagsbild.</h6>
+                    <div class="ui-sortable form-group row ml-4 mr-4 pl-2 pt-2 pb-0" id="imageResults">
+                        <?php for($i = 1; $i < count($images); $i++) { ?>
+                            <div class="form-group form-check product-image p-0 mb-2 mr-2 checked" style="position: relative; top: 0; left: 0;">
+                                <div class="checked-icon" style="position: absolute; top: -3px; left: -2px; background-color: green; width: 28px; height: 30px; border-bottom-right-radius: 6px;">
+                                    <img src="/images/icons/done.svg">
+                                </div>
+                                <input type="checkbox" checked id="image-<?php echo $images[$i]; ?>" name="image-<?php echo $images[$i]; ?>" hidden>
+                                <input type="text" value="<?php echo $images[$i]; ?>" name="file-<?php echo $images[$i]; ?>" hidden>
+                                <label class="from-check-label mb-0" for="image-<?php echo $images[$i]; ?>">
+                                    <div class="image-div">
+                                        <img style="height: 10rem; display: block; margin: 0 auto;" src="/images/items/<?php echo $images[0] . "/" . $images[$i]; ?>" alt="Image not found">
+                                    </div>
+                                </label>
+                            </div>
+                        <?php } ?>
+                        <?php $folder_images = glob("../../../images/items/" . $images[0] . "/*.{jpg,jpeg,png,gif}", GLOB_BRACE); ?>
+                        <?php 
+                            $other_images = [];
+                            foreach ($folder_images as $image) {
+                                $parts = explode("/", $image);
+                                if (!in_array($parts[count($parts) - 1], $images)) {
+                                    array_push($other_images, $parts[count($parts) - 1]);
+                                }
+                            } 
+                        ?>
+                        <?php for($i = 0; $i < count($other_images); $i++) { ?>
+                            <div class="form-group form-check product-image p-0 mb-2 mr-2" style="position: relative; top: 0; left: 0;">
+                                <div class="checked-icon" style="display: none; position: absolute; top: -3px; left: -2px; background-color: green; width: 28px; height: 30px; border-bottom-right-radius: 6px;">
+                                    <img src="/images/icons/done.svg">
+                                </div>
+                                <input type="checkbox" id="image-<?php echo $other_images[$i]; ?>" name="image-<?php echo $other_images[$i]; ?>" hidden>
+                                <input type="text" value="<?php echo $other_images[$i]; ?>" name="file-<?php echo $other_images[$i]; ?>" hidden>
+                                <label class="from-check-label mb-0" for="image-<?php echo $images[$i]; ?>">
+                                    <div class="image-div">
+                                        <img style="height: 10rem; display: block; margin: 0 auto;" src="/images/items/<?php echo $images[0] . "/" . $other_images[$i]; ?>" alt="Image not found">
+                                    </div>
+                                </label>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <div class="form-group ml-4">
+                        <a href="#" class="btn btn-secondary btn-file">
                             <img src="/images/icons/cloud_upload.svg" style="margin-top: -0.25em;" width=24 height=24>
-                            <span>Ladda upp</span>
+                            Ladda upp <input type="file" single>
                         </a>
                     </div>
                     <div class="form-group">
@@ -149,71 +138,14 @@
                 </form>
             </div>
         </div>
-        <div class="modal fade" id="uploadImage" tabindex="-1" role="dialog" aria-labelledby="uploadImageModal" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="uploadImageModal">Ladda upp bilder på produkten</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <span class="btn btn-primary btn-file">
-                                    Bläddra&hellip; <input type="file" single>
-                                </span>
-                            </span>
-                            <input type="text" class="form-control" readonly>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
-                        <a href="#" type="button" class="btn btn-primary">Ladda upp</a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <?php include("$root/modules/bootstrap_js.php"); ?>
+
+        <!-- jQuery UI -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <!-- Run basic admin script -->
         <script src="/admin/basic.js"></script>
 
-        <script>
-            /* From: https://codepen.io/patrickt010/pen/WbKroW */
-            $(document).on('change', '.btn-file :file', function() {
-                var input = $(this),
-                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                input.trigger('fileselect', [numFiles, label]);
-            });
-
-            $(document).ready( function() {
-                $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
-                    
-                    var input = $(this).parents('.input-group').find(':text'),
-                        log = numFiles > 1 ? numFiles + ' files selected' : label;
-                    
-                    if( input.length ) {
-                        input.val(log);
-                    } else {
-                        if( log ) alert(log);
-                    }
-                });
-            });
-
-            $("#imageFolder").keyup(function() {
-                $.ajax({
-                    method: "GET",
-                    url: "/admin/products/add/images.php",
-                    data: {
-                        dir: "images/items/" + $(this).val()
-                    }
-                }).done(function(html) {
-                    $("#imageResults").html(html);
-                });
-            });
-        </script>
+        <script src="/admin/products/images.js"></script>
     </body>
 </html>
