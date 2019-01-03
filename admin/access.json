@@ -6,8 +6,10 @@
         "/admin/",
         "/admin/products/",
         "/admin/products/list/",
-        "/admin/comments",
+        "/admin/products/list/index.php",
+        "/admin/comments/",
         "/admin/comments/list/",
+        "/admin/comments/list/index.php",
         "/admin/comments/list/delete.php"
     ],
     "Kundtjänst": [
