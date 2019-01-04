@@ -76,22 +76,22 @@
                                     <img src="<?php echo get_gravatar($item["email"], 38); ?>" class="rounded-circle" width="38" height="38">
                                     </div>
                                 </div>
-                            </td><td style="text-align: center;" class="price">
+                            </td><td style="text-align: center;" class="cid">
                                 <?php echo $item["customer_id"]; ?>
                             </td>
-                            <td style="text-align: center;" class="price">
+                            <td style="text-align: center;" class="oid">
                                 <?php echo $item["id"] ?> 
                             </td>
-                            <td style="text-align: center;" class="price">
+                            <td style="text-align: center;" class="time">
                                 <?php echo $item["time"] ?> 
                             </td>
-                            <td style="text-align: center;" class="price">
+                            <td style="text-align: center;" class="handled">
                                 <?php if($item["handled"] == 1) { echo "Hanterad";} else { echo "Inte hanterad";}; ?> 
                             </td>
                             <?php if ($editAccess or $deleteAccess) { ?>
                                 <td>
                                     <?php if ($editAccess) { ?>
-                                        <a href="/admin/products/edit/index.php?pid=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
+                                        <a href="/admin/orders/edit/index.php?oid=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
                                     <?php } ?>
                                     <?php if ($deleteAccess) { ?>
                                         <a href="#" class="btn-delete" data-toggle="modal" data-target="#deleteProduct<?php echo $item["id"]; ?>"><img src="/images/icons/delete.svg"></a> 
@@ -107,25 +107,21 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteProductModal<?php echo $item["id"]; ?>">Är du säker på att du vill radera produkten?</h5>
+                                            <h5 class="modal-title" id="deleteProductModal<?php echo $item["id"]; ?>">Är du säker på att du vill radera ordern?</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="row">
-                                                <div class="col-sm" style="max-width: 12rem; height: 8rem; overflow: hidden; text-align:center">
-                                                    <img src="<?php echo "/images/items/$images[0]/$images[1]"; ?>" style="height: 8rem;">
-                                                </div>
                                                 <div class="col-md">
-                                                    <h5 class="mb-1"><?php echo $item["name"]; ?></h5>
-                                                    <p><?php echo $item["description"] ?></p>
+                                                    <h5 class="mb-1"><b>Order id: </b><?php echo $item["id"]; ?></h5>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <a href="#" type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
-                                            <a href="delete.php?id=<?php echo $item["id"]; ?>" type="button" class="btn btn-danger">Radera</a>
+                                            <a href="delete.php?oid=<?php echo $item["id"]; ?>" type="button" class="btn btn-danger">Radera</a>
                                         </div>
                                     </div>
                                 </div>
