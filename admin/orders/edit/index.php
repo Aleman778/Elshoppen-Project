@@ -4,6 +4,7 @@
 
     $editAccess = checkAccess("/admin/products/edit/index.php");
     $deleteAccess = checkAccess("/admin/products/list/delete.php");
+    $oid = $_GET["oid"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,12 +23,12 @@
                 <?php if (array_key_exists("del", $_GET)) { ?>
                     <?php if ($_GET["del"] == "success") { ?>
                         <div class="alert alert-success" role="alert">
-                            The Order was successfully removed from the database!
+                            The product in the order was successfully removed from the database!
                         </div>
                     <?php } ?>
                     <?php if ($_GET["del"] == "error") { ?>
                         <div class="alert alert-danger" role="alert">
-                            The order failed to be removed from the database! Error message:<br>
+                            The product in the order failed to be removed from the database! Error message:<br>
                             <?php echo $_GET["msg"]; ?>
                         </div>
                     <?php } ?>
@@ -35,32 +36,32 @@
                 <?php if (array_key_exists("edit", $_GET)) { ?>
                     <?php if ($_GET["edit"] == "success") { ?>
                         <div class="alert alert-success" role="alert">
-                            The order was successfully updated in the database!
+                            The product in the order was successfully updated in the database!
                         </div>
                     <?php } ?>
                     <?php if ($_GET["edit"] == "error") { ?>
                         <div class="alert alert-danger" role="alert">
-                            The order failed to be updated in the database! Error message:<br>
+                            The product in the order failed to be updated in the database! Error message:<br>
                             <?php echo $_GET["msg"]; ?>
                         </div>
                     <?php } ?>
                 <?php } ?>
-                <h3>Orders</h3>
+                <h3>Produkter</h3>
+                <button type="submit" onclick="window.location.href='/admin/orders/add/index.php?oid=<?php echo $oid; ?>'" class="btn btn-primary">Lägg till produkt</button>
+                    
                 <?php
                     include("$root/modules/mysql.php");
                     $db = new MySQL();
-                    $sql = "SELECT id, customer_id, time, handled, email
-                            FROM ORDERS ORDER BY time DESC";
+                    $sql = "SELECT * FROM ORDERS_PRODUCTS WHERE order_id=$oid";
                     $items = $db->fetchAll($sql);
                 ?>
                 <table class="table" style=" border-bottom: 1px solid #dee2e6;">
                     <thead class="thead">
                         <tr>
-                            <th scope="col" style="border: none;">Beställning</th>
-                            <th scope="col" style="border: none;">Konto ID</th>
                             <th scope="col" style="border: none;">Order ID</th>
-                            <th scope="col" style="border: none;">Datum och Tid</th>
-                            <th scope="col" style="border: none;">Hanterad</th>
+                            <th scope="col" style="border: none;">Produkt ID</th>
+                            <th scope="col" style="border: none;">Antal</th>
+                            <th scope="col" style="border: none;">Pris</th>
                             <?php if ($editAccess or $deleteAccess) { ?>
                                 <th scope="col" style="border: none;">Åtgärder</th>
                             <?php } ?>
@@ -70,31 +71,25 @@
                     <?php foreach($items as $item) { ?>
                         
                         <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-sm" style="max-width: 12rem; height: 8rem; overflow: hidden; text-align:center">
-                                    <img src="<?php echo get_gravatar($item["email"], 38); ?>" class="rounded-circle" width="38" height="38">
-                                    </div>
-                                </div>
-                            </td><td style="text-align: center;" class="cid">
-                                <?php echo $item["customer_id"]; ?>
-                            </td>
                             <td style="text-align: center;" class="oid">
-                                <?php echo $item["id"] ?> 
+                                <?php echo $item["order_id"]; ?>
                             </td>
-                            <td style="text-align: center;" class="time">
-                                <?php echo $item["time"] ?> 
+                            <td style="text-align: center;" class="pid">
+                                <?php echo $item["product_id"]; ?>
                             </td>
-                            <td style="text-align: center;" class="handled">
-                                <?php if($item["handled"] == 1) { echo "Hanterad";} else { echo "Inte hanterad";}; ?> 
+                            <td style="text-align: center;" class="quantity">
+                                <?php echo $item["quantity"]; ?>
+                            </td>
+                            <td style="text-align: center;" class="price">
+                                <?php echo $item["price"] ?> 
                             </td>
                             <?php if ($editAccess or $deleteAccess) { ?>
                                 <td>
-                                    <?php if ($editAccess and $item["handled"] != 1) { ?>
-                                        <a href="/admin/orders/edit/index.php?oid=<?php echo $item["id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
+                                    <?php if ($editAccess) { ?>
+                                        <a href="/admin/orders/edit/edit.php?oid=<?php echo $item["order_id"]; ?>&pid=<?php echo $item["product_id"]; ?>" class="btn-edit"><img src="/images/icons/edit.svg"></a>
                                     <?php } ?>
-                                    <?php if ($deleteAccess and $item["handled"] != 1) { ?>
-                                        <a href="#" class="btn-delete" data-toggle="modal" data-target="#deleteProduct<?php echo $item["id"]; ?>"><img src="/images/icons/delete.svg"></a> 
+                                    <?php if ($deleteAccess) { ?>
+                                        <a href="#" class="btn-delete" data-toggle="modal" data-target="#deleteProduct<?php echo $item["product_id"]; ?>"><img src="/images/icons/delete.svg"></a> 
                                     <?php } ?>
                                 </td>
                             <?php } ?>
@@ -103,11 +98,11 @@
 
                         <!-- Modal -->
                         <?php if ($deleteAccess) { ?>
-                            <div class="modal fade" id="deleteProduct<?php echo $item["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteProductModal<?php echo $item["id"]; ?>" aria-hidden="true">
+                            <div class="modal fade" id="deleteProduct<?php echo $item["product_id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteProductModal<?php echo $item["product_id"]; ?>" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteProductModal<?php echo $item["id"]; ?>">Är du säker på att du vill radera ordern?</h5>
+                                            <h5 class="modal-title" id="deleteProductModal<?php echo $item["product_id"]; ?>">Är du säker på att du vill ta bort produkten?</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -115,13 +110,13 @@
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-md">
-                                                    <h5 class="mb-1"><b>Order id: </b><?php echo $item["id"]; ?></h5>
+                                                    <h5 class="mb-1"><b>Produkt id: </b><?php echo $item["product_id"]; ?></h5>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <a href="#" type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
-                                            <a href="delete.php?oid=<?php echo $item["id"]; ?>" type="button" class="btn btn-danger">Radera</a>
+                                            <a href="delete.php?oid=<?php echo $item["order_id"]; ?>&pid=<?php echo $item["product_id"]; ?>" type="button" class="btn btn-danger">Radera</a>
                                         </div>
                                     </div>
                                 </div>
