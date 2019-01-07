@@ -48,7 +48,7 @@
                 <?php } ?>
                 <h3>Produkter</h3>
                 <button type="submit" onclick="window.location.href='/admin/orders/add/index.php?oid=<?php echo $oid; ?>'" class="btn btn-primary">Lägg till produkt</button>
-                    
+                <button type="submit" onclick="window.location.href='/admin/orders/edit/handel.php?oid=<?php echo $oid; ?>'" class="btn btn-primary">Markera order som hanterad</button>    
                 <?php
                     include("$root/modules/mysql.php");
                     $db = new MySQL();
