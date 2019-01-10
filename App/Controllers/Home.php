@@ -12,6 +12,12 @@
         public function indexAction() {
             View::renderTemplate("Home/index.html");
         }
+
+        public function loginAction() {
+            View::renderTemplate("Home/login.html");
+            $user = User::fromSession();
+        }
+
     }
 
 
