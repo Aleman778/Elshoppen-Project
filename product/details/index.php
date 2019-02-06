@@ -1,5 +1,6 @@
 <?php  
     $root = $_SERVER['DOCUMENT_ROOT'];
+    session_start();
     if (!array_key_exists("id", $_GET)) {
         header("Location: /");
     }
@@ -109,7 +110,7 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane mb-4" id="reviews" role="review-tab" aria-labelledby="reviews-tab">
+                    <div class="tab-pane mb-4" id="reviews" role="reviews-tab" aria-labelledby="reviews-tab">
 
                         <!-- Count how many reviews there are in total -->
                         <?php 
@@ -150,7 +151,7 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane show active mb-4" id="comments-tab" role="tabpanel" aria-labelledby="comments-tab">
+                    <div class="tab-pane show active mb-4" id="comments" role="comments-tab" aria-labelledby="comments-tab">
                         <!-- Select all comments from the given product. -->
 
                         <!-- Count how many comments there are in total -->

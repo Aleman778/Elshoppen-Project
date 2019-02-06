@@ -8,8 +8,6 @@
     $role = "Guest";
     $cart = 0;
 
-    if (session_status() == PHP_SESSION_NONE)
-        session_start();
     if (array_key_exists("customer_id", $_SESSION)) {
         $loggedIn = true;
         

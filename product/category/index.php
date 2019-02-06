@@ -1,19 +1,20 @@
 <?php
-
-// Fixa så det inte kan bli sql injektion
-
+	session_start();
   include("../../modules/mysql.php");
   
-  $name = htmlspecialchars($_REQUEST['name']);
+  
+  $category = htmlspecialchars($_REQUEST['name']);
   $db = new MySQL();
-  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE category LIKE '%$name%' AND removed='0';";
-  $items =  $db->fetchAll($sql);
+  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE category LIKE :cat AND removed='0';";
+  $stmt = $db->prepare($sql);
+  $stmt->execute(array("cat" => "$category"));
+  $items = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title> Sökresultat för <?php echo $name; ?>  Elshoppen</title>
+<title> Sökresultat för <?php echo $category; ?>  Elshoppen</title>
   <!-- Include basic libraries -->
   <?php include("../../modules/bootstrap_css.php"); ?>
   <link rel = "stylesheet" href = "/modules/categories.css" >
@@ -29,7 +30,7 @@
 
   <div id="main" class="container">
   
-    <h1><?php echo $name; ?></h1>
+    <h1><?php echo $category; ?></h1>
     <div class="row">
       <?php
         foreach ($items as $item) {

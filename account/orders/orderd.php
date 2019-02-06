@@ -1,4 +1,7 @@
-<?php $root = $_SERVER['DOCUMENT_ROOT']; ?>
+<?php 
+  $root = $_SERVER['DOCUMENT_ROOT'];
+  session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>

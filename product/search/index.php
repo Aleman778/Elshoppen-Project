@@ -1,13 +1,14 @@
 <?php
 
-// Fixa så det inte kan bli sql injektion
-
+  session_start();
   include("../../modules/mysql.php");
   
   $searchterm = htmlspecialchars($_REQUEST['searchterm']);
   $db = new MySQL();
-  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE name LIKE '%$searchterm%' AND removed='0';";
-  $items =  $db->fetchAll($sql);
+  $sql = "SELECT id, name, price, image_ref From PRODUCTS WHERE name LIKE :query AND removed='0';";
+  $stmt = $db->prepare($sql);
+  $stmt->execute(array("query" => "%$searchterm%"));
+  $items = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
